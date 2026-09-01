@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# User-supplied and generated ROM data
+*.gba
+*.sav
+*.srm
+*.state*
+vendor/pokeemerald/baserom.gba
+vendor/pokeemerald/pokeemerald.gba
+vendor/pokeemerald/pokeemerald.elf
+vendor/pokeemerald/pokeemerald.map
