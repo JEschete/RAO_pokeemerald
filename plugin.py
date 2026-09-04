@@ -10,14 +10,14 @@ class PokeEmeraldPlugin:
             raise ValueError("Plugin repository root is required")
         decomp_root = context.settings.get(
             "pokeemerald.decomp_root",
-            context.repository_root / "vendor" / "pokeemerald",
+            context.repository_root / "decomp_reference" / "pokeemerald",
         )
         progress = (
             context.ra_progress_provider(RA_GAME_ID)
             if context.ra_progress_provider is not None
             else None
         )
-        return EmeraldAdapter(decomp_root, progress)
+        return EmeraldAdapter(decomp_root, progress, context.state_directory)
 
 
 PLUGIN = PokeEmeraldPlugin()

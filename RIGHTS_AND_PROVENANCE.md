@@ -6,9 +6,9 @@ This is a technical inventory, not legal advice.
 
 ## Locally Authored Plugin Code
 
-The Python adapter, tests, manifest, and documentation were migrated from `JEschete/RetroArchOverlay`, where they were committed by JEschete. That source repository does not currently declare an open-source license. All rights are therefore reserved unless and until the owner adds a license.
+The Python adapter, tests, manifest, and documentation were migrated from `JEschete/RetroArchOverlay`, where they were committed by JEschete. Locally authored plugin code is available under the MIT License. That license does not grant rights to third-party game material, patches, trademarks, or decompilation content.
 
-## `vendor/pokeemerald`
+## `decomp_reference/pokeemerald`
 
 - Source: <https://github.com/pret/pokeemerald>
 - Integration: pinned Git submodule, not copied source

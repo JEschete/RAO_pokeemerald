@@ -3,12 +3,32 @@ __pycache__/
 .pytest_cache/
 .coverage
 
+# Machine-local RetroAchievements research
+game/data/retroachievements/code_notes.*
+
+# Machine-local binary patches
+game/assets/patches/
+*.ips
+*.ips32
+*.bps
+*.ups
+*.rup
+*.xdelta
+*.xdelta3
+*.vcdiff
+*.bsdiff
+*.bspatch
+*.ppf
+*.pchtxt
+*.patch
+*.diff
+
 # User-supplied and generated ROM data
 *.gba
 *.sav
 *.srm
 *.state*
-vendor/pokeemerald/baserom.gba
-vendor/pokeemerald/pokeemerald.gba
-vendor/pokeemerald/pokeemerald.elf
-vendor/pokeemerald/pokeemerald.map
+decomp_reference/pokeemerald/baserom.gba
+decomp_reference/pokeemerald/pokeemerald.gba
+decomp_reference/pokeemerald/pokeemerald.elf
+decomp_reference/pokeemerald/pokeemerald.map

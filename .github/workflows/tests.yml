@@ -1,0 +1,28 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          path: plugin
+      - uses: actions/checkout@v4
+        with:
+          repository: JEschete/RetroArchOverlay
+          path: host
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install -e ".\host[dev]"
+      - working-directory: plugin
+        run: python -m pytest -q tests
+      - working-directory: plugin
+        run: python tools\generate_knowledge.py --check

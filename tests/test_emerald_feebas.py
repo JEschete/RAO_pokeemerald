@@ -9,7 +9,7 @@ from game.feebas import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-POKEEMERALD_ROOT = PROJECT_ROOT / "vendor" / "pokeemerald"
+POKEEMERALD_ROOT = PROJECT_ROOT / "decomp_reference" / "pokeemerald"
 requires_pokeemerald = unittest.skipUnless(
     (POKEEMERALD_ROOT / "include" / "constants" / "metatile_behaviors.h").is_file(),
     "pokeemerald decomp checkout is not available",

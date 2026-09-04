@@ -4,29 +4,32 @@ slug = "pokeemerald"
 name = "Pokemon Emerald"
 api_version = 1
 entry = "plugin.py"
+license = "MIT"
 ra_game_id = 668
 
 [match]
-cores = ["mgba", "game_boy_advance"]
+cores = ["game_boy_advance", "mgba"]
 content_hints = ["emerald"]
 hashes = [
-    "67b770405f7b87589e0342513b25fe9b",
     "054b20eed28e84b0102062a89ae7ebb1",
     "21f934f5738b6f975709e46646b83e86",
+    "2c00e335288a96650e34785b5e2a7588",
+    "31446456df04356cb9f2145bada42ed2",
     "5f91214a7b563c858a94920796817d83",
     "605b89b67018abcea91e693a4dd25be3",
-    "31446456df04356cb9f2145bada42ed2",
-    "f793a854654b467211fc32c4062cb183",
-    "2c00e335288a96650e34785b5e2a7588",
+    "67b770405f7b87589e0342513b25fe9b",
     "c3e85be7372bbd5e43f6334a565968c1",
+    "f793a854654b467211fc32c4062cb183",
     "f82d897b10ec0729d515637b0e009dd8",
 ]
 
 [[sources]]
 id = "pokeemerald"
 kind = "git-submodule"
-path = "vendor/pokeemerald"
+path = "decomp_reference/pokeemerald"
 required = true
+url = "https://github.com/pret/pokeemerald.git"
+revision = "5eff78649e7170a877b961ef0b3da13b81a16038"
 required_files = [
     "src/data/wild_encounters.json",
     "data/maps/map_groups.json",
