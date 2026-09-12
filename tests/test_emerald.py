@@ -612,10 +612,19 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertEqual(snapshot.location, "Battle · Route 101")
         self.assertEqual(
             tuple(section.title for section in snapshot.sections),
-            ("Battle", "Rewards if defeated", "Catch chances"),
+            (
+                "Battle",
+                "Rewards if defeated",
+                "Wild IVs · Zigzagoon",
+                "Catch chances",
+            ),
         )
         self.assertIn("Speed", snapshot.sections[1].rows[0].text)
-        self.assertIn("Poké Ball x5", snapshot.sections[2].rows[0].text)
+        catch = snapshot.sections[3]
+        self.assertIn("HP ", catch.rows[0].text)
+        self.assertIn("Poké Ball x5", catch.rows[1].text)
+        self.assertEqual(catch.rows[1].progress, catch.rows[1].progress)
+        self.assertIsNotNone(catch.rows[1].progress)
 
     def test_double_battle_shows_both_opponents(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
@@ -693,7 +702,8 @@ class EmeraldAdapterTests(unittest.TestCase):
 
         advice = next(section for section in snapshot.sections if section.title == "Battle advice")
         self.assertIn("Thunderbolt", advice.rows[0].text)
-        self.assertIn("4x", advice.rows[0].text)
+        self.assertIn("%", advice.rows[0].text)
+        self.assertEqual(advice.rows[0].chips[0].text, "4X")
 
     def test_stale_battle_globals_do_not_replace_overworld(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]

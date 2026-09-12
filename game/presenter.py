@@ -1,12 +1,76 @@
-from retroarch_overlay.models import PanelAction, PanelRow, PanelSection
+from collections.abc import Callable
+
+from retroarch_overlay.models import PanelAction, PanelChip, PanelRow, PanelSection
 
 from .battle import ev_awards, experience_awards
 from .contest import PokeblockState, ribbon_names
+from .damage import (
+    PHYSICAL_TYPES,
+    attacker_offense,
+    damage_range,
+    defender_defense,
+    effectiveness_value,
+    hits_to_ko,
+    type_multipliers,
+)
 from .state import BattlePokemonState, PokemonState, STAT_NAMES
 
 
 def display_constant(value: str, prefix: str) -> str:
     return " ".join(word.capitalize() for word in value.removeprefix(prefix).split("_"))
+
+
+# The classic Gen III type palette, readable on light and dark backgrounds.
+TYPE_CHIP_COLORS = {
+    0: "#8a8a59", 1: "#c03028", 2: "#a890f0", 3: "#a040a0", 4: "#e0c068",
+    5: "#b8a038", 6: "#a8b820", 7: "#705898", 8: "#b8b8d0", 10: "#f08030",
+    11: "#6890f0", 12: "#78c850", 13: "#d3b136", 14: "#f85888", 15: "#98d8d8",
+    16: "#7038f8", 17: "#705848",
+}
+
+TYPE_CHIP_NAMES = {
+    0: "NRM", 1: "FTG", 2: "FLY", 3: "PSN", 4: "GRD", 5: "RCK", 6: "BUG",
+    7: "GHO", 8: "STL", 10: "FIR", 11: "WTR", 12: "GRS", 13: "ELE",
+    14: "PSY", 15: "ICE", 16: "DRG", 17: "DRK",
+}
+
+STATUS_CHIPS = (
+    (0x7, "SLP", "#8a8a59"),
+    (0x80, "TOX", "#7a2f7a"),
+    (0x8, "PSN", "#a040a0"),
+    (0x10, "BRN", "#f08030"),
+    (0x20, "FRZ", "#5b9bd0"),
+    (0x40, "PAR", "#c9a418"),
+)
+
+
+def type_chip(type_id: int) -> PanelChip | None:
+    name = TYPE_CHIP_NAMES.get(type_id)
+    if name is None:
+        return None
+    return PanelChip(name, TYPE_CHIP_COLORS.get(type_id, "#687064"))
+
+
+def status_chips(status: int) -> tuple[PanelChip, ...]:
+    return tuple(
+        PanelChip(label, color)
+        for mask, label, color in STATUS_CHIPS
+        if status & mask
+    )
+
+
+def effectiveness_chip(value: float) -> PanelChip:
+    if value >= 4:
+        return PanelChip("4X", "#1d7a3e")
+    if value >= 2:
+        return PanelChip("2X", "#27824a")
+    if value >= 1:
+        return PanelChip("1X", "#687064")
+    if value > 0.26:
+        return PanelChip("1/2X", "#a86e14")
+    if value > 0:
+        return PanelChip("1/4X", "#b3552a")
+    return PanelChip("0X", "#b3261e")
 
 
 class EmeraldPresenter:
@@ -17,15 +81,25 @@ class EmeraldPresenter:
         move_info: dict[int, dict[str, object]],
         ability_names: dict[int, str],
         type_chart: tuple[tuple[int, int, int], ...],
+        icon_for: Callable[[str], str] | None = None,
     ) -> None:
         self._species_info = species_info
         self._item_names = item_names
         self._move_info = move_info
         self._ability_names = ability_names
+        self._type_chart_rows = type_chart
+        self._icon_for = icon_for
         self._type_chart = {
             (attack, defense): multiplier / 10
             for attack, defense, multiplier in type_chart
         }
+
+    def icon_path(self, species: str) -> str:
+        return self._icon_for(species) if self._icon_for is not None else ""
+
+    def species_types(self, species: str) -> tuple[int, ...]:
+        metadata = self._species_info.get(species, {})
+        return tuple(int(value) for value in metadata.get("types", ()))
 
     def party_section(self, party: tuple[PokemonState, ...]) -> PanelSection | None:
         if not party:
@@ -33,7 +107,15 @@ class EmeraldPresenter:
         rows = tuple(
             PanelRow(
                 f"{display_constant(member.species, 'SPECIES_')} · Lv {member.level} · "
-                f"HP {member.hp}/{member.max_hp} · {member.nature}"
+                f"HP {member.hp}/{member.max_hp}",
+                progress=(member.hp / member.max_hp) if member.max_hp else None,
+                icon=self.icon_path(member.species),
+                chips=status_chips(member.status)
+                or tuple(
+                    chip
+                    for chip in map(type_chip, dict.fromkeys(self.species_types(member.species)))
+                    if chip is not None
+                ),
             )
             for member in party
         )
@@ -165,7 +247,10 @@ class EmeraldPresenter:
         rows = tuple(
             PanelRow(
                 f"{display_constant(member.species, 'SPECIES_')} · Lv {member.level} · "
-                f"HP {member.hp}/{member.max_hp}"
+                f"HP {member.hp}/{member.max_hp}",
+                progress=(member.hp / member.max_hp) if member.max_hp else None,
+                icon=self.icon_path(member.species),
+                chips=status_chips(member.status),
             )
             for member in opponents
         )
@@ -206,10 +291,16 @@ class EmeraldPresenter:
         active_opponents: tuple[BattlePokemonState, ...],
         enemy_party: tuple[PokemonState, ...],
         party: tuple[PokemonState, ...],
+        active_players: tuple[BattlePokemonState, ...] = (),
     ) -> PanelSection | None:
+        """Best damage estimate per opponent plus the worst incoming threat.
+
+        Integer Gen III damage math with live stats and stat stages; abilities,
+        held items, screens, weather and crits are not modeled.
+        """
         rows = []
         for opponent in active_opponents:
-            candidates = []
+            best = None
             for member in party:
                 if member.hp <= 0 or member.is_egg:
                     continue
@@ -217,65 +308,70 @@ class EmeraldPresenter:
                     move = self._move_info.get(move_id)
                     if not move or int(move.get("power", 0)) <= 0:
                         continue
-                    multiplier = self.type_effectiveness(
-                        int(move.get("type", -1)), opponent.types
+                    move_type = int(move.get("type", -1))
+                    multipliers = type_multipliers(
+                        self._type_chart_rows, move_type, opponent.types
                     )
-                    candidates.append(
-                        (
-                            multiplier,
-                            int(move.get("power", 0)),
-                            member.stats[2],
-                            member,
-                            str(move.get("name", f"Move {move_id}")),
-                        )
+                    attack_stat, burned = attacker_offense(
+                        member, active_players, move_type
                     )
-            if candidates:
-                multiplier, _, speed, member, move_name = max(
-                    candidates, key=lambda value: value[:3]
+                    low, high = damage_range(
+                        level=member.level,
+                        power=int(move.get("power", 0)),
+                        move_type=move_type,
+                        attacker_types=self.species_types(member.species),
+                        attack_stat=attack_stat,
+                        defense_stat=defender_defense(opponent, move_type),
+                        multipliers=multipliers,
+                        burned=burned,
+                    )
+                    if high <= 0:
+                        continue
+                    candidate = (
+                        high,
+                        low,
+                        member,
+                        str(move.get("name", f"Move {move_id}")),
+                        effectiveness_value(multipliers),
+                    )
+                    if best is None or candidate[:2] > best[:2]:
+                        best = candidate
+            if best is None:
+                continue
+            high, low, member, move_name, effectiveness = best
+            low_percent = 100 * low // max(1, opponent.max_hp)
+            high_percent = 100 * high // max(1, opponent.max_hp)
+            best_hits, worst_hits = hits_to_ko(opponent.hp, low, high)
+            if best_hits == 1 and worst_hits == 1:
+                ko_note = "KO"
+            elif best_hits == worst_hits:
+                ko_note = f"{best_hits} hits"
+            else:
+                ko_note = f"{best_hits}-{worst_hits} hits"
+            speed_note = ""
+            if member.stats[2] and opponent.stats[2]:
+                speed_note = (
+                    " · likely faster"
+                    if member.stats[2] > opponent.stats[2]
+                    else " · likely slower"
                 )
-                speed_note = ""
-                if speed and opponent.stats[2]:
-                    speed_note = " · likely faster" if speed > opponent.stats[2] else " · likely slower"
-                rows.append(
-                    PanelRow(
-                        f"{display_constant(opponent.species, 'SPECIES_')} · "
-                        f"{display_constant(member.species, 'SPECIES_')} → {move_name} · "
-                        f"{multiplier:g}x{speed_note}"
-                    )
-                )
-
-        threats = []
-        for enemy in enemy_party:
-            for move_id in enemy.moves:
-                move = self._move_info.get(move_id)
-                if not move or int(move.get("power", 0)) <= 0:
-                    continue
-                move_type = int(move.get("type", -1))
-                for member in party:
-                    metadata = self._species_info.get(member.species, {})
-                    types = tuple(int(value) for value in metadata.get("types", ()))
-                    multiplier = self.type_effectiveness(move_type, types)
-                    if multiplier > 1:
-                        threats.append(
-                            (
-                                multiplier,
-                                int(move.get("power", 0)),
-                                enemy,
-                                member,
-                                str(move.get("name", f"Move {move_id}")),
-                            )
-                        )
-        if threats:
-            multiplier, _, enemy, member, move_name = max(
-                threats, key=lambda value: value[:2]
-            )
             rows.append(
                 PanelRow(
-                    f"Threat · {display_constant(enemy.species, 'SPECIES_')} → "
-                    f"{display_constant(member.species, 'SPECIES_')} · {move_name} · "
-                    f"{multiplier:g}x"
+                    f"{display_constant(member.species, 'SPECIES_')} {move_name} → "
+                    f"{display_constant(opponent.species, 'SPECIES_')} · "
+                    f"{low_percent}-{high_percent}% · {ko_note}{speed_note}",
+                    tooltip=(
+                        "Gen III integer damage from live stats and stat stages. "
+                        "Abilities, items, screens, weather and crits are not "
+                        "included."
+                    ),
+                    chips=(effectiveness_chip(effectiveness),),
                 )
             )
+
+        threat = self._worst_threat(enemy_party, party)
+        if threat is not None:
+            rows.append(threat)
         if not rows:
             return None
         return PanelSection(
@@ -284,6 +380,74 @@ class EmeraldPresenter:
             priority=2,
             role="urgent",
             compact_rows=tuple(rows[:2]),
+        )
+
+    def _worst_threat(
+        self,
+        enemy_party: tuple[PokemonState, ...],
+        party: tuple[PokemonState, ...],
+    ) -> PanelRow | None:
+        worst = None
+        for enemy in enemy_party:
+            if enemy.hp <= 0:
+                continue
+            for move_id in enemy.moves:
+                move = self._move_info.get(move_id)
+                if not move or int(move.get("power", 0)) <= 0:
+                    continue
+                move_type = int(move.get("type", -1))
+                for member in party:
+                    if member.hp <= 0 or member.is_egg or not member.max_hp:
+                        continue
+                    multipliers = type_multipliers(
+                        self._type_chart_rows,
+                        move_type,
+                        tuple(self.species_types(member.species)),
+                    )
+                    attack_stat = (
+                        enemy.stats[0]
+                        if move_type in PHYSICAL_TYPES
+                        else enemy.stats[3]
+                    )
+                    defense_stat = (
+                        member.stats[1]
+                        if move_type in PHYSICAL_TYPES
+                        else member.stats[4]
+                    )
+                    low, high = damage_range(
+                        level=enemy.level,
+                        power=int(move.get("power", 0)),
+                        move_type=move_type,
+                        attacker_types=self.species_types(enemy.species),
+                        attack_stat=attack_stat,
+                        defense_stat=defense_stat,
+                        multipliers=multipliers,
+                    )
+                    if high <= 0:
+                        continue
+                    fraction = high / member.max_hp
+                    candidate = (
+                        fraction,
+                        low,
+                        high,
+                        enemy,
+                        member,
+                        str(move.get("name", f"Move {move_id}")),
+                        effectiveness_value(multipliers),
+                    )
+                    if worst is None or candidate[0] > worst[0]:
+                        worst = candidate
+        if worst is None:
+            return None
+        _, low, high, enemy, member, move_name, effectiveness = worst
+        low_percent = 100 * low // member.max_hp
+        high_percent = 100 * high // member.max_hp
+        return PanelRow(
+            f"Threat · {display_constant(enemy.species, 'SPECIES_')} {move_name} → "
+            f"{display_constant(member.species, 'SPECIES_')} · "
+            f"{low_percent}-{high_percent}%",
+            emphasis="danger",
+            chips=(effectiveness_chip(effectiveness),),
         )
 
     def type_effectiveness(

@@ -7,7 +7,7 @@ from typing import Any
 from .feebas import load_route119_fishing_spots
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 SOURCE_REVISION = "5eff78649e7170a877b961ef0b3da13b81a16038"
 
 
@@ -54,6 +54,7 @@ def build_knowledge(root: Path) -> dict[str, Any]:
     )
     static_acquisitions = load_static_acquisitions(root, map_names)
     map_connections = load_map_connections(root, map_names)
+    frontier_mons = load_frontier_mons(root, move_ids, item_ids)
     return {
         "schema_version": SCHEMA_VERSION,
         "source_revision": SOURCE_REVISION,
@@ -80,6 +81,7 @@ def build_knowledge(root: Path) -> dict[str, Any]:
         "evolutions": evolutions,
         "static_acquisitions": static_acquisitions,
         "map_connections": map_connections,
+        "frontier_mons": frontier_mons,
     }
 
 
@@ -359,6 +361,54 @@ def load_evolutions(path: Path) -> dict[str, list[dict[str, str]]]:
             )
         if rows:
             result[species] = rows
+    return result
+
+
+def load_frontier_mons(
+    root: Path,
+    move_ids: dict[str, int],
+    item_ids: dict[str, int],
+) -> list[dict[str, Any]]:
+    """gBattleFrontierMons indexed by monId, as stored in RentalMon records."""
+    constants = root / "include" / "constants"
+    frontier_ids = parse_numeric_defines(constants / "battle_frontier_mons.h")
+    table_ids = parse_numeric_defines(constants / "battle_frontier.h")
+    nature_ids = parse_numeric_defines(constants / "pokemon.h")
+    held_items = {}
+    for table_name, item_name in re.findall(
+        r"\[(BATTLE_FRONTIER_ITEM_\w+)\]\s*=\s*(ITEM_\w+)",
+        (root / "src" / "battle_tower.c").read_text(encoding="utf-8"),
+    ):
+        table_id = table_ids.get(table_name)
+        if table_id is not None:
+            held_items[table_id] = item_ids.get(item_name, 0)
+    entries = split_entries(
+        (
+            root / "src" / "data" / "battle_frontier" / "battle_frontier_mons.h"
+        ).read_text(encoding="utf-8"),
+        "FRONTIER_MON_",
+    )
+    count = 1 + max(
+        (frontier_ids.get(name, -1) for name in entries), default=-1
+    )
+    result: list[dict[str, Any]] = [{} for _ in range(count)]
+    for name, entry in entries.items():
+        index = frontier_ids.get(name)
+        if index is None:
+            continue
+        species = constant_field(entry, "species", "SPECIES_")
+        table_name = constant_field(entry, "itemTableId", "BATTLE_FRONTIER_ITEM_")
+        table_id = table_ids.get(table_name) if table_name else None
+        nature = constant_field(entry, "nature", "NATURE_")
+        result[index] = {
+            "species": species or "",
+            "moves": [
+                move_ids.get(move, 0)
+                for move in constant_list(entry, "moves", "MOVE_")
+            ],
+            "item": held_items.get(table_id or 0, 0),
+            "nature": nature_ids.get(nature or "", 0),
+        }
     return result
 
 

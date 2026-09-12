@@ -28,7 +28,7 @@ id = "pokeemerald"
 kind = "git-submodule"
 path = "decomp_reference/pokeemerald"
 required = true
-url = "https://github.com/pret/pokeemerald.git"
+url = "https://github.com/pret/pokeemerald"
 revision = "5eff78649e7170a877b961ef0b3da13b81a16038"
 required_files = [
     "src/data/wild_encounters.json",
@@ -44,4 +44,14 @@ required_files = [
     "data/tilesets/primary/general/metatile_attributes.bin",
     "data/tilesets/secondary/fortree/metatile_attributes.bin",
     "data/layouts/Route119/map.bin",
+    "data/layouts/layouts.json",
+    "data/scripts/item_ball_scripts.inc",
+    "data/tilesets/primary/general/metatiles.bin",
+    "data/tilesets/primary/general/tiles.png",
+    "data/tilesets/primary/general/palettes/00.pal",
+    "src/data/pokemon/evolution.h",
+    "src/data/battle_frontier/battle_frontier_mons.h",
+    "include/constants/battle_frontier_mons.h",
+    "include/constants/battle_frontier.h",
+    "src/battle_tower.c",
 ]

@@ -14324,6 +14324,9710 @@
     "TRAINER_FLAGS_START": 1280,
     "TRAINER_REGISTERED_FLAGS_START": 348
   },
+  "frontier_mons": [
+    {
+      "item": 221,
+      "moves": [
+        72,
+        270,
+        241,
+        113
+      ],
+      "nature": 7,
+      "species": "SPECIES_SUNKERN"
+    },
+    {
+      "item": 133,
+      "moves": [
+        352,
+        213,
+        47,
+        204
+      ],
+      "nature": 19,
+      "species": "SPECIES_AZURILL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        33,
+        81,
+        0,
+        0
+      ],
+      "nature": 24,
+      "species": "SPECIES_CATERPIE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        40,
+        81,
+        0,
+        0
+      ],
+      "nature": 24,
+      "species": "SPECIES_WEEDLE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        33,
+        81,
+        40,
+        0
+      ],
+      "nature": 24,
+      "species": "SPECIES_WURMPLE"
+    },
+    {
+      "item": 214,
+      "moves": [
+        93,
+        286,
+        104,
+        113
+      ],
+      "nature": 6,
+      "species": "SPECIES_RALTS"
+    },
+    {
+      "item": 196,
+      "moves": [
+        175,
+        0,
+        0,
+        0
+      ],
+      "nature": 0,
+      "species": "SPECIES_MAGIKARP"
+    },
+    {
+      "item": 196,
+      "moves": [
+        175,
+        243,
+        0,
+        0
+      ],
+      "nature": 1,
+      "species": "SPECIES_FEEBAS"
+    },
+    {
+      "item": 221,
+      "moves": [
+        106,
+        0,
+        0,
+        0
+      ],
+      "nature": 18,
+      "species": "SPECIES_METAPOD"
+    },
+    {
+      "item": 221,
+      "moves": [
+        106,
+        0,
+        0,
+        0
+      ],
+      "nature": 18,
+      "species": "SPECIES_KAKUNA"
+    },
+    {
+      "item": 142,
+      "moves": [
+        186,
+        86,
+        213,
+        351
+      ],
+      "nature": 19,
+      "species": "SPECIES_PICHU"
+    },
+    {
+      "item": 221,
+      "moves": [
+        106,
+        0,
+        0,
+        0
+      ],
+      "nature": 18,
+      "species": "SPECIES_SILCOON"
+    },
+    {
+      "item": 221,
+      "moves": [
+        106,
+        0,
+        0,
+        0
+      ],
+      "nature": 18,
+      "species": "SPECIES_CASCOON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        186,
+        47,
+        213,
+        69
+      ],
+      "nature": 6,
+      "species": "SPECIES_IGGLYBUFF"
+    },
+    {
+      "item": 142,
+      "moves": [
+        281,
+        91,
+        352,
+        240
+      ],
+      "nature": 6,
+      "species": "SPECIES_WOOPER"
+    },
+    {
+      "item": 196,
+      "moves": [
+        183,
+        182,
+        104,
+        263
+      ],
+      "nature": 6,
+      "species": "SPECIES_TYROGUE"
+    },
+    {
+      "item": 187,
+      "moves": [
+        98,
+        266,
+        270,
+        274
+      ],
+      "nature": 6,
+      "species": "SPECIES_SENTRET"
+    },
+    {
+      "item": 221,
+      "moves": [
+        186,
+        47,
+        213,
+        118
+      ],
+      "nature": 12,
+      "species": "SPECIES_CLEFFA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        331,
+        117,
+        111,
+        205
+      ],
+      "nature": 6,
+      "species": "SPECIES_SEEDOT"
+    },
+    {
+      "item": 221,
+      "moves": [
+        240,
+        352,
+        241,
+        72
+      ],
+      "nature": 6,
+      "species": "SPECIES_LOTAD"
+    },
+    {
+      "item": 171,
+      "moves": [
+        242,
+        207,
+        46,
+        28
+      ],
+      "nature": 7,
+      "species": "SPECIES_POOCHYENA"
+    },
+    {
+      "item": 221,
+      "moves": [
+        247,
+        109,
+        318,
+        288
+      ],
+      "nature": 14,
+      "species": "SPECIES_SHEDINJA"
+    },
+    {
+      "item": 198,
+      "moves": [
+        252,
+        69,
+        197,
+        18
+      ],
+      "nature": 6,
+      "species": "SPECIES_MAKUHITA"
+    },
+    {
+      "item": 133,
+      "moves": [
+        253,
+        207,
+        34,
+        265
+      ],
+      "nature": 7,
+      "species": "SPECIES_WHISMUR"
+    },
+    {
+      "item": 217,
+      "moves": [
+        29,
+        42,
+        129,
+        28
+      ],
+      "nature": 10,
+      "species": "SPECIES_ZIGZAGOON"
+    },
+    {
+      "item": 133,
+      "moves": [
+        305,
+        18,
+        109,
+        332
+      ],
+      "nature": 22,
+      "species": "SPECIES_ZUBAT"
+    },
+    {
+      "item": 221,
+      "moves": [
+        216,
+        281,
+        273,
+        186
+      ],
+      "nature": 7,
+      "species": "SPECIES_TOGEPI"
+    },
+    {
+      "item": 168,
+      "moves": [
+        324,
+        101,
+        169,
+        184
+      ],
+      "nature": 24,
+      "species": "SPECIES_SPINARAK"
+    },
+    {
+      "item": 209,
+      "moves": [
+        352,
+        240,
+        113,
+        216
+      ],
+      "nature": 21,
+      "species": "SPECIES_MARILL"
+    },
+    {
+      "item": 221,
+      "moves": [
+        72,
+        73,
+        79,
+        78
+      ],
+      "nature": 9,
+      "species": "SPECIES_HOPPIP"
+    },
+    {
+      "item": 142,
+      "moves": [
+        52,
+        157,
+        281,
+        34
+      ],
+      "nature": 22,
+      "species": "SPECIES_SLUGMA"
+    },
+    {
+      "item": 142,
+      "moves": [
+        196,
+        91,
+        317,
+        203
+      ],
+      "nature": 21,
+      "species": "SPECIES_SWINUB"
+    },
+    {
+      "item": 187,
+      "moves": [
+        245,
+        252,
+        98,
+        183
+      ],
+      "nature": 0,
+      "species": "SPECIES_SMEARGLE"
+    },
+    {
+      "item": 210,
+      "moves": [
+        16,
+        28,
+        18,
+        98
+      ],
+      "nature": 1,
+      "species": "SPECIES_PIDGEY"
+    },
+    {
+      "item": 187,
+      "moves": [
+        158,
+        228,
+        98,
+        207
+      ],
+      "nature": 6,
+      "species": "SPECIES_RATTATA"
+    },
+    {
+      "item": 221,
+      "moves": [
+        227,
+        68,
+        243,
+        204
+      ],
+      "nature": 13,
+      "species": "SPECIES_WYNAUT"
+    },
+    {
+      "item": 179,
+      "moves": [
+        47,
+        213,
+        204,
+        3
+      ],
+      "nature": 6,
+      "species": "SPECIES_SKITTY"
+    },
+    {
+      "item": 168,
+      "moves": [
+        31,
+        228,
+        119,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_SPEAROW"
+    },
+    {
+      "item": 140,
+      "moves": [
+        93,
+        95,
+        48,
+        115
+      ],
+      "nature": 24,
+      "species": "SPECIES_HOOTHOOT"
+    },
+    {
+      "item": 187,
+      "moves": [
+        222,
+        163,
+        317,
+        28
+      ],
+      "nature": 14,
+      "species": "SPECIES_DIGLETT"
+    },
+    {
+      "item": 142,
+      "moves": [
+        60,
+        97,
+        226,
+        113
+      ],
+      "nature": 18,
+      "species": "SPECIES_LEDYBA"
+    },
+    {
+      "item": 135,
+      "moves": [
+        189,
+        91,
+        92,
+        182
+      ],
+      "nature": 20,
+      "species": "SPECIES_NINCADA"
+    },
+    {
+      "item": 209,
+      "moves": [
+        61,
+        240,
+        230,
+        98
+      ],
+      "nature": 7,
+      "species": "SPECIES_SURSKIT"
+    },
+    {
+      "item": 221,
+      "moves": [
+        47,
+        273,
+        102,
+        3
+      ],
+      "nature": 7,
+      "species": "SPECIES_JIGGLYPUFF"
+    },
+    {
+      "item": 170,
+      "moves": [
+        19,
+        98,
+        283,
+        116
+      ],
+      "nature": 21,
+      "species": "SPECIES_TAILLOW"
+    },
+    {
+      "item": 140,
+      "moves": [
+        352,
+        19,
+        98,
+        211
+      ],
+      "nature": 0,
+      "species": "SPECIES_WINGULL"
+    },
+    {
+      "item": 142,
+      "moves": [
+        24,
+        40,
+        50,
+        270
+      ],
+      "nature": 24,
+      "species": "SPECIES_NIDORAN_M"
+    },
+    {
+      "item": 142,
+      "moves": [
+        242,
+        24,
+        260,
+        270
+      ],
+      "nature": 24,
+      "species": "SPECIES_NIDORAN_F"
+    },
+    {
+      "item": 180,
+      "moves": [
+        93,
+        261,
+        248,
+        113
+      ],
+      "nature": 6,
+      "species": "SPECIES_KIRLIA"
+    },
+    {
+      "item": 133,
+      "moves": [
+        351,
+        148,
+        115,
+        178
+      ],
+      "nature": 7,
+      "species": "SPECIES_MAREEP"
+    },
+    {
+      "item": 185,
+      "moves": [
+        136,
+        96,
+        207,
+        244
+      ],
+      "nature": 4,
+      "species": "SPECIES_MEDITITE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        281,
+        10,
+        227,
+        68
+      ],
+      "nature": 24,
+      "species": "SPECIES_SLAKOTH"
+    },
+    {
+      "item": 142,
+      "moves": [
+        147,
+        141,
+        163,
+        113
+      ],
+      "nature": 7,
+      "species": "SPECIES_PARAS"
+    },
+    {
+      "item": 211,
+      "moves": [
+        51,
+        91,
+        103,
+        259
+      ],
+      "nature": 6,
+      "species": "SPECIES_EKANS"
+    },
+    {
+      "item": 223,
+      "moves": [
+        144,
+        0,
+        0,
+        0
+      ],
+      "nature": 0,
+      "species": "SPECIES_DITTO"
+    },
+    {
+      "item": 196,
+      "moves": [
+        222,
+        352,
+        209,
+        248
+      ],
+      "nature": 18,
+      "species": "SPECIES_BARBOACH"
+    },
+    {
+      "item": 140,
+      "moves": [
+        163,
+        44,
+        103,
+        252
+      ],
+      "nature": 24,
+      "species": "SPECIES_MEOWTH"
+    },
+    {
+      "item": 196,
+      "moves": [
+        120,
+        36,
+        115,
+        113
+      ],
+      "nature": 24,
+      "species": "SPECIES_PINECO"
+    },
+    {
+      "item": 221,
+      "moves": [
+        92,
+        91,
+        201,
+        28
+      ],
+      "nature": 12,
+      "species": "SPECIES_TRAPINCH"
+    },
+    {
+      "item": 212,
+      "moves": [
+        301,
+        352,
+        258,
+        189
+      ],
+      "nature": 6,
+      "species": "SPECIES_SPHEAL"
+    },
+    {
+      "item": 171,
+      "moves": [
+        55,
+        97,
+        196,
+        239
+      ],
+      "nature": 7,
+      "species": "SPECIES_HORSEA"
+    },
+    {
+      "item": 205,
+      "moves": [
+        147,
+        331,
+        73,
+        29
+      ],
+      "nature": 7,
+      "species": "SPECIES_SHROOMISH"
+    },
+    {
+      "item": 136,
+      "moves": [
+        261,
+        101,
+        288,
+        282
+      ],
+      "nature": 19,
+      "species": "SPECIES_SHUPPET"
+    },
+    {
+      "item": 140,
+      "moves": [
+        285,
+        101,
+        50,
+        109
+      ],
+      "nature": 24,
+      "species": "SPECIES_DUSKULL"
+    },
+    {
+      "item": 133,
+      "moves": [
+        209,
+        86,
+        46,
+        98
+      ],
+      "nature": 6,
+      "species": "SPECIES_ELECTRIKE"
+    },
+    {
+      "item": 136,
+      "moves": [
+        261,
+        109,
+        83,
+        98
+      ],
+      "nature": 6,
+      "species": "SPECIES_VULPIX"
+    },
+    {
+      "item": 202,
+      "moves": [
+        9,
+        86,
+        104,
+        98
+      ],
+      "nature": 6,
+      "species": "SPECIES_PIKACHU"
+    },
+    {
+      "item": 203,
+      "moves": [
+        91,
+        317,
+        201,
+        28
+      ],
+      "nature": 6,
+      "species": "SPECIES_SANDSHREW"
+    },
+    {
+      "item": 209,
+      "moves": [
+        95,
+        196,
+        55,
+        240
+      ],
+      "nature": 7,
+      "species": "SPECIES_POLIWAG"
+    },
+    {
+      "item": 142,
+      "moves": [
+        75,
+        51,
+        78,
+        35
+      ],
+      "nature": 9,
+      "species": "SPECIES_BELLSPROUT"
+    },
+    {
+      "item": 196,
+      "moves": [
+        222,
+        350,
+        70,
+        182
+      ],
+      "nature": 2,
+      "species": "SPECIES_GEODUDE"
+    },
+    {
+      "item": 140,
+      "moves": [
+        200,
+        86,
+        48,
+        352
+      ],
+      "nature": 6,
+      "species": "SPECIES_DRATINI"
+    },
+    {
+      "item": 198,
+      "moves": [
+        44,
+        204,
+        207,
+        184
+      ],
+      "nature": 7,
+      "species": "SPECIES_SNUBBULL"
+    },
+    {
+      "item": 171,
+      "moves": [
+        61,
+        62,
+        60,
+        182
+      ],
+      "nature": 24,
+      "species": "SPECIES_REMORAID"
+    },
+    {
+      "item": 140,
+      "moves": [
+        37,
+        157,
+        91,
+        349
+      ],
+      "nature": 4,
+      "species": "SPECIES_LARVITAR"
+    },
+    {
+      "item": 140,
+      "moves": [
+        60,
+        246,
+        113,
+        189
+      ],
+      "nature": 4,
+      "species": "SPECIES_BALTOY"
+    },
+    {
+      "item": 140,
+      "moves": [
+        196,
+        29,
+        43,
+        44
+      ],
+      "nature": 2,
+      "species": "SPECIES_SNORUNT"
+    },
+    {
+      "item": 168,
+      "moves": [
+        225,
+        29,
+        280,
+        184
+      ],
+      "nature": 4,
+      "species": "SPECIES_BAGON"
+    },
+    {
+      "item": 186,
+      "moves": [
+        36,
+        0,
+        0,
+        0
+      ],
+      "nature": 0,
+      "species": "SPECIES_BELDUM"
+    },
+    {
+      "item": 221,
+      "moves": [
+        92,
+        281,
+        220,
+        213
+      ],
+      "nature": 12,
+      "species": "SPECIES_GULPIN"
+    },
+    {
+      "item": 142,
+      "moves": [
+        60,
+        48,
+        78,
+        285
+      ],
+      "nature": 7,
+      "species": "SPECIES_VENONAT"
+    },
+    {
+      "item": 207,
+      "moves": [
+        2,
+        67,
+        103,
+        207
+      ],
+      "nature": 4,
+      "species": "SPECIES_MANKEY"
+    },
+    {
+      "item": 198,
+      "moves": [
+        69,
+        279,
+        317,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHOP"
+    },
+    {
+      "item": 133,
+      "moves": [
+        333,
+        48,
+        128,
+        110
+      ],
+      "nature": 7,
+      "species": "SPECIES_SHELLDER"
+    },
+    {
+      "item": 179,
+      "moves": [
+        186,
+        47,
+        189,
+        252
+      ],
+      "nature": 6,
+      "species": "SPECIES_SMOOCHUM"
+    },
+    {
+      "item": 221,
+      "moves": [
+        52,
+        222,
+        317,
+        201
+      ],
+      "nature": 0,
+      "species": "SPECIES_NUMEL"
+    },
+    {
+      "item": 219,
+      "moves": [
+        44,
+        103,
+        184,
+        207
+      ],
+      "nature": 17,
+      "species": "SPECIES_CARVANHA"
+    },
+    {
+      "item": 209,
+      "moves": [
+        152,
+        352,
+        189,
+        182
+      ],
+      "nature": 2,
+      "species": "SPECIES_CORPHISH"
+    },
+    {
+      "item": 196,
+      "moves": [
+        83,
+        232,
+        108,
+        184
+      ],
+      "nature": 6,
+      "species": "SPECIES_CHARMANDER"
+    },
+    {
+      "item": 142,
+      "moves": [
+        52,
+        129,
+        98,
+        108
+      ],
+      "nature": 6,
+      "species": "SPECIES_CYNDAQUIL"
+    },
+    {
+      "item": 214,
+      "moves": [
+        102,
+        118,
+        148,
+        69
+      ],
+      "nature": 1,
+      "species": "SPECIES_ABRA"
+    },
+    {
+      "item": 168,
+      "moves": [
+        31,
+        253,
+        189,
+        185
+      ],
+      "nature": 1,
+      "species": "SPECIES_DODUO"
+    },
+    {
+      "item": 221,
+      "moves": [
+        138,
+        95,
+        101,
+        109
+      ],
+      "nature": 1,
+      "species": "SPECIES_GASTLY"
+    },
+    {
+      "item": 185,
+      "moves": [
+        36,
+        138,
+        47,
+        213
+      ],
+      "nature": 1,
+      "species": "SPECIES_SWABLU"
+    },
+    {
+      "item": 198,
+      "moves": [
+        331,
+        332,
+        98,
+        104
+      ],
+      "nature": 1,
+      "species": "SPECIES_TREECKO"
+    },
+    {
+      "item": 179,
+      "moves": [
+        83,
+        98,
+        28,
+        104
+      ],
+      "nature": 1,
+      "species": "SPECIES_TORCHIC"
+    },
+    {
+      "item": 196,
+      "moves": [
+        250,
+        283,
+        300,
+        189
+      ],
+      "nature": 6,
+      "species": "SPECIES_MUDKIP"
+    },
+    {
+      "item": 142,
+      "moves": [
+        352,
+        44,
+        110,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_SQUIRTLE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        352,
+        103,
+        196
+      ],
+      "nature": 6,
+      "species": "SPECIES_TOTODILE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        93,
+        50,
+        352,
+        281
+      ],
+      "nature": 2,
+      "species": "SPECIES_SLOWPOKE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        75,
+        230,
+        79,
+        113
+      ],
+      "nature": 7,
+      "species": "SPECIES_BULBASAUR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        290,
+        331,
+        189,
+        113
+      ],
+      "nature": 7,
+      "species": "SPECIES_CHIKORITA"
+    },
+    {
+      "item": 135,
+      "moves": [
+        51,
+        78,
+        230,
+        236
+      ],
+      "nature": 7,
+      "species": "SPECIES_ODDISH"
+    },
+    {
+      "item": 140,
+      "moves": [
+        93,
+        154,
+        332,
+        50
+      ],
+      "nature": 11,
+      "species": "SPECIES_PSYDUCK"
+    },
+    {
+      "item": 203,
+      "moves": [
+        125,
+        29,
+        280,
+        332
+      ],
+      "nature": 0,
+      "species": "SPECIES_CUBONE"
+    },
+    {
+      "item": 171,
+      "moves": [
+        127,
+        31,
+        97,
+        60
+      ],
+      "nature": 6,
+      "species": "SPECIES_GOLDEEN"
+    },
+    {
+      "item": 214,
+      "moves": [
+        101,
+        248,
+        109,
+        148
+      ],
+      "nature": 7,
+      "species": "SPECIES_NATU"
+    },
+    {
+      "item": 221,
+      "moves": [
+        266,
+        216,
+        227,
+        47
+      ],
+      "nature": 1,
+      "species": "SPECIES_CLEFAIRY"
+    },
+    {
+      "item": 136,
+      "moves": [
+        351,
+        48,
+        319,
+        115
+      ],
+      "nature": 21,
+      "species": "SPECIES_MAGNEMITE"
+    },
+    {
+      "item": 137,
+      "moves": [
+        62,
+        291,
+        34,
+        252
+      ],
+      "nature": 0,
+      "species": "SPECIES_SEEL"
+    },
+    {
+      "item": 135,
+      "moves": [
+        124,
+        317,
+        151,
+        107
+      ],
+      "nature": 24,
+      "species": "SPECIES_GRIMER"
+    },
+    {
+      "item": 196,
+      "moves": [
+        152,
+        341,
+        175,
+        282
+      ],
+      "nature": 0,
+      "species": "SPECIES_KRABBY"
+    },
+    {
+      "item": 140,
+      "moves": [
+        93,
+        246,
+        73,
+        113
+      ],
+      "nature": 4,
+      "species": "SPECIES_EXEGGCUTE"
+    },
+    {
+      "item": 170,
+      "moves": [
+        204,
+        213,
+        175,
+        203
+      ],
+      "nature": 6,
+      "species": "SPECIES_EEVEE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        93,
+        29,
+        50,
+        112
+      ],
+      "nature": 24,
+      "species": "SPECIES_DROWZEE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        209,
+        103,
+        205,
+        113
+      ],
+      "nature": 6,
+      "species": "SPECIES_VOLTORB"
+    },
+    {
+      "item": 221,
+      "moves": [
+        209,
+        291,
+        109,
+        36
+      ],
+      "nature": 0,
+      "species": "SPECIES_CHINCHOU"
+    },
+    {
+      "item": 134,
+      "moves": [
+        290,
+        313,
+        185,
+        156
+      ],
+      "nature": 7,
+      "species": "SPECIES_TEDDIURSA"
+    },
+    {
+      "item": 212,
+      "moves": [
+        217,
+        301,
+        332,
+        258
+      ],
+      "nature": 6,
+      "species": "SPECIES_DELIBIRD"
+    },
+    {
+      "item": 215,
+      "moves": [
+        242,
+        52,
+        46,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_HOUNDOUR"
+    },
+    {
+      "item": 221,
+      "moves": [
+        205,
+        111,
+        317,
+        201
+      ],
+      "nature": 4,
+      "species": "SPECIES_PHANPY"
+    },
+    {
+      "item": 142,
+      "moves": [
+        149,
+        340,
+        277,
+        109
+      ],
+      "nature": 7,
+      "species": "SPECIES_SPOINK"
+    },
+    {
+      "item": 140,
+      "moves": [
+        232,
+        332,
+        319,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARON"
+    },
+    {
+      "item": 183,
+      "moves": [
+        186,
+        213,
+        291,
+        240
+      ],
+      "nature": 7,
+      "species": "SPECIES_LUVDISC"
+    },
+    {
+      "item": 135,
+      "moves": [
+        61,
+        51,
+        112,
+        35
+      ],
+      "nature": 0,
+      "species": "SPECIES_TENTACOOL"
+    },
+    {
+      "item": 142,
+      "moves": [
+        302,
+        185,
+        178,
+        28
+      ],
+      "nature": 24,
+      "species": "SPECIES_CACNEA"
+    },
+    {
+      "item": 221,
+      "moves": [
+        237,
+        0,
+        0,
+        0
+      ],
+      "nature": 0,
+      "species": "SPECIES_UNOWN"
+    },
+    {
+      "item": 211,
+      "moves": [
+        124,
+        108,
+        259,
+        114
+      ],
+      "nature": 24,
+      "species": "SPECIES_KOFFING"
+    },
+    {
+      "item": 219,
+      "moves": [
+        61,
+        107,
+        129,
+        113
+      ],
+      "nature": 24,
+      "species": "SPECIES_STARYU"
+    },
+    {
+      "item": 140,
+      "moves": [
+        72,
+        93,
+        178,
+        235
+      ],
+      "nature": 6,
+      "species": "SPECIES_SKIPLOOM"
+    },
+    {
+      "item": 142,
+      "moves": [
+        326,
+        252,
+        13,
+        185
+      ],
+      "nature": 0,
+      "species": "SPECIES_NUZLEAF"
+    },
+    {
+      "item": 221,
+      "moves": [
+        352,
+        252,
+        280,
+        71
+      ],
+      "nature": 24,
+      "species": "SPECIES_LOMBRE"
+    },
+    {
+      "item": 133,
+      "moves": [
+        225,
+        91,
+        103,
+        317
+      ],
+      "nature": 24,
+      "species": "SPECIES_VIBRAVA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        350,
+        91,
+        184,
+        46
+      ],
+      "nature": 0,
+      "species": "SPECIES_RHYHORN"
+    },
+    {
+      "item": 193,
+      "moves": [
+        291,
+        92,
+        334,
+        104
+      ],
+      "nature": 6,
+      "species": "SPECIES_CLAMPERL"
+    },
+    {
+      "item": 180,
+      "moves": [
+        332,
+        98,
+        297,
+        28
+      ],
+      "nature": 24,
+      "species": "SPECIES_PIDGEOTTO"
+    },
+    {
+      "item": 136,
+      "moves": [
+        172,
+        44,
+        46,
+        97
+      ],
+      "nature": 6,
+      "species": "SPECIES_GROWLITHE"
+    },
+    {
+      "item": 225,
+      "moves": [
+        163,
+        282,
+        14,
+        97
+      ],
+      "nature": 7,
+      "species": "SPECIES_FARFETCHD"
+    },
+    {
+      "item": 142,
+      "moves": [
+        341,
+        55,
+        246,
+        321
+      ],
+      "nature": 24,
+      "species": "SPECIES_OMANYTE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        72,
+        246,
+        28,
+        182
+      ],
+      "nature": 0,
+      "species": "SPECIES_KABUTO"
+    },
+    {
+      "item": 221,
+      "moves": [
+        246,
+        51,
+        275,
+        109
+      ],
+      "nature": 6,
+      "species": "SPECIES_LILEEP"
+    },
+    {
+      "item": 198,
+      "moves": [
+        232,
+        210,
+        246,
+        55
+      ],
+      "nature": 0,
+      "species": "SPECIES_ANORITH"
+    },
+    {
+      "item": 217,
+      "moves": [
+        154,
+        28,
+        226,
+        97
+      ],
+      "nature": 7,
+      "species": "SPECIES_AIPOM"
+    },
+    {
+      "item": 133,
+      "moves": [
+        9,
+        98,
+        129,
+        113
+      ],
+      "nature": 14,
+      "species": "SPECIES_ELEKID"
+    },
+    {
+      "item": 196,
+      "moves": [
+        23,
+        336,
+        310,
+        48
+      ],
+      "nature": 7,
+      "species": "SPECIES_LOUDRED"
+    },
+    {
+      "item": 142,
+      "moves": [
+        146,
+        298,
+        60,
+        185
+      ],
+      "nature": 7,
+      "species": "SPECIES_SPINDA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        24,
+        44,
+        332,
+        260
+      ],
+      "nature": 24,
+      "species": "SPECIES_NIDORINA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        24,
+        352,
+        189,
+        260
+      ],
+      "nature": 24,
+      "species": "SPECIES_NIDORINO"
+    },
+    {
+      "item": 208,
+      "moves": [
+        351,
+        86,
+        178,
+        113
+      ],
+      "nature": 16,
+      "species": "SPECIES_FLAAFFY"
+    },
+    {
+      "item": 221,
+      "moves": [
+        7,
+        108,
+        109,
+        123
+      ],
+      "nature": 6,
+      "species": "SPECIES_MAGBY"
+    },
+    {
+      "item": 204,
+      "moves": [
+        157,
+        351,
+        86,
+        201
+      ],
+      "nature": 22,
+      "species": "SPECIES_NOSEPASS"
+    },
+    {
+      "item": 142,
+      "moves": [
+        61,
+        243,
+        213,
+        246
+      ],
+      "nature": 8,
+      "species": "SPECIES_CORSOLA"
+    },
+    {
+      "item": 179,
+      "moves": [
+        242,
+        313,
+        334,
+        226
+      ],
+      "nature": 6,
+      "species": "SPECIES_MAWILE"
+    },
+    {
+      "item": 135,
+      "moves": [
+        318,
+        60,
+        92,
+        18
+      ],
+      "nature": 24,
+      "species": "SPECIES_BUTTERFREE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        41,
+        228,
+        283,
+        97
+      ],
+      "nature": 4,
+      "species": "SPECIES_BEEDRILL"
+    },
+    {
+      "item": 171,
+      "moves": [
+        352,
+        3,
+        196,
+        240
+      ],
+      "nature": 24,
+      "species": "SPECIES_POLIWHIRL"
+    },
+    {
+      "item": 142,
+      "moves": [
+        157,
+        20,
+        225,
+        201
+      ],
+      "nature": 0,
+      "species": "SPECIES_ONIX"
+    },
+    {
+      "item": 185,
+      "moves": [
+        318,
+        72,
+        213,
+        18
+      ],
+      "nature": 6,
+      "species": "SPECIES_BEAUTIFLY"
+    },
+    {
+      "item": 188,
+      "moves": [
+        318,
+        92,
+        60,
+        18
+      ],
+      "nature": 6,
+      "species": "SPECIES_DUSTOX"
+    },
+    {
+      "item": 196,
+      "moves": [
+        4,
+        226,
+        14,
+        97
+      ],
+      "nature": 18,
+      "species": "SPECIES_LEDIAN"
+    },
+    {
+      "item": 221,
+      "moves": [
+        324,
+        169,
+        101,
+        92
+      ],
+      "nature": 12,
+      "species": "SPECIES_ARIADOS"
+    },
+    {
+      "item": 221,
+      "moves": [
+        324,
+        332,
+        104,
+        197
+      ],
+      "nature": 7,
+      "species": "SPECIES_YANMA"
+    },
+    {
+      "item": 142,
+      "moves": [
+        290,
+        185,
+        104,
+        215
+      ],
+      "nature": 1,
+      "species": "SPECIES_DELCATTY"
+    },
+    {
+      "item": 206,
+      "moves": [
+        185,
+        109,
+        282,
+        252
+      ],
+      "nature": 1,
+      "species": "SPECIES_SABLEYE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        21,
+        280,
+        122,
+        189
+      ],
+      "nature": 24,
+      "species": "SPECIES_LICKITUNG"
+    },
+    {
+      "item": 198,
+      "moves": [
+        75,
+        51,
+        35,
+        230
+      ],
+      "nature": 17,
+      "species": "SPECIES_WEEPINBELL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        222,
+        88,
+        111,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_GRAVELER"
+    },
+    {
+      "item": 140,
+      "moves": [
+        80,
+        51,
+        78,
+        236
+      ],
+      "nature": 24,
+      "species": "SPECIES_GLOOM"
+    },
+    {
+      "item": 142,
+      "moves": [
+        60,
+        196,
+        278,
+        97
+      ],
+      "nature": 7,
+      "species": "SPECIES_PORYGON"
+    },
+    {
+      "item": 214,
+      "moves": [
+        93,
+        272,
+        248,
+        50
+      ],
+      "nature": 8,
+      "species": "SPECIES_KADABRA"
+    },
+    {
+      "item": 221,
+      "moves": [
+        250,
+        46,
+        111,
+        205
+      ],
+      "nature": 6,
+      "species": "SPECIES_WAILMER"
+    },
+    {
+      "item": 135,
+      "moves": [
+        345,
+        92,
+        320,
+        178
+      ],
+      "nature": 6,
+      "species": "SPECIES_ROSELIA"
+    },
+    {
+      "item": 168,
+      "moves": [
+        318,
+        109,
+        98,
+        270
+      ],
+      "nature": 24,
+      "species": "SPECIES_VOLBEAT"
+    },
+    {
+      "item": 168,
+      "moves": [
+        318,
+        273,
+        98,
+        270
+      ],
+      "nature": 24,
+      "species": "SPECIES_ILLUMISE"
+    },
+    {
+      "item": 140,
+      "moves": [
+        80,
+        74,
+        230,
+        210
+      ],
+      "nature": 21,
+      "species": "SPECIES_IVYSAUR"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        83,
+        14,
+        332
+      ],
+      "nature": 4,
+      "species": "SPECIES_CHARMELEON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        352,
+        44,
+        189,
+        281
+      ],
+      "nature": 6,
+      "species": "SPECIES_WARTORTLE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        163,
+        60,
+        78,
+        148
+      ],
+      "nature": 19,
+      "species": "SPECIES_PARASECT"
+    },
+    {
+      "item": 196,
+      "moves": [
+        67,
+        317,
+        193,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHOKE"
+    },
+    {
+      "item": 140,
+      "moves": [
+        325,
+        109,
+        180,
+        288
+      ],
+      "nature": 19,
+      "species": "SPECIES_HAUNTER"
+    },
+    {
+      "item": 179,
+      "moves": [
+        75,
+        92,
+        219,
+        113
+      ],
+      "nature": 6,
+      "species": "SPECIES_BAYLEEF"
+    },
+    {
+      "item": 196,
+      "moves": [
+        172,
+        154,
+        129,
+        108
+      ],
+      "nature": 6,
+      "species": "SPECIES_QUILAVA"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        352,
+        44,
+        184
+      ],
+      "nature": 6,
+      "species": "SPECIES_CROCONAW"
+    },
+    {
+      "item": 221,
+      "moves": [
+        332,
+        345,
+        273,
+        266
+      ],
+      "nature": 7,
+      "species": "SPECIES_TOGETIC"
+    },
+    {
+      "item": 221,
+      "moves": [
+        185,
+        19,
+        259,
+        269
+      ],
+      "nature": 24,
+      "species": "SPECIES_MURKROW"
+    },
+    {
+      "item": 196,
+      "moves": [
+        68,
+        243,
+        204,
+        219
+      ],
+      "nature": 23,
+      "species": "SPECIES_WOBBUFFET"
+    },
+    {
+      "item": 171,
+      "moves": [
+        209,
+        313,
+        98,
+        270
+      ],
+      "nature": 6,
+      "species": "SPECIES_PLUSLE"
+    },
+    {
+      "item": 170,
+      "moves": [
+        209,
+        204,
+        227,
+        270
+      ],
+      "nature": 6,
+      "species": "SPECIES_MINUN"
+    },
+    {
+      "item": 179,
+      "moves": [
+        210,
+        283,
+        280,
+        104
+      ],
+      "nature": 7,
+      "species": "SPECIES_GROVYLE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        52,
+        24,
+        98,
+        28
+      ],
+      "nature": 6,
+      "species": "SPECIES_COMBUSKEN"
+    },
+    {
+      "item": 196,
+      "moves": [
+        341,
+        55,
+        317,
+        189
+      ],
+      "nature": 0,
+      "species": "SPECIES_MARSHTOMP"
+    },
+    {
+      "item": 136,
+      "moves": [
+        83,
+        340,
+        98,
+        39
+      ],
+      "nature": 0,
+      "species": "SPECIES_PONYTA"
+    },
+    {
+      "item": 142,
+      "moves": [
+        61,
+        263,
+        91,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_AZUMARILL"
+    },
+    {
+      "item": 204,
+      "moves": [
+        157,
+        185,
+        201,
+        335
+      ],
+      "nature": 0,
+      "species": "SPECIES_SUDOWOODO"
+    },
+    {
+      "item": 221,
+      "moves": [
+        157,
+        52,
+        151,
+        201
+      ],
+      "nature": 21,
+      "species": "SPECIES_MAGCARGO"
+    },
+    {
+      "item": 203,
+      "moves": [
+        91,
+        44,
+        184,
+        201
+      ],
+      "nature": 0,
+      "species": "SPECIES_PUPITAR"
+    },
+    {
+      "item": 140,
+      "moves": [
+        301,
+        258,
+        173,
+        156
+      ],
+      "nature": 24,
+      "species": "SPECIES_SEALEO"
+    },
+    {
+      "item": 217,
+      "moves": [
+        283,
+        228,
+        184,
+        98
+      ],
+      "nature": 14,
+      "species": "SPECIES_RATICATE"
+    },
+    {
+      "item": 133,
+      "moves": [
+        318,
+        332,
+        196,
+        78
+      ],
+      "nature": 7,
+      "species": "SPECIES_MASQUERAIN"
+    },
+    {
+      "item": 168,
+      "moves": [
+        21,
+        182,
+        270,
+        266
+      ],
+      "nature": 12,
+      "species": "SPECIES_FURRET"
+    },
+    {
+      "item": 221,
+      "moves": [
+        29,
+        137,
+        111,
+        205
+      ],
+      "nature": 6,
+      "species": "SPECIES_DUNSPARCE"
+    },
+    {
+      "item": 133,
+      "moves": [
+        225,
+        43,
+        35,
+        219
+      ],
+      "nature": 6,
+      "species": "SPECIES_DRAGONAIR"
+    },
+    {
+      "item": 185,
+      "moves": [
+        44,
+        305,
+        269,
+        46
+      ],
+      "nature": 10,
+      "species": "SPECIES_MIGHTYENA"
+    },
+    {
+      "item": 180,
+      "moves": [
+        290,
+        28,
+        343,
+        321
+      ],
+      "nature": 3,
+      "species": "SPECIES_LINOONE"
+    },
+    {
+      "item": 171,
+      "moves": [
+        52,
+        352,
+        351,
+        196
+      ],
+      "nature": 11,
+      "species": "SPECIES_CASTFORM"
+    },
+    {
+      "item": 133,
+      "moves": [
+        29,
+        225,
+        182,
+        184
+      ],
+      "nature": 0,
+      "species": "SPECIES_SHELGON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        232,
+        93,
+        228,
+        184
+      ],
+      "nature": 0,
+      "species": "SPECIES_METANG"
+    },
+    {
+      "item": 217,
+      "moves": [
+        47,
+        50,
+        273,
+        290
+      ],
+      "nature": 7,
+      "species": "SPECIES_WIGGLYTUFF"
+    },
+    {
+      "item": 140,
+      "moves": [
+        80,
+        275,
+        73,
+        113
+      ],
+      "nature": 24,
+      "species": "SPECIES_SUNFLORA"
+    },
+    {
+      "item": 214,
+      "moves": [
+        149,
+        36,
+        215,
+        219
+      ],
+      "nature": 22,
+      "species": "SPECIES_CHIMECHO"
+    },
+    {
+      "item": 198,
+      "moves": [
+        232,
+        91,
+        332,
+        98
+      ],
+      "nature": 11,
+      "species": "SPECIES_GLIGAR"
+    },
+    {
+      "item": 133,
+      "moves": [
+        61,
+        42,
+        191,
+        107
+      ],
+      "nature": 8,
+      "species": "SPECIES_QWILFISH"
+    },
+    {
+      "item": 140,
+      "moves": [
+        185,
+        252,
+        196,
+        98
+      ],
+      "nature": 7,
+      "species": "SPECIES_SNEASEL"
+    },
+    {
+      "item": 142,
+      "moves": [
+        352,
+        332,
+        254,
+        256
+      ],
+      "nature": 17,
+      "species": "SPECIES_PELIPPER"
+    },
+    {
+      "item": 187,
+      "moves": [
+        19,
+        283,
+        263,
+        98
+      ],
+      "nature": 3,
+      "species": "SPECIES_SWELLOW"
+    },
+    {
+      "item": 199,
+      "moves": [
+        232,
+        317,
+        334,
+        182
+      ],
+      "nature": 22,
+      "species": "SPECIES_LAIRON"
+    },
+    {
+      "item": 221,
+      "moves": [
+        72,
+        21,
+        92,
+        20
+      ],
+      "nature": 0,
+      "species": "SPECIES_TANGELA"
+    },
+    {
+      "item": 140,
+      "moves": [
+        305,
+        91,
+        44,
+        137
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARBOK"
+    },
+    {
+      "item": 217,
+      "moves": [
+        252,
+        163,
+        259,
+        207
+      ],
+      "nature": 24,
+      "species": "SPECIES_PERSIAN"
+    },
+    {
+      "item": 209,
+      "moves": [
+        62,
+        108,
+        55,
+        240
+      ],
+      "nature": 22,
+      "species": "SPECIES_SEADRA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        290,
+        60,
+        277,
+        69
+      ],
+      "nature": 14,
+      "species": "SPECIES_KECLEON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        163,
+        68,
+        227,
+        253
+      ],
+      "nature": 1,
+      "species": "SPECIES_VIGOROTH"
+    },
+    {
+      "item": 142,
+      "moves": [
+        93,
+        322,
+        113,
+        201
+      ],
+      "nature": 17,
+      "species": "SPECIES_LUNATONE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        93,
+        83,
+        113,
+        201
+      ],
+      "nature": 17,
+      "species": "SPECIES_SOLROCK"
+    },
+    {
+      "item": 140,
+      "moves": [
+        93,
+        332,
+        185,
+        115
+      ],
+      "nature": 7,
+      "species": "SPECIES_NOCTOWL"
+    },
+    {
+      "item": 142,
+      "moves": [
+        306,
+        157,
+        129,
+        201
+      ],
+      "nature": 3,
+      "species": "SPECIES_SANDSLASH"
+    },
+    {
+      "item": 140,
+      "moves": [
+        318,
+        60,
+        79,
+        285
+      ],
+      "nature": 24,
+      "species": "SPECIES_VENOMOTH"
+    },
+    {
+      "item": 142,
+      "moves": [
+        118,
+        287,
+        111,
+        107
+      ],
+      "nature": 7,
+      "species": "SPECIES_CHANSEY"
+    },
+    {
+      "item": 142,
+      "moves": [
+        352,
+        60,
+        129,
+        97
+      ],
+      "nature": 6,
+      "species": "SPECIES_SEAKING"
+    },
+    {
+      "item": 221,
+      "moves": [
+        332,
+        207,
+        244,
+        235
+      ],
+      "nature": 6,
+      "species": "SPECIES_JUMPLUFF"
+    },
+    {
+      "item": 203,
+      "moves": [
+        91,
+        246,
+        258,
+        113
+      ],
+      "nature": 24,
+      "species": "SPECIES_PILOSWINE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        314,
+        109,
+        92,
+        211
+      ],
+      "nature": 7,
+      "species": "SPECIES_GOLBAT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        2,
+        68,
+        207,
+        103
+      ],
+      "nature": 24,
+      "species": "SPECIES_PRIMEAPE"
+    },
+    {
+      "item": 207,
+      "moves": [
+        27,
+        280,
+        116,
+        263
+      ],
+      "nature": 3,
+      "species": "SPECIES_HITMONLEE"
+    },
+    {
+      "item": 187,
+      "moves": [
+        183,
+        327,
+        197,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_HITMONCHAN"
+    },
+    {
+      "item": 171,
+      "moves": [
+        60,
+        23,
+        273,
+        285
+      ],
+      "nature": 17,
+      "species": "SPECIES_GIRAFARIG"
+    },
+    {
+      "item": 168,
+      "moves": [
+        167,
+        91,
+        183,
+        98
+      ],
+      "nature": 0,
+      "species": "SPECIES_HITMONTOP"
+    },
+    {
+      "item": 136,
+      "moves": [
+        101,
+        261,
+        180,
+        282
+      ],
+      "nature": 22,
+      "species": "SPECIES_BANETTE"
+    },
+    {
+      "item": 171,
+      "moves": [
+        226,
+        14,
+        203,
+        91
+      ],
+      "nature": 16,
+      "species": "SPECIES_NINJASK"
+    },
+    {
+      "item": 198,
+      "moves": [
+        342,
+        44,
+        137,
+        103
+      ],
+      "nature": 0,
+      "species": "SPECIES_SEVIPER"
+    },
+    {
+      "item": 140,
+      "moves": [
+        163,
+        24,
+        46,
+        98
+      ],
+      "nature": 0,
+      "species": "SPECIES_ZANGOOSE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        222,
+        182,
+        201,
+        157
+      ],
+      "nature": 24,
+      "species": "SPECIES_CAMERUPT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        44,
+        352,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_SHARPEDO"
+    },
+    {
+      "item": 142,
+      "moves": [
+        345,
+        18,
+        332,
+        211
+      ],
+      "nature": 0,
+      "species": "SPECIES_TROPIUS"
+    },
+    {
+      "item": 133,
+      "moves": [
+        351,
+        49,
+        86,
+        48
+      ],
+      "nature": 1,
+      "species": "SPECIES_MAGNETON"
+    },
+    {
+      "item": 209,
+      "moves": [
+        61,
+        332,
+        240,
+        196
+      ],
+      "nature": 6,
+      "species": "SPECIES_MANTINE"
+    },
+    {
+      "item": 214,
+      "moves": [
+        326,
+        109,
+        23,
+        28
+      ],
+      "nature": 21,
+      "species": "SPECIES_STANTLER"
+    },
+    {
+      "item": 179,
+      "moves": [
+        44,
+        13,
+        248,
+        98
+      ],
+      "nature": 3,
+      "species": "SPECIES_ABSOL"
+    },
+    {
+      "item": 221,
+      "moves": [
+        254,
+        256,
+        255,
+        124
+      ],
+      "nature": 24,
+      "species": "SPECIES_SWALOT"
+    },
+    {
+      "item": 140,
+      "moves": [
+        61,
+        11,
+        282,
+        182
+      ],
+      "nature": 3,
+      "species": "SPECIES_CRAWDAUNT"
+    },
+    {
+      "item": 210,
+      "moves": [
+        332,
+        297,
+        189,
+        185
+      ],
+      "nature": 0,
+      "species": "SPECIES_PIDGEOT"
+    },
+    {
+      "item": 171,
+      "moves": [
+        60,
+        109,
+        248,
+        277
+      ],
+      "nature": 7,
+      "species": "SPECIES_GRUMPIG"
+    },
+    {
+      "item": 142,
+      "moves": [
+        52,
+        83,
+        108,
+        133
+      ],
+      "nature": 7,
+      "species": "SPECIES_TORKOAL"
+    },
+    {
+      "item": 198,
+      "moves": [
+        152,
+        232,
+        341,
+        182
+      ],
+      "nature": 0,
+      "species": "SPECIES_KINGLER"
+    },
+    {
+      "item": 198,
+      "moves": [
+        302,
+        185,
+        51,
+        5
+      ],
+      "nature": 11,
+      "species": "SPECIES_CACTURNE"
+    },
+    {
+      "item": 140,
+      "moves": [
+        80,
+        219,
+        241,
+        235
+      ],
+      "nature": 17,
+      "species": "SPECIES_BELLOSSOM"
+    },
+    {
+      "item": 219,
+      "moves": [
+        190,
+        62,
+        60,
+        350
+      ],
+      "nature": 0,
+      "species": "SPECIES_OCTILLERY"
+    },
+    {
+      "item": 140,
+      "moves": [
+        250,
+        184,
+        189,
+        44
+      ],
+      "nature": 17,
+      "species": "SPECIES_HUNTAIL"
+    },
+    {
+      "item": 140,
+      "moves": [
+        250,
+        133,
+        196,
+        93
+      ],
+      "nature": 2,
+      "species": "SPECIES_GOREBYSS"
+    },
+    {
+      "item": 168,
+      "moves": [
+        246,
+        352,
+        106,
+        133
+      ],
+      "nature": 22,
+      "species": "SPECIES_RELICANTH"
+    },
+    {
+      "item": 219,
+      "moves": [
+        61,
+        131,
+        321,
+        246
+      ],
+      "nature": 24,
+      "species": "SPECIES_OMASTAR"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        91,
+        210,
+        282
+      ],
+      "nature": 3,
+      "species": "SPECIES_KABUTOPS"
+    },
+    {
+      "item": 207,
+      "moves": [
+        66,
+        91,
+        317,
+        61
+      ],
+      "nature": 3,
+      "species": "SPECIES_POLIWRATH"
+    },
+    {
+      "item": 168,
+      "moves": [
+        210,
+        332,
+        113,
+        104
+      ],
+      "nature": 7,
+      "species": "SPECIES_SCYTHER"
+    },
+    {
+      "item": 207,
+      "moves": [
+        66,
+        116,
+        14,
+        279
+      ],
+      "nature": 4,
+      "species": "SPECIES_PINSIR"
+    },
+    {
+      "item": 219,
+      "moves": [
+        291,
+        91,
+        95,
+        207
+      ],
+      "nature": 7,
+      "species": "SPECIES_POLITOED"
+    },
+    {
+      "item": 212,
+      "moves": [
+        62,
+        131,
+        48,
+        182
+      ],
+      "nature": 22,
+      "species": "SPECIES_CLOYSTER"
+    },
+    {
+      "item": 183,
+      "moves": [
+        313,
+        47,
+        85,
+        58
+      ],
+      "nature": 15,
+      "species": "SPECIES_DELCATTY"
+    },
+    {
+      "item": 141,
+      "moves": [
+        247,
+        185,
+        109,
+        105
+      ],
+      "nature": 24,
+      "species": "SPECIES_SABLEYE"
+    },
+    {
+      "item": 133,
+      "moves": [
+        89,
+        34,
+        247,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_LICKITUNG"
+    },
+    {
+      "item": 198,
+      "moves": [
+        188,
+        75,
+        79,
+        115
+      ],
+      "nature": 24,
+      "species": "SPECIES_WEEPINBELL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        89,
+        157,
+        280,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_GRAVELER"
+    },
+    {
+      "item": 135,
+      "moves": [
+        76,
+        241,
+        188,
+        236
+      ],
+      "nature": 24,
+      "species": "SPECIES_GLOOM"
+    },
+    {
+      "item": 133,
+      "moves": [
+        161,
+        94,
+        86,
+        105
+      ],
+      "nature": 17,
+      "species": "SPECIES_PORYGON"
+    },
+    {
+      "item": 214,
+      "moves": [
+        94,
+        86,
+        115,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_KADABRA"
+    },
+    {
+      "item": 134,
+      "moves": [
+        323,
+        89,
+        34,
+        156
+      ],
+      "nature": 6,
+      "species": "SPECIES_WAILMER"
+    },
+    {
+      "item": 183,
+      "moves": [
+        202,
+        188,
+        320,
+        235
+      ],
+      "nature": 6,
+      "species": "SPECIES_ROSELIA"
+    },
+    {
+      "item": 171,
+      "moves": [
+        324,
+        85,
+        8,
+        294
+      ],
+      "nature": 24,
+      "species": "SPECIES_VOLBEAT"
+    },
+    {
+      "item": 171,
+      "moves": [
+        318,
+        85,
+        8,
+        202
+      ],
+      "nature": 24,
+      "species": "SPECIES_ILLUMISE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        202,
+        188,
+        79,
+        73
+      ],
+      "nature": 24,
+      "species": "SPECIES_IVYSAUR"
+    },
+    {
+      "item": 198,
+      "moves": [
+        53,
+        163,
+        246,
+        82
+      ],
+      "nature": 0,
+      "species": "SPECIES_CHARMELEON"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        58,
+        229,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_WARTORTLE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        147,
+        202,
+        91,
+        104
+      ],
+      "nature": 20,
+      "species": "SPECIES_PARASECT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        157,
+        193,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHOKE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        95,
+        171,
+        109
+      ],
+      "nature": 7,
+      "species": "SPECIES_HAUNTER"
+    },
+    {
+      "item": 134,
+      "moves": [
+        202,
+        34,
+        320,
+        156
+      ],
+      "nature": 6,
+      "species": "SPECIES_BAYLEEF"
+    },
+    {
+      "item": 179,
+      "moves": [
+        53,
+        306,
+        34,
+        108
+      ],
+      "nature": 6,
+      "species": "SPECIES_QUILAVA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        25,
+        332,
+        157,
+        91
+      ],
+      "nature": 3,
+      "species": "SPECIES_CROCONAW"
+    },
+    {
+      "item": 198,
+      "moves": [
+        216,
+        186,
+        332,
+        281
+      ],
+      "nature": 7,
+      "species": "SPECIES_TOGETIC"
+    },
+    {
+      "item": 179,
+      "moves": [
+        195,
+        212,
+        104,
+        86
+      ],
+      "nature": 24,
+      "species": "SPECIES_MURKROW"
+    },
+    {
+      "item": 196,
+      "moves": [
+        68,
+        243,
+        227,
+        194
+      ],
+      "nature": 23,
+      "species": "SPECIES_WOBBUFFET"
+    },
+    {
+      "item": 171,
+      "moves": [
+        85,
+        86,
+        69,
+        273
+      ],
+      "nature": 6,
+      "species": "SPECIES_PLUSLE"
+    },
+    {
+      "item": 170,
+      "moves": [
+        85,
+        213,
+        204,
+        273
+      ],
+      "nature": 6,
+      "species": "SPECIES_MINUN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        202,
+        306,
+        103,
+        317
+      ],
+      "nature": 6,
+      "species": "SPECIES_GROVYLE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        53,
+        327,
+        163,
+        28
+      ],
+      "nature": 6,
+      "species": "SPECIES_COMBUSKEN"
+    },
+    {
+      "item": 196,
+      "moves": [
+        330,
+        89,
+        189,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_MARSHTOMP"
+    },
+    {
+      "item": 142,
+      "moves": [
+        53,
+        34,
+        24,
+        104
+      ],
+      "nature": 24,
+      "species": "SPECIES_PONYTA"
+    },
+    {
+      "item": 219,
+      "moves": [
+        25,
+        280,
+        231,
+        91
+      ],
+      "nature": 3,
+      "species": "SPECIES_AZUMARILL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        25,
+        89,
+        67,
+        120
+      ],
+      "nature": 0,
+      "species": "SPECIES_SUDOWOODO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        315,
+        89,
+        157,
+        34
+      ],
+      "nature": 17,
+      "species": "SPECIES_MAGCARGO"
+    },
+    {
+      "item": 198,
+      "moves": [
+        89,
+        157,
+        242,
+        184
+      ],
+      "nature": 0,
+      "species": "SPECIES_PUPITAR"
+    },
+    {
+      "item": 142,
+      "moves": [
+        58,
+        57,
+        34,
+        258
+      ],
+      "nature": 17,
+      "species": "SPECIES_SEALEO"
+    },
+    {
+      "item": 196,
+      "moves": [
+        162,
+        158,
+        247,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_RATICATE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        56,
+        58,
+        202,
+        78
+      ],
+      "nature": 17,
+      "species": "SPECIES_MASQUERAIN"
+    },
+    {
+      "item": 186,
+      "moves": [
+        271,
+        218,
+        247,
+        266
+      ],
+      "nature": 3,
+      "species": "SPECIES_FURRET"
+    },
+    {
+      "item": 221,
+      "moves": [
+        58,
+        317,
+        44,
+        247
+      ],
+      "nature": 17,
+      "species": "SPECIES_DUNSPARCE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        216,
+        156,
+        86,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_DRAGONAIR"
+    },
+    {
+      "item": 187,
+      "moves": [
+        242,
+        247,
+        218,
+        184
+      ],
+      "nature": 24,
+      "species": "SPECIES_MIGHTYENA"
+    },
+    {
+      "item": 186,
+      "moves": [
+        271,
+        218,
+        86,
+        28
+      ],
+      "nature": 13,
+      "species": "SPECIES_LINOONE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        85,
+        53,
+        58,
+        352
+      ],
+      "nature": 15,
+      "species": "SPECIES_CASTFORM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        218,
+        349,
+        242,
+        184
+      ],
+      "nature": 0,
+      "species": "SPECIES_SHELGON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        309,
+        94,
+        34,
+        184
+      ],
+      "nature": 24,
+      "species": "SPECIES_METANG"
+    },
+    {
+      "item": 142,
+      "moves": [
+        313,
+        47,
+        138,
+        280
+      ],
+      "nature": 6,
+      "species": "SPECIES_WIGGLYTUFF"
+    },
+    {
+      "item": 200,
+      "moves": [
+        202,
+        320,
+        74,
+        104
+      ],
+      "nature": 17,
+      "species": "SPECIES_SUNFLORA"
+    },
+    {
+      "item": 214,
+      "moves": [
+        94,
+        95,
+        138,
+        215
+      ],
+      "nature": 17,
+      "species": "SPECIES_CHIMECHO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        332,
+        12,
+        103
+      ],
+      "nature": 3,
+      "species": "SPECIES_GLIGAR"
+    },
+    {
+      "item": 196,
+      "moves": [
+        279,
+        188,
+        247,
+        194
+      ],
+      "nature": 3,
+      "species": "SPECIES_QWILFISH"
+    },
+    {
+      "item": 187,
+      "moves": [
+        306,
+        280,
+        332,
+        103
+      ],
+      "nature": 13,
+      "species": "SPECIES_SNEASEL"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        59,
+        332,
+        182
+      ],
+      "nature": 17,
+      "species": "SPECIES_PELIPPER"
+    },
+    {
+      "item": 187,
+      "moves": [
+        263,
+        332,
+        228,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_SWELLOW"
+    },
+    {
+      "item": 142,
+      "moves": [
+        89,
+        231,
+        46,
+        182
+      ],
+      "nature": 22,
+      "species": "SPECIES_LAIRON"
+    },
+    {
+      "item": 134,
+      "moves": [
+        202,
+        78,
+        156,
+        133
+      ],
+      "nature": 20,
+      "species": "SPECIES_TANGELA"
+    },
+    {
+      "item": 141,
+      "moves": [
+        188,
+        89,
+        231,
+        137
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARBOK"
+    },
+    {
+      "item": 217,
+      "moves": [
+        218,
+        247,
+        46,
+        252
+      ],
+      "nature": 24,
+      "species": "SPECIES_PERSIAN"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        218,
+        225,
+        349
+      ],
+      "nature": 6,
+      "species": "SPECIES_SEADRA"
+    },
+    {
+      "item": 186,
+      "moves": [
+        271,
+        280,
+        247,
+        285
+      ],
+      "nature": 6,
+      "species": "SPECIES_KECLEON"
+    },
+    {
+      "item": 170,
+      "moves": [
+        306,
+        179,
+        203,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_VIGOROTH"
+    },
+    {
+      "item": 221,
+      "moves": [
+        94,
+        58,
+        322,
+        347
+      ],
+      "nature": 17,
+      "species": "SPECIES_LUNATONE"
+    },
+    {
+      "item": 180,
+      "moves": [
+        89,
+        157,
+        322,
+        315
+      ],
+      "nature": 0,
+      "species": "SPECIES_SOLROCK"
+    },
+    {
+      "item": 140,
+      "moves": [
+        94,
+        185,
+        332,
+        115
+      ],
+      "nature": 17,
+      "species": "SPECIES_NOCTOWL"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        157,
+        306,
+        201
+      ],
+      "nature": 3,
+      "species": "SPECIES_SANDSLASH"
+    },
+    {
+      "item": 141,
+      "moves": [
+        324,
+        94,
+        188,
+        202
+      ],
+      "nature": 6,
+      "species": "SPECIES_VENOMOTH"
+    },
+    {
+      "item": 200,
+      "moves": [
+        69,
+        247,
+        104,
+        135
+      ],
+      "nature": 7,
+      "species": "SPECIES_CHANSEY"
+    },
+    {
+      "item": 183,
+      "moves": [
+        32,
+        224,
+        214,
+        156
+      ],
+      "nature": 8,
+      "species": "SPECIES_SEAKING"
+    },
+    {
+      "item": 200,
+      "moves": [
+        73,
+        79,
+        202,
+        104
+      ],
+      "nature": 5,
+      "species": "SPECIES_JUMPLUFF"
+    },
+    {
+      "item": 219,
+      "moves": [
+        89,
+        157,
+        34,
+        46
+      ],
+      "nature": 3,
+      "species": "SPECIES_PILOSWINE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        188,
+        247,
+        109,
+        314
+      ],
+      "nature": 3,
+      "species": "SPECIES_GOLBAT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        317,
+        315,
+        339
+      ],
+      "nature": 24,
+      "species": "SPECIES_PRIMEAPE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        25,
+        280,
+        193,
+        317
+      ],
+      "nature": 3,
+      "species": "SPECIES_HITMONLEE"
+    },
+    {
+      "item": 187,
+      "moves": [
+        223,
+        183,
+        197,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_HITMONCHAN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        242,
+        226,
+        97
+      ],
+      "nature": 15,
+      "species": "SPECIES_GIRAFARIG"
+    },
+    {
+      "item": 196,
+      "moves": [
+        38,
+        69,
+        157,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_HITMONTOP"
+    },
+    {
+      "item": 221,
+      "moves": [
+        247,
+        218,
+        103,
+        261
+      ],
+      "nature": 3,
+      "species": "SPECIES_BANETTE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        163,
+        247,
+        14,
+        226
+      ],
+      "nature": 24,
+      "species": "SPECIES_NINJASK"
+    },
+    {
+      "item": 183,
+      "moves": [
+        188,
+        89,
+        242,
+        202
+      ],
+      "nature": 24,
+      "species": "SPECIES_SEVIPER"
+    },
+    {
+      "item": 198,
+      "moves": [
+        306,
+        247,
+        280,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_ZANGOOSE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        89,
+        284,
+        34,
+        184
+      ],
+      "nature": 24,
+      "species": "SPECIES_CAMERUPT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        38,
+        242,
+        89,
+        57
+      ],
+      "nature": 24,
+      "species": "SPECIES_SHARPEDO"
+    },
+    {
+      "item": 196,
+      "moves": [
+        76,
+        241,
+        235,
+        34
+      ],
+      "nature": 17,
+      "species": "SPECIES_TROPIUS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        87,
+        240,
+        86,
+        319
+      ],
+      "nature": 0,
+      "species": "SPECIES_MAGNETON"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        58,
+        240,
+        109
+      ],
+      "nature": 15,
+      "species": "SPECIES_MANTINE"
+    },
+    {
+      "item": 221,
+      "moves": [
+        218,
+        247,
+        86,
+        109
+      ],
+      "nature": 3,
+      "species": "SPECIES_STANTLER"
+    },
+    {
+      "item": 186,
+      "moves": [
+        38,
+        247,
+        332,
+        231
+      ],
+      "nature": 3,
+      "species": "SPECIES_ABSOL"
+    },
+    {
+      "item": 200,
+      "moves": [
+        188,
+        247,
+        34,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_SWALOT"
+    },
+    {
+      "item": 183,
+      "moves": [
+        12,
+        218,
+        246,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_CRAWDAUNT"
+    },
+    {
+      "item": 198,
+      "moves": [
+        216,
+        332,
+        211,
+        189
+      ],
+      "nature": 3,
+      "species": "SPECIES_PIDGEOT"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        8,
+        9,
+        7
+      ],
+      "nature": 15,
+      "species": "SPECIES_GRUMPIG"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        34,
+        108,
+        182
+      ],
+      "nature": 22,
+      "species": "SPECIES_TORKOAL"
+    },
+    {
+      "item": 170,
+      "moves": [
+        12,
+        317,
+        175,
+        203
+      ],
+      "nature": 3,
+      "species": "SPECIES_KINGLER"
+    },
+    {
+      "item": 140,
+      "moves": [
+        25,
+        298,
+        185,
+        201
+      ],
+      "nature": 0,
+      "species": "SPECIES_CACTURNE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        76,
+        213,
+        241,
+        235
+      ],
+      "nature": 15,
+      "species": "SPECIES_BELLOSSOM"
+    },
+    {
+      "item": 221,
+      "moves": [
+        190,
+        126,
+        86,
+        189
+      ],
+      "nature": 24,
+      "species": "SPECIES_OCTILLERY"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        240,
+        242,
+        34
+      ],
+      "nature": 17,
+      "species": "SPECIES_HUNTAIL"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        240,
+        94,
+        34
+      ],
+      "nature": 17,
+      "species": "SPECIES_GOREBYSS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        157,
+        133,
+        156
+      ],
+      "nature": 22,
+      "species": "SPECIES_RELICANTH"
+    },
+    {
+      "item": 142,
+      "moves": [
+        56,
+        240,
+        58,
+        182
+      ],
+      "nature": 15,
+      "species": "SPECIES_OMASTAR"
+    },
+    {
+      "item": 170,
+      "moves": [
+        163,
+        157,
+        175,
+        203
+      ],
+      "nature": 3,
+      "species": "SPECIES_KABUTOPS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        280,
+        95,
+        156,
+        187
+      ],
+      "nature": 3,
+      "species": "SPECIES_POLIWRATH"
+    },
+    {
+      "item": 179,
+      "moves": [
+        318,
+        332,
+        14,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_SCYTHER"
+    },
+    {
+      "item": 170,
+      "moves": [
+        12,
+        14,
+        175,
+        203
+      ],
+      "nature": 13,
+      "species": "SPECIES_PINSIR"
+    },
+    {
+      "item": 221,
+      "moves": [
+        57,
+        94,
+        189,
+        207
+      ],
+      "nature": 15,
+      "species": "SPECIES_POLITOED"
+    },
+    {
+      "item": 200,
+      "moves": [
+        291,
+        92,
+        104,
+        182
+      ],
+      "nature": 23,
+      "species": "SPECIES_CLOYSTER"
+    },
+    {
+      "item": 203,
+      "moves": [
+        89,
+        161,
+        163,
+        328
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUGTRIO"
+    },
+    {
+      "item": 196,
+      "moves": [
+        94,
+        136,
+        347,
+        226
+      ],
+      "nature": 6,
+      "species": "SPECIES_MEDICHAM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        220,
+        247,
+        109,
+        86
+      ],
+      "nature": 8,
+      "species": "SPECIES_MISDREAVUS"
+    },
+    {
+      "item": 210,
+      "moves": [
+        65,
+        161,
+        263,
+        189
+      ],
+      "nature": 3,
+      "species": "SPECIES_FEAROW"
+    },
+    {
+      "item": 133,
+      "moves": [
+        25,
+        265,
+        86,
+        46
+      ],
+      "nature": 3,
+      "species": "SPECIES_GRANBULL"
+    },
+    {
+      "item": 219,
+      "moves": [
+        58,
+        252,
+        142,
+        213
+      ],
+      "nature": 15,
+      "species": "SPECIES_JYNX"
+    },
+    {
+      "item": 200,
+      "moves": [
+        261,
+        69,
+        220,
+        109
+      ],
+      "nature": 8,
+      "species": "SPECIES_DUSCLOPS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        65,
+        161,
+        214,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_DODRIO"
+    },
+    {
+      "item": 200,
+      "moves": [
+        94,
+        345,
+        252,
+        115
+      ],
+      "nature": 7,
+      "species": "SPECIES_MR_MIME"
+    },
+    {
+      "item": 133,
+      "moves": [
+        57,
+        109,
+        213,
+        86
+      ],
+      "nature": 17,
+      "species": "SPECIES_LANTURN"
+    },
+    {
+      "item": 187,
+      "moves": [
+        327,
+        183,
+        29,
+        68
+      ],
+      "nature": 13,
+      "species": "SPECIES_BRELOOM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        38,
+        157,
+        113,
+        191
+      ],
+      "nature": 3,
+      "species": "SPECIES_FORRETRESS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        157,
+        133,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_WHISCASH"
+    },
+    {
+      "item": 210,
+      "moves": [
+        65,
+        101,
+        273,
+        248
+      ],
+      "nature": 0,
+      "species": "SPECIES_XATU"
+    },
+    {
+      "item": 198,
+      "moves": [
+        211,
+        314,
+        68,
+        97
+      ],
+      "nature": 3,
+      "species": "SPECIES_SKARMORY"
+    },
+    {
+      "item": 224,
+      "moves": [
+        155,
+        157,
+        196,
+        29
+      ],
+      "nature": 3,
+      "species": "SPECIES_MAROWAK"
+    },
+    {
+      "item": 196,
+      "moves": [
+        89,
+        280,
+        68,
+        189
+      ],
+      "nature": 3,
+      "species": "SPECIES_QUAGSIRE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        118,
+        104,
+        115,
+        266
+      ],
+      "nature": 2,
+      "species": "SPECIES_CLEFABLE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        238,
+        157,
+        68,
+        252
+      ],
+      "nature": 3,
+      "species": "SPECIES_HARIYAMA"
+    },
+    {
+      "item": 179,
+      "moves": [
+        85,
+        98,
+        113,
+        104
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAICHU"
+    },
+    {
+      "item": 212,
+      "moves": [
+        58,
+        196,
+        29,
+        252
+      ],
+      "nature": 17,
+      "species": "SPECIES_DEWGONG"
+    },
+    {
+      "item": 208,
+      "moves": [
+        85,
+        148,
+        98,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_MANECTRIC"
+    },
+    {
+      "item": 140,
+      "moves": [
+        188,
+        80,
+        236,
+        312
+      ],
+      "nature": 8,
+      "species": "SPECIES_VILEPLUME"
+    },
+    {
+      "item": 142,
+      "moves": [
+        202,
+        79,
+        230,
+        235
+      ],
+      "nature": 17,
+      "species": "SPECIES_VICTREEBEL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        85,
+        129,
+        113,
+        182
+      ],
+      "nature": 17,
+      "species": "SPECIES_ELECTRODE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        304,
+        247,
+        214,
+        156
+      ],
+      "nature": 8,
+      "species": "SPECIES_EXPLOUD"
+    },
+    {
+      "item": 205,
+      "moves": [
+        202,
+        185,
+        98,
+        252
+      ],
+      "nature": 17,
+      "species": "SPECIES_SHIFTRY"
+    },
+    {
+      "item": 171,
+      "moves": [
+        58,
+        242,
+        258,
+        182
+      ],
+      "nature": 15,
+      "species": "SPECIES_GLALIE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        240,
+        9,
+        7
+      ],
+      "nature": 17,
+      "species": "SPECIES_LUDICOLO"
+    },
+    {
+      "item": 214,
+      "moves": [
+        9,
+        7,
+        8,
+        95
+      ],
+      "nature": 17,
+      "species": "SPECIES_HYPNO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        34,
+        68,
+        317
+      ],
+      "nature": 3,
+      "species": "SPECIES_GOLEM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        317,
+        184,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_RHYDON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        9,
+        7,
+        8,
+        86
+      ],
+      "nature": 15,
+      "species": "SPECIES_ALAKAZAM"
+    },
+    {
+      "item": 179,
+      "moves": [
+        188,
+        261,
+        247,
+        108
+      ],
+      "nature": 3,
+      "species": "SPECIES_WEEZING"
+    },
+    {
+      "item": 196,
+      "moves": [
+        146,
+        280,
+        68,
+        252
+      ],
+      "nature": 3,
+      "species": "SPECIES_KANGASKHAN"
+    },
+    {
+      "item": 133,
+      "moves": [
+        85,
+        86,
+        280,
+        113
+      ],
+      "nature": 7,
+      "species": "SPECIES_ELECTABUZZ"
+    },
+    {
+      "item": 140,
+      "moves": [
+        89,
+        37,
+        207,
+        263
+      ],
+      "nature": 3,
+      "species": "SPECIES_TAUROS"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        240,
+        29,
+        8
+      ],
+      "nature": 17,
+      "species": "SPECIES_SLOWBRO"
+    },
+    {
+      "item": 200,
+      "moves": [
+        94,
+        280,
+        133,
+        213
+      ],
+      "nature": 17,
+      "species": "SPECIES_SLOWKING"
+    },
+    {
+      "item": 196,
+      "moves": [
+        263,
+        247,
+        68,
+        208
+      ],
+      "nature": 23,
+      "species": "SPECIES_MILTANK"
+    },
+    {
+      "item": 133,
+      "moves": [
+        337,
+        332,
+        287,
+        34
+      ],
+      "nature": 6,
+      "species": "SPECIES_ALTARIA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        188,
+        24,
+        34,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_NIDOQUEEN"
+    },
+    {
+      "item": 183,
+      "moves": [
+        32,
+        24,
+        34,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_NIDOKING"
+    },
+    {
+      "item": 136,
+      "moves": [
+        53,
+        108,
+        280,
+        112
+      ],
+      "nature": 7,
+      "species": "SPECIES_MAGMAR"
+    },
+    {
+      "item": 200,
+      "moves": [
+        202,
+        157,
+        112,
+        109
+      ],
+      "nature": 7,
+      "species": "SPECIES_CRADILY"
+    },
+    {
+      "item": 198,
+      "moves": [
+        163,
+        332,
+        246,
+        182
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARMALDO"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        91,
+        280,
+        113
+      ],
+      "nature": 17,
+      "species": "SPECIES_GOLDUCK"
+    },
+    {
+      "item": 215,
+      "moves": [
+        53,
+        24,
+        98,
+        182
+      ],
+      "nature": 17,
+      "species": "SPECIES_RAPIDASH"
+    },
+    {
+      "item": 211,
+      "moves": [
+        188,
+        34,
+        103,
+        107
+      ],
+      "nature": 3,
+      "species": "SPECIES_MUK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        138,
+        95,
+        109,
+        213
+      ],
+      "nature": 10,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 208,
+      "moves": [
+        87,
+        240,
+        86,
+        213
+      ],
+      "nature": 7,
+      "species": "SPECIES_AMPHAROS"
+    },
+    {
+      "item": 196,
+      "moves": [
+        232,
+        332,
+        68,
+        98
+      ],
+      "nature": 3,
+      "species": "SPECIES_SCIZOR"
+    },
+    {
+      "item": 196,
+      "moves": [
+        224,
+        280,
+        317,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_HERACROSS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        25,
+        242,
+        332,
+        68
+      ],
+      "nature": 6,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 196,
+      "moves": [
+        53,
+        247,
+        68,
+        261
+      ],
+      "nature": 24,
+      "species": "SPECIES_HOUNDOOM"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        246,
+        207,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_DONPHAN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        89,
+        157,
+        207,
+        244
+      ],
+      "nature": 3,
+      "species": "SPECIES_CLAYDOL"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        196,
+        34,
+        46
+      ],
+      "nature": 22,
+      "species": "SPECIES_WAILORD"
+    },
+    {
+      "item": 136,
+      "moves": [
+        53,
+        46,
+        109,
+        261
+      ],
+      "nature": 15,
+      "species": "SPECIES_NINETALES"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        157,
+        68,
+        184
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 134,
+      "moves": [
+        205,
+        111,
+        214,
+        156
+      ],
+      "nature": 2,
+      "species": "SPECIES_SHUCKLE"
+    },
+    {
+      "item": 142,
+      "moves": [
+        89,
+        225,
+        317,
+        46
+      ],
+      "nature": 3,
+      "species": "SPECIES_STEELIX"
+    },
+    {
+      "item": 140,
+      "moves": [
+        188,
+        196,
+        112,
+        109
+      ],
+      "nature": 8,
+      "species": "SPECIES_TENTACRUEL"
+    },
+    {
+      "item": 187,
+      "moves": [
+        246,
+        225,
+        332,
+        46
+      ],
+      "nature": 3,
+      "species": "SPECIES_AERODACTYL"
+    },
+    {
+      "item": 200,
+      "moves": [
+        161,
+        332,
+        247,
+        105
+      ],
+      "nature": 3,
+      "species": "SPECIES_PORYGON2"
+    },
+    {
+      "item": 200,
+      "moves": [
+        138,
+        95,
+        345,
+        115
+      ],
+      "nature": 10,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        76,
+        241,
+        235,
+        113
+      ],
+      "nature": 17,
+      "species": "SPECIES_EXEGGUTOR"
+    },
+    {
+      "item": 219,
+      "moves": [
+        94,
+        109,
+        86,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        211,
+        185,
+        263
+      ],
+      "nature": 3,
+      "species": "SPECIES_FLYGON"
+    },
+    {
+      "item": 134,
+      "moves": [
+        202,
+        241,
+        235,
+        79
+      ],
+      "nature": 17,
+      "species": "SPECIES_VENUSAUR"
+    },
+    {
+      "item": 209,
+      "moves": [
+        57,
+        46,
+        44,
+        98
+      ],
+      "nature": 15,
+      "species": "SPECIES_VAPOREON"
+    },
+    {
+      "item": 133,
+      "moves": [
+        85,
+        86,
+        213,
+        182
+      ],
+      "nature": 15,
+      "species": "SPECIES_JOLTEON"
+    },
+    {
+      "item": 142,
+      "moves": [
+        53,
+        46,
+        44,
+        28
+      ],
+      "nature": 15,
+      "species": "SPECIES_FLAREON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        76,
+        241,
+        113,
+        235
+      ],
+      "nature": 15,
+      "species": "SPECIES_MEGANIUM"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        204,
+        347,
+        226
+      ],
+      "nature": 15,
+      "species": "SPECIES_ESPEON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        109,
+        185,
+        104,
+        226
+      ],
+      "nature": 5,
+      "species": "SPECIES_UMBREON"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        240,
+        44,
+        69
+      ],
+      "nature": 15,
+      "species": "SPECIES_BLASTOISE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        240,
+        332,
+        46
+      ],
+      "nature": 17,
+      "species": "SPECIES_FERALIGATR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        231,
+        89,
+        332,
+        46
+      ],
+      "nature": 3,
+      "species": "SPECIES_AGGRON"
+    },
+    {
+      "item": 183,
+      "moves": [
+        53,
+        241,
+        24,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_BLAZIKEN"
+    },
+    {
+      "item": 200,
+      "moves": [
+        59,
+        258,
+        281,
+        182
+      ],
+      "nature": 17,
+      "species": "SPECIES_WALREIN"
+    },
+    {
+      "item": 200,
+      "moves": [
+        348,
+        73,
+        332,
+        197
+      ],
+      "nature": 15,
+      "species": "SPECIES_SCEPTILE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        126,
+        241,
+        46,
+        184
+      ],
+      "nature": 15,
+      "species": "SPECIES_CHARIZARD"
+    },
+    {
+      "item": 196,
+      "moves": [
+        126,
+        241,
+        108,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_TYPHLOSION"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        213,
+        109,
+        47
+      ],
+      "nature": 5,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 187,
+      "moves": [
+        188,
+        44,
+        310,
+        103
+      ],
+      "nature": 24,
+      "species": "SPECIES_CROBAT"
+    },
+    {
+      "item": 141,
+      "moves": [
+        89,
+        68,
+        156,
+        174
+      ],
+      "nature": 3,
+      "species": "SPECIES_SWAMPERT"
+    },
+    {
+      "item": 141,
+      "moves": [
+        216,
+        44,
+        86,
+        349
+      ],
+      "nature": 23,
+      "species": "SPECIES_GYARADOS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        263,
+        247,
+        213,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 141,
+      "moves": [
+        56,
+        225,
+        196,
+        213
+      ],
+      "nature": 15,
+      "species": "SPECIES_KINGDRA"
+    },
+    {
+      "item": 179,
+      "moves": [
+        92,
+        104,
+        47,
+        135
+      ],
+      "nature": 5,
+      "species": "SPECIES_BLISSEY"
+    },
+    {
+      "item": 141,
+      "moves": [
+        56,
+        196,
+        105,
+        243
+      ],
+      "nature": 15,
+      "species": "SPECIES_MILOTIC"
+    },
+    {
+      "item": 187,
+      "moves": [
+        53,
+        245,
+        242,
+        34
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARCANINE"
+    },
+    {
+      "item": 187,
+      "moves": [
+        337,
+        332,
+        29,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        309,
+        332,
+        263,
+        113
+      ],
+      "nature": 3,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 198,
+      "moves": [
+        281,
+        339,
+        207,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_SLAKING"
+    },
+    {
+      "item": 187,
+      "moves": [
+        89,
+        246,
+        332,
+        161
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUGTRIO"
+    },
+    {
+      "item": 170,
+      "moves": [
+        179,
+        203,
+        94,
+        252
+      ],
+      "nature": 0,
+      "species": "SPECIES_MEDICHAM"
+    },
+    {
+      "item": 224,
+      "moves": [
+        89,
+        157,
+        14,
+        196
+      ],
+      "nature": 3,
+      "species": "SPECIES_MAROWAK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        174,
+        213,
+        281,
+        246
+      ],
+      "nature": 22,
+      "species": "SPECIES_QUAGSIRE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        94,
+        213,
+        86,
+        109
+      ],
+      "nature": 5,
+      "species": "SPECIES_MISDREAVUS"
+    },
+    {
+      "item": 196,
+      "moves": [
+        65,
+        161,
+        213,
+        228
+      ],
+      "nature": 3,
+      "species": "SPECIES_FEAROW"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        85,
+        8,
+        263
+      ],
+      "nature": 17,
+      "species": "SPECIES_GRANBULL"
+    },
+    {
+      "item": 179,
+      "moves": [
+        195,
+        212,
+        142,
+        182
+      ],
+      "nature": 8,
+      "species": "SPECIES_JYNX"
+    },
+    {
+      "item": 200,
+      "moves": [
+        92,
+        109,
+        104,
+        182
+      ],
+      "nature": 8,
+      "species": "SPECIES_DUSCLOPS"
+    },
+    {
+      "item": 187,
+      "moves": [
+        65,
+        38,
+        185,
+        182
+      ],
+      "nature": 3,
+      "species": "SPECIES_DODRIO"
+    },
+    {
+      "item": 168,
+      "moves": [
+        226,
+        207,
+        244,
+        94
+      ],
+      "nature": 3,
+      "species": "SPECIES_MR_MIME"
+    },
+    {
+      "item": 170,
+      "moves": [
+        175,
+        203,
+        85,
+        57
+      ],
+      "nature": 6,
+      "species": "SPECIES_LANTURN"
+    },
+    {
+      "item": 179,
+      "moves": [
+        202,
+        73,
+        264,
+        147
+      ],
+      "nature": 6,
+      "species": "SPECIES_BRELOOM"
+    },
+    {
+      "item": 141,
+      "moves": [
+        89,
+        38,
+        68,
+        182
+      ],
+      "nature": 3,
+      "species": "SPECIES_FORRETRESS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        191,
+        46,
+        65,
+        92
+      ],
+      "nature": 23,
+      "species": "SPECIES_SKARMORY"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        89,
+        209,
+        248
+      ],
+      "nature": 0,
+      "species": "SPECIES_WHISCASH"
+    },
+    {
+      "item": 200,
+      "moves": [
+        19,
+        92,
+        109,
+        213
+      ],
+      "nature": 8,
+      "species": "SPECIES_XATU"
+    },
+    {
+      "item": 196,
+      "moves": [
+        309,
+        322,
+        104,
+        266
+      ],
+      "nature": 3,
+      "species": "SPECIES_CLEFABLE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        238,
+        7,
+        8,
+        9
+      ],
+      "nature": 17,
+      "species": "SPECIES_HARIYAMA"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        179,
+        203,
+        97
+      ],
+      "nature": 3,
+      "species": "SPECIES_RAICHU"
+    },
+    {
+      "item": 219,
+      "moves": [
+        59,
+        38,
+        227,
+        50
+      ],
+      "nature": 6,
+      "species": "SPECIES_DEWGONG"
+    },
+    {
+      "item": 171,
+      "moves": [
+        87,
+        240,
+        242,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_MANECTRIC"
+    },
+    {
+      "item": 179,
+      "moves": [
+        275,
+        104,
+        92,
+        202
+      ],
+      "nature": 5,
+      "species": "SPECIES_VILEPLUME"
+    },
+    {
+      "item": 200,
+      "moves": [
+        202,
+        188,
+        79,
+        213
+      ],
+      "nature": 12,
+      "species": "SPECIES_VICTREEBEL"
+    },
+    {
+      "item": 179,
+      "moves": [
+        87,
+        240,
+        104,
+        207
+      ],
+      "nature": 15,
+      "species": "SPECIES_ELECTRODE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        76,
+        241,
+        89,
+        68
+      ],
+      "nature": 24,
+      "species": "SPECIES_EXPLOUD"
+    },
+    {
+      "item": 134,
+      "moves": [
+        73,
+        91,
+        104,
+        156
+      ],
+      "nature": 8,
+      "species": "SPECIES_SHIFTRY"
+    },
+    {
+      "item": 170,
+      "moves": [
+        153,
+        203,
+        34,
+        196
+      ],
+      "nature": 24,
+      "species": "SPECIES_GLALIE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        58,
+        9,
+        7
+      ],
+      "nature": 15,
+      "species": "SPECIES_LUDICOLO"
+    },
+    {
+      "item": 214,
+      "moves": [
+        95,
+        171,
+        138,
+        94
+      ],
+      "nature": 15,
+      "species": "SPECIES_HYPNO"
+    },
+    {
+      "item": 134,
+      "moves": [
+        264,
+        164,
+        104,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_GOLEM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        32,
+        157,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_RHYDON"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        347,
+        86,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_ALAKAZAM"
+    },
+    {
+      "item": 142,
+      "moves": [
+        262,
+        188,
+        263,
+        194
+      ],
+      "nature": 3,
+      "species": "SPECIES_WEEZING"
+    },
+    {
+      "item": 141,
+      "moves": [
+        306,
+        247,
+        213,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_KANGASKHAN"
+    },
+    {
+      "item": 200,
+      "moves": [
+        87,
+        240,
+        213,
+        264
+      ],
+      "nature": 24,
+      "species": "SPECIES_ELECTABUZZ"
+    },
+    {
+      "item": 134,
+      "moves": [
+        38,
+        89,
+        104,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_TAUROS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        58,
+        347,
+        281
+      ],
+      "nature": 15,
+      "species": "SPECIES_SLOWBRO"
+    },
+    {
+      "item": 219,
+      "moves": [
+        281,
+        86,
+        57,
+        94
+      ],
+      "nature": 15,
+      "species": "SPECIES_SLOWKING"
+    },
+    {
+      "item": 200,
+      "moves": [
+        264,
+        247,
+        213,
+        86
+      ],
+      "nature": 23,
+      "species": "SPECIES_MILTANK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        195,
+        225,
+        228,
+        213
+      ],
+      "nature": 5,
+      "species": "SPECIES_ALTARIA"
+    },
+    {
+      "item": 219,
+      "moves": [
+        38,
+        89,
+        332,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_NIDOQUEEN"
+    },
+    {
+      "item": 219,
+      "moves": [
+        25,
+        89,
+        247,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_NIDOKING"
+    },
+    {
+      "item": 183,
+      "moves": [
+        126,
+        108,
+        9,
+        109
+      ],
+      "nature": 15,
+      "species": "SPECIES_MAGMAR"
+    },
+    {
+      "item": 142,
+      "moves": [
+        89,
+        246,
+        207,
+        244
+      ],
+      "nature": 3,
+      "species": "SPECIES_CRADILY"
+    },
+    {
+      "item": 183,
+      "moves": [
+        231,
+        246,
+        280,
+        282
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARMALDO"
+    },
+    {
+      "item": 141,
+      "moves": [
+        238,
+        57,
+        207,
+        244
+      ],
+      "nature": 24,
+      "species": "SPECIES_GOLDUCK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        126,
+        340,
+        104,
+        213
+      ],
+      "nature": 6,
+      "species": "SPECIES_RAPIDASH"
+    },
+    {
+      "item": 134,
+      "moves": [
+        174,
+        156,
+        188,
+        223
+      ],
+      "nature": 0,
+      "species": "SPECIES_MUK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        188,
+        247,
+        109,
+        261
+      ],
+      "nature": 3,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        9,
+        7,
+        264,
+        86
+      ],
+      "nature": 0,
+      "species": "SPECIES_AMPHAROS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        318,
+        211,
+        14,
+        113
+      ],
+      "nature": 3,
+      "species": "SPECIES_SCIZOR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        224,
+        89,
+        213,
+        339
+      ],
+      "nature": 13,
+      "species": "SPECIES_HERACROSS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        38,
+        89,
+        280,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 141,
+      "moves": [
+        126,
+        242,
+        46,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_HOUNDOOM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        175,
+        203,
+        89,
+        317
+      ],
+      "nature": 13,
+      "species": "SPECIES_DONPHAN"
+    },
+    {
+      "item": 200,
+      "moves": [
+        94,
+        89,
+        104,
+        322
+      ],
+      "nature": 20,
+      "species": "SPECIES_CLAYDOL"
+    },
+    {
+      "item": 134,
+      "moves": [
+        38,
+        156,
+        174,
+        133
+      ],
+      "nature": 3,
+      "species": "SPECIES_WAILORD"
+    },
+    {
+      "item": 141,
+      "moves": [
+        257,
+        34,
+        288,
+        241
+      ],
+      "nature": 24,
+      "species": "SPECIES_NINETALES"
+    },
+    {
+      "item": 134,
+      "moves": [
+        238,
+        89,
+        339,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 200,
+      "moves": [
+        201,
+        91,
+        148,
+        104
+      ],
+      "nature": 23,
+      "species": "SPECIES_SHUCKLE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        89,
+        225,
+        201,
+        335
+      ],
+      "nature": 0,
+      "species": "SPECIES_STEELIX"
+    },
+    {
+      "item": 200,
+      "moves": [
+        92,
+        202,
+        109,
+        57
+      ],
+      "nature": 0,
+      "species": "SPECIES_TENTACRUEL"
+    },
+    {
+      "item": 186,
+      "moves": [
+        63,
+        89,
+        332,
+        246
+      ],
+      "nature": 3,
+      "species": "SPECIES_AERODACTYL"
+    },
+    {
+      "item": 141,
+      "moves": [
+        76,
+        241,
+        86,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_PORYGON2"
+    },
+    {
+      "item": 134,
+      "moves": [
+        94,
+        347,
+        104,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 134,
+      "moves": [
+        216,
+        174,
+        79,
+        156
+      ],
+      "nature": 0,
+      "species": "SPECIES_EXEGGUTOR"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        87,
+        240,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        76,
+        126,
+        242,
+        241
+      ],
+      "nature": 15,
+      "species": "SPECIES_FLYGON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        73,
+        202,
+        104,
+        113
+      ],
+      "nature": 5,
+      "species": "SPECIES_VENUSAUR"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        58,
+        34,
+        247
+      ],
+      "nature": 6,
+      "species": "SPECIES_VAPOREON"
+    },
+    {
+      "item": 198,
+      "moves": [
+        85,
+        91,
+        24,
+        46
+      ],
+      "nature": 0,
+      "species": "SPECIES_JOLTEON"
+    },
+    {
+      "item": 183,
+      "moves": [
+        174,
+        213,
+        38,
+        247
+      ],
+      "nature": 7,
+      "species": "SPECIES_FLAREON"
+    },
+    {
+      "item": 200,
+      "moves": [
+        73,
+        164,
+        104,
+        320
+      ],
+      "nature": 20,
+      "species": "SPECIES_MEGANIUM"
+    },
+    {
+      "item": 134,
+      "moves": [
+        94,
+        247,
+        347,
+        156
+      ],
+      "nature": 6,
+      "species": "SPECIES_ESPEON"
+    },
+    {
+      "item": 200,
+      "moves": [
+        174,
+        103,
+        104,
+        38
+      ],
+      "nature": 3,
+      "species": "SPECIES_UMBREON"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        25,
+        280,
+        243
+      ],
+      "nature": 2,
+      "species": "SPECIES_BLASTOISE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        337,
+        280,
+        184
+      ],
+      "nature": 22,
+      "species": "SPECIES_FERALIGATR"
+    },
+    {
+      "item": 198,
+      "moves": [
+        264,
+        89,
+        157,
+        86
+      ],
+      "nature": 3,
+      "species": "SPECIES_AGGRON"
+    },
+    {
+      "item": 198,
+      "moves": [
+        299,
+        25,
+        9,
+        280
+      ],
+      "nature": 6,
+      "species": "SPECIES_BLAZIKEN"
+    },
+    {
+      "item": 196,
+      "moves": [
+        89,
+        58,
+        174,
+        104
+      ],
+      "nature": 24,
+      "species": "SPECIES_WALREIN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        348,
+        9,
+        213,
+        104
+      ],
+      "nature": 15,
+      "species": "SPECIES_SCEPTILE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        332,
+        349,
+        108
+      ],
+      "nature": 3,
+      "species": "SPECIES_CHARIZARD"
+    },
+    {
+      "item": 198,
+      "moves": [
+        53,
+        9,
+        332,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_TYPHLOSION"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        58,
+        34,
+        46
+      ],
+      "nature": 10,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        92,
+        202,
+        109,
+        104
+      ],
+      "nature": 20,
+      "species": "SPECIES_CROBAT"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        89,
+        68,
+        243
+      ],
+      "nature": 6,
+      "species": "SPECIES_SWAMPERT"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        85,
+        126,
+        59
+      ],
+      "nature": 15,
+      "species": "SPECIES_GYARADOS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        157,
+        174,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 134,
+      "moves": [
+        57,
+        58,
+        225,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_KINGDRA"
+    },
+    {
+      "item": 200,
+      "moves": [
+        69,
+        47,
+        213,
+        164
+      ],
+      "nature": 5,
+      "species": "SPECIES_BLISSEY"
+    },
+    {
+      "item": 196,
+      "moves": [
+        57,
+        58,
+        219,
+        243
+      ],
+      "nature": 15,
+      "species": "SPECIES_MILOTIC"
+    },
+    {
+      "item": 141,
+      "moves": [
+        126,
+        241,
+        242,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARCANINE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        38,
+        242,
+        207,
+        182
+      ],
+      "nature": 0,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        89,
+        309,
+        244,
+        207
+      ],
+      "nature": 3,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        25,
+        247,
+        281,
+        133
+      ],
+      "nature": 3,
+      "species": "SPECIES_SLAKING"
+    },
+    {
+      "item": 187,
+      "moves": [
+        89,
+        38,
+        188,
+        90
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUGTRIO"
+    },
+    {
+      "item": 198,
+      "moves": [
+        223,
+        9,
+        8,
+        7
+      ],
+      "nature": 0,
+      "species": "SPECIES_MEDICHAM"
+    },
+    {
+      "item": 179,
+      "moves": [
+        195,
+        212,
+        86,
+        109
+      ],
+      "nature": 5,
+      "species": "SPECIES_MISDREAVUS"
+    },
+    {
+      "item": 198,
+      "moves": [
+        65,
+        216,
+        211,
+        185
+      ],
+      "nature": 0,
+      "species": "SPECIES_FEAROW"
+    },
+    {
+      "item": 183,
+      "moves": [
+        38,
+        89,
+        188,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_GRANBULL"
+    },
+    {
+      "item": 183,
+      "moves": [
+        138,
+        142,
+        213,
+        164
+      ],
+      "nature": 0,
+      "species": "SPECIES_JYNX"
+    },
+    {
+      "item": 200,
+      "moves": [
+        244,
+        207,
+        247,
+        89
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUSCLOPS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        38,
+        65,
+        211,
+        185
+      ],
+      "nature": 3,
+      "species": "SPECIES_DODRIO"
+    },
+    {
+      "item": 186,
+      "moves": [
+        271,
+        259,
+        94,
+        85
+      ],
+      "nature": 15,
+      "species": "SPECIES_MR_MIME"
+    },
+    {
+      "item": 179,
+      "moves": [
+        56,
+        87,
+        109,
+        240
+      ],
+      "nature": 15,
+      "species": "SPECIES_LANTURN"
+    },
+    {
+      "item": 200,
+      "moves": [
+        231,
+        264,
+        213,
+        147
+      ],
+      "nature": 3,
+      "species": "SPECIES_BRELOOM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        153,
+        89,
+        202,
+        192
+      ],
+      "nature": 17,
+      "species": "SPECIES_FORRETRESS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        214,
+        156,
+        57,
+        90
+      ],
+      "nature": 0,
+      "species": "SPECIES_WHISCASH"
+    },
+    {
+      "item": 187,
+      "moves": [
+        65,
+        94,
+        202,
+        211
+      ],
+      "nature": 13,
+      "species": "SPECIES_XATU"
+    },
+    {
+      "item": 134,
+      "moves": [
+        92,
+        174,
+        156,
+        19
+      ],
+      "nature": 23,
+      "species": "SPECIES_SKARMORY"
+    },
+    {
+      "item": 224,
+      "moves": [
+        89,
+        157,
+        14,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_MAROWAK"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        188,
+        38,
+        174
+      ],
+      "nature": 3,
+      "species": "SPECIES_QUAGSIRE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        58,
+        53,
+        345
+      ],
+      "nature": 15,
+      "species": "SPECIES_CLEFABLE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        238,
+        89,
+        157,
+        263
+      ],
+      "nature": 3,
+      "species": "SPECIES_HARIYAMA"
+    },
+    {
+      "item": 133,
+      "moves": [
+        87,
+        240,
+        231,
+        213
+      ],
+      "nature": 6,
+      "species": "SPECIES_RAICHU"
+    },
+    {
+      "item": 134,
+      "moves": [
+        32,
+        329,
+        214,
+        156
+      ],
+      "nature": 5,
+      "species": "SPECIES_DEWGONG"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        231,
+        86,
+        46
+      ],
+      "nature": 24,
+      "species": "SPECIES_MANECTRIC"
+    },
+    {
+      "item": 200,
+      "moves": [
+        213,
+        78,
+        188,
+        202
+      ],
+      "nature": 24,
+      "species": "SPECIES_VILEPLUME"
+    },
+    {
+      "item": 179,
+      "moves": [
+        78,
+        275,
+        202,
+        188
+      ],
+      "nature": 24,
+      "species": "SPECIES_VICTREEBEL"
+    },
+    {
+      "item": 168,
+      "moves": [
+        153,
+        85,
+        86,
+        203
+      ],
+      "nature": 4,
+      "species": "SPECIES_ELECTRODE"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        58,
+        9,
+        326
+      ],
+      "nature": 15,
+      "species": "SPECIES_EXPLOUD"
+    },
+    {
+      "item": 196,
+      "moves": [
+        76,
+        241,
+        153,
+        235
+      ],
+      "nature": 24,
+      "species": "SPECIES_SHIFTRY"
+    },
+    {
+      "item": 219,
+      "moves": [
+        59,
+        89,
+        38,
+        247
+      ],
+      "nature": 0,
+      "species": "SPECIES_GLALIE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        73,
+        240,
+        104,
+        202
+      ],
+      "nature": 5,
+      "species": "SPECIES_LUDICOLO"
+    },
+    {
+      "item": 141,
+      "moves": [
+        244,
+        207,
+        25,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_HYPNO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        153,
+        89,
+        53,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_GOLEM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        224,
+        306,
+        89,
+        32
+      ],
+      "nature": 3,
+      "species": "SPECIES_RHYDON"
+    },
+    {
+      "item": 186,
+      "moves": [
+        271,
+        50,
+        94,
+        285
+      ],
+      "nature": 15,
+      "species": "SPECIES_ALAKAZAM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        153,
+        188,
+        53,
+        85
+      ],
+      "nature": 24,
+      "species": "SPECIES_WEEZING"
+    },
+    {
+      "item": 170,
+      "moves": [
+        179,
+        203,
+        85,
+        89
+      ],
+      "nature": 13,
+      "species": "SPECIES_KANGASKHAN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        7,
+        8,
+        85,
+        238
+      ],
+      "nature": 24,
+      "species": "SPECIES_ELECTABUZZ"
+    },
+    {
+      "item": 200,
+      "moves": [
+        38,
+        89,
+        53,
+        58
+      ],
+      "nature": 6,
+      "species": "SPECIES_TAUROS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        94,
+        247,
+        213
+      ],
+      "nature": 17,
+      "species": "SPECIES_SLOWBRO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        57,
+        58,
+        89
+      ],
+      "nature": 17,
+      "species": "SPECIES_SLOWKING"
+    },
+    {
+      "item": 170,
+      "moves": [
+        179,
+        203,
+        89,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_MILTANK"
+    },
+    {
+      "item": 141,
+      "moves": [
+        47,
+        349,
+        89,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_ALTARIA"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        53,
+        58,
+        242
+      ],
+      "nature": 15,
+      "species": "SPECIES_NIDOQUEEN"
+    },
+    {
+      "item": 138,
+      "moves": [
+        32,
+        126,
+        59,
+        57
+      ],
+      "nature": 15,
+      "species": "SPECIES_NIDOKING"
+    },
+    {
+      "item": 198,
+      "moves": [
+        25,
+        238,
+        231,
+        68
+      ],
+      "nature": 8,
+      "species": "SPECIES_MAGMAR"
+    },
+    {
+      "item": 200,
+      "moves": [
+        164,
+        76,
+        241,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_CRADILY"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        157,
+        280,
+        14
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARMALDO"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        238,
+        59,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_GOLDUCK"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        76,
+        241,
+        95
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAPIDASH"
+    },
+    {
+      "item": 141,
+      "moves": [
+        188,
+        85,
+        53,
+        8
+      ],
+      "nature": 17,
+      "species": "SPECIES_MUK"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        85,
+        202,
+        285
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 196,
+      "moves": [
+        85,
+        25,
+        231,
+        280
+      ],
+      "nature": 0,
+      "species": "SPECIES_AMPHAROS"
+    },
+    {
+      "item": 196,
+      "moves": [
+        179,
+        203,
+        97,
+        163
+      ],
+      "nature": 23,
+      "species": "SPECIES_SCIZOR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        224,
+        89,
+        157,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_HERACROSS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        7,
+        9,
+        8,
+        242
+      ],
+      "nature": 15,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        247,
+        188,
+        38
+      ],
+      "nature": 24,
+      "species": "SPECIES_HOUNDOOM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        90,
+        89,
+        157,
+        290
+      ],
+      "nature": 3,
+      "species": "SPECIES_DONPHAN"
+    },
+    {
+      "item": 219,
+      "moves": [
+        94,
+        58,
+        76,
+        241
+      ],
+      "nature": 15,
+      "species": "SPECIES_CLAYDOL"
+    },
+    {
+      "item": 134,
+      "moves": [
+        56,
+        90,
+        104,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_WAILORD"
+    },
+    {
+      "item": 179,
+      "moves": [
+        126,
+        231,
+        109,
+        213
+      ],
+      "nature": 24,
+      "species": "SPECIES_NINETALES"
+    },
+    {
+      "item": 183,
+      "moves": [
+        238,
+        126,
+        9,
+        8
+      ],
+      "nature": 0,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 200,
+      "moves": [
+        164,
+        213,
+        92,
+        104
+      ],
+      "nature": 23,
+      "species": "SPECIES_SHUCKLE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        34,
+        157,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_STEELIX"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        202,
+        58,
+        243
+      ],
+      "nature": 15,
+      "species": "SPECIES_TENTACRUEL"
+    },
+    {
+      "item": 187,
+      "moves": [
+        38,
+        157,
+        126,
+        337
+      ],
+      "nature": 0,
+      "species": "SPECIES_AERODACTYL"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        161,
+        86,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_PORYGON2"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        8,
+        7,
+        345
+      ],
+      "nature": 15,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 200,
+      "moves": [
+        73,
+        202,
+        92,
+        153
+      ],
+      "nature": 0,
+      "species": "SPECIES_EXEGGUTOR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        94,
+        85,
+        58
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        89,
+        337,
+        53,
+        202
+      ],
+      "nature": 0,
+      "species": "SPECIES_FLYGON"
+    },
+    {
+      "item": 198,
+      "moves": [
+        38,
+        188,
+        89,
+        79
+      ],
+      "nature": 3,
+      "species": "SPECIES_VENUSAUR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        58,
+        151,
+        226
+      ],
+      "nature": 20,
+      "species": "SPECIES_VAPOREON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        85,
+        86,
+        97,
+        226
+      ],
+      "nature": 5,
+      "species": "SPECIES_JOLTEON"
+    },
+    {
+      "item": 183,
+      "moves": [
+        247,
+        175,
+        203,
+        315
+      ],
+      "nature": 13,
+      "species": "SPECIES_FLAREON"
+    },
+    {
+      "item": 170,
+      "moves": [
+        89,
+        175,
+        203,
+        202
+      ],
+      "nature": 13,
+      "species": "SPECIES_MEGANIUM"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        44,
+        273,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_ESPEON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        207,
+        244,
+        213,
+        247
+      ],
+      "nature": 5,
+      "species": "SPECIES_UMBREON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        57,
+        89,
+        58,
+        68
+      ],
+      "nature": 6,
+      "species": "SPECIES_BLASTOISE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        56,
+        242,
+        89,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_FERALIGATR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        57,
+        87,
+        126,
+        59
+      ],
+      "nature": 15,
+      "species": "SPECIES_AGGRON"
+    },
+    {
+      "item": 170,
+      "moves": [
+        315,
+        89,
+        203,
+        179
+      ],
+      "nature": 0,
+      "species": "SPECIES_BLAZIKEN"
+    },
+    {
+      "item": 183,
+      "moves": [
+        329,
+        90,
+        57,
+        213
+      ],
+      "nature": 0,
+      "species": "SPECIES_WALREIN"
+    },
+    {
+      "item": 198,
+      "moves": [
+        348,
+        89,
+        306,
+        332
+      ],
+      "nature": 6,
+      "species": "SPECIES_SCEPTILE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        53,
+        337,
+        44,
+        280
+      ],
+      "nature": 15,
+      "species": "SPECIES_CHARIZARD"
+    },
+    {
+      "item": 170,
+      "moves": [
+        89,
+        315,
+        203,
+        179
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYPHLOSION"
+    },
+    {
+      "item": 179,
+      "moves": [
+        38,
+        94,
+        109,
+        349
+      ],
+      "nature": 6,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 198,
+      "moves": [
+        314,
+        38,
+        247,
+        103
+      ],
+      "nature": 3,
+      "species": "SPECIES_CROBAT"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        89,
+        58,
+        68
+      ],
+      "nature": 2,
+      "species": "SPECIES_SWAMPERT"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        87,
+        240,
+        89
+      ],
+      "nature": 24,
+      "species": "SPECIES_GYARADOS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        25,
+        247,
+        207,
+        244
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 170,
+      "moves": [
+        175,
+        56,
+        349,
+        203
+      ],
+      "nature": 3,
+      "species": "SPECIES_KINGDRA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        126,
+        59,
+        347,
+        135
+      ],
+      "nature": 5,
+      "species": "SPECIES_BLISSEY"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        59,
+        213,
+        105
+      ],
+      "nature": 5,
+      "species": "SPECIES_MILOTIC"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        245,
+        242,
+        332
+      ],
+      "nature": 15,
+      "species": "SPECIES_ARCANINE"
+    },
+    {
+      "item": 170,
+      "moves": [
+        38,
+        89,
+        242,
+        203
+      ],
+      "nature": 0,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        309,
+        104,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 186,
+      "moves": [
+        89,
+        247,
+        332,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_SLAKING"
+    },
+    {
+      "item": 187,
+      "moves": [
+        89,
+        38,
+        157,
+        90
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUGTRIO"
+    },
+    {
+      "item": 141,
+      "moves": [
+        25,
+        94,
+        247,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_MEDICHAM"
+    },
+    {
+      "item": 141,
+      "moves": [
+        194,
+        94,
+        247,
+        85
+      ],
+      "nature": 10,
+      "species": "SPECIES_MISDREAVUS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        65,
+        38,
+        211,
+        143
+      ],
+      "nature": 0,
+      "species": "SPECIES_FEAROW"
+    },
+    {
+      "item": 186,
+      "moves": [
+        25,
+        89,
+        242,
+        247
+      ],
+      "nature": 2,
+      "species": "SPECIES_GRANBULL"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        58,
+        142,
+        313
+      ],
+      "nature": 15,
+      "species": "SPECIES_JYNX"
+    },
+    {
+      "item": 134,
+      "moves": [
+        38,
+        247,
+        174,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_DUSCLOPS"
+    },
+    {
+      "item": 170,
+      "moves": [
+        175,
+        203,
+        65,
+        263
+      ],
+      "nature": 3,
+      "species": "SPECIES_DODRIO"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        85,
+        8,
+        7
+      ],
+      "nature": 15,
+      "species": "SPECIES_MR_MIME"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        85,
+        58,
+        109
+      ],
+      "nature": 15,
+      "species": "SPECIES_LANTURN"
+    },
+    {
+      "item": 183,
+      "moves": [
+        264,
+        188,
+        147,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_BRELOOM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        153,
+        89,
+        157,
+        38
+      ],
+      "nature": 3,
+      "species": "SPECIES_FORRETRESS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        90,
+        57,
+        89,
+        58
+      ],
+      "nature": 17,
+      "species": "SPECIES_WHISCASH"
+    },
+    {
+      "item": 171,
+      "moves": [
+        94,
+        65,
+        247,
+        109
+      ],
+      "nature": 6,
+      "species": "SPECIES_XATU"
+    },
+    {
+      "item": 183,
+      "moves": [
+        65,
+        211,
+        68,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_SKARMORY"
+    },
+    {
+      "item": 224,
+      "moves": [
+        89,
+        157,
+        14,
+        25
+      ],
+      "nature": 3,
+      "species": "SPECIES_MAROWAK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        89,
+        58,
+        133
+      ],
+      "nature": 22,
+      "species": "SPECIES_QUAGSIRE"
+    },
+    {
+      "item": 196,
+      "moves": [
+        25,
+        94,
+        247,
+        135
+      ],
+      "nature": 6,
+      "species": "SPECIES_CLEFABLE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        89,
+        157,
+        252
+      ],
+      "nature": 3,
+      "species": "SPECIES_HARIYAMA"
+    },
+    {
+      "item": 179,
+      "moves": [
+        85,
+        86,
+        182,
+        25
+      ],
+      "nature": 6,
+      "species": "SPECIES_RAICHU"
+    },
+    {
+      "item": 141,
+      "moves": [
+        329,
+        58,
+        57,
+        324
+      ],
+      "nature": 6,
+      "species": "SPECIES_DEWGONG"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        242,
+        86,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_MANECTRIC"
+    },
+    {
+      "item": 183,
+      "moves": [
+        76,
+        188,
+        241,
+        235
+      ],
+      "nature": 17,
+      "species": "SPECIES_VILEPLUME"
+    },
+    {
+      "item": 179,
+      "moves": [
+        202,
+        38,
+        188,
+        235
+      ],
+      "nature": 24,
+      "species": "SPECIES_VICTREEBEL"
+    },
+    {
+      "item": 141,
+      "moves": [
+        153,
+        85,
+        86,
+        243
+      ],
+      "nature": 4,
+      "species": "SPECIES_ELECTRODE"
+    },
+    {
+      "item": 180,
+      "moves": [
+        25,
+        89,
+        247,
+        315
+      ],
+      "nature": 0,
+      "species": "SPECIES_EXPLOUD"
+    },
+    {
+      "item": 196,
+      "moves": [
+        153,
+        202,
+        25,
+        252
+      ],
+      "nature": 0,
+      "species": "SPECIES_SHIFTRY"
+    },
+    {
+      "item": 200,
+      "moves": [
+        58,
+        89,
+        242,
+        247
+      ],
+      "nature": 0,
+      "species": "SPECIES_GLALIE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        73,
+        240,
+        104,
+        92
+      ],
+      "nature": 5,
+      "species": "SPECIES_LUDICOLO"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        9,
+        7,
+        8
+      ],
+      "nature": 15,
+      "species": "SPECIES_HYPNO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        153,
+        89,
+        157,
+        38
+      ],
+      "nature": 3,
+      "species": "SPECIES_GOLEM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        224,
+        89,
+        157,
+        32
+      ],
+      "nature": 3,
+      "species": "SPECIES_RHYDON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        9,
+        7,
+        8
+      ],
+      "nature": 15,
+      "species": "SPECIES_ALAKAZAM"
+    },
+    {
+      "item": 196,
+      "moves": [
+        153,
+        188,
+        218,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_WEEZING"
+    },
+    {
+      "item": 179,
+      "moves": [
+        25,
+        89,
+        332,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_KANGASKHAN"
+    },
+    {
+      "item": 198,
+      "moves": [
+        85,
+        94,
+        25,
+        238
+      ],
+      "nature": 6,
+      "species": "SPECIES_ELECTABUZZ"
+    },
+    {
+      "item": 179,
+      "moves": [
+        38,
+        317,
+        85,
+        57
+      ],
+      "nature": 6,
+      "species": "SPECIES_TAUROS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        57,
+        89,
+        58
+      ],
+      "nature": 22,
+      "species": "SPECIES_SLOWBRO"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        57,
+        58,
+        53
+      ],
+      "nature": 15,
+      "species": "SPECIES_SLOWKING"
+    },
+    {
+      "item": 141,
+      "moves": [
+        38,
+        174,
+        104,
+        208
+      ],
+      "nature": 3,
+      "species": "SPECIES_MILTANK"
+    },
+    {
+      "item": 219,
+      "moves": [
+        337,
+        89,
+        53,
+        58
+      ],
+      "nature": 6,
+      "species": "SPECIES_ALTARIA"
+    },
+    {
+      "item": 180,
+      "moves": [
+        276,
+        188,
+        89,
+        247
+      ],
+      "nature": 3,
+      "species": "SPECIES_NIDOQUEEN"
+    },
+    {
+      "item": 141,
+      "moves": [
+        224,
+        188,
+        89,
+        87
+      ],
+      "nature": 6,
+      "species": "SPECIES_NIDOKING"
+    },
+    {
+      "item": 198,
+      "moves": [
+        53,
+        94,
+        238,
+        109
+      ],
+      "nature": 6,
+      "species": "SPECIES_MAGMAR"
+    },
+    {
+      "item": 200,
+      "moves": [
+        92,
+        275,
+        243,
+        202
+      ],
+      "nature": 5,
+      "species": "SPECIES_CRADILY"
+    },
+    {
+      "item": 186,
+      "moves": [
+        38,
+        89,
+        332,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_ARMALDO"
+    },
+    {
+      "item": 198,
+      "moves": [
+        57,
+        238,
+        58,
+        332
+      ],
+      "nature": 6,
+      "species": "SPECIES_GOLDUCK"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        38,
+        231,
+        24
+      ],
+      "nature": 6,
+      "species": "SPECIES_RAPIDASH"
+    },
+    {
+      "item": 183,
+      "moves": [
+        188,
+        280,
+        202,
+        153
+      ],
+      "nature": 2,
+      "species": "SPECIES_MUK"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        7,
+        8,
+        194
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        7,
+        86,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_AMPHAROS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        318,
+        14,
+        97,
+        226
+      ],
+      "nature": 23,
+      "species": "SPECIES_SCIZOR"
+    },
+    {
+      "item": 170,
+      "moves": [
+        224,
+        89,
+        179,
+        203
+      ],
+      "nature": 3,
+      "species": "SPECIES_HERACROSS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        38,
+        89,
+        157,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        76,
+        242,
+        241
+      ],
+      "nature": 15,
+      "species": "SPECIES_HOUNDOOM"
+    },
+    {
+      "item": 183,
+      "moves": [
+        90,
+        89,
+        157,
+        231
+      ],
+      "nature": 3,
+      "species": "SPECIES_DONPHAN"
+    },
+    {
+      "item": 196,
+      "moves": [
+        94,
+        89,
+        247,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_CLAYDOL"
+    },
+    {
+      "item": 183,
+      "moves": [
+        57,
+        58,
+        89,
+        90
+      ],
+      "nature": 0,
+      "species": "SPECIES_WAILORD"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        38,
+        109,
+        261
+      ],
+      "nature": 24,
+      "species": "SPECIES_NINETALES"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        89,
+        53,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 134,
+      "moves": [
+        92,
+        104,
+        35,
+        156
+      ],
+      "nature": 23,
+      "species": "SPECIES_SHUCKLE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        231,
+        38,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_STEELIX"
+    },
+    {
+      "item": 219,
+      "moves": [
+        56,
+        188,
+        58,
+        243
+      ],
+      "nature": 24,
+      "species": "SPECIES_TENTACRUEL"
+    },
+    {
+      "item": 187,
+      "moves": [
+        38,
+        89,
+        126,
+        44
+      ],
+      "nature": 0,
+      "species": "SPECIES_AERODACTYL"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        85,
+        58,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_PORYGON2"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        85,
+        8,
+        7
+      ],
+      "nature": 15,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        202,
+        188,
+        153
+      ],
+      "nature": 0,
+      "species": "SPECIES_EXEGGUTOR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        58,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        89,
+        337,
+        38,
+        242
+      ],
+      "nature": 0,
+      "species": "SPECIES_FLYGON"
+    },
+    {
+      "item": 141,
+      "moves": [
+        76,
+        188,
+        241,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_VENUSAUR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        58,
+        151,
+        156
+      ],
+      "nature": 20,
+      "species": "SPECIES_VAPOREON"
+    },
+    {
+      "item": 187,
+      "moves": [
+        85,
+        86,
+        44,
+        247
+      ],
+      "nature": 10,
+      "species": "SPECIES_JOLTEON"
+    },
+    {
+      "item": 183,
+      "moves": [
+        315,
+        241,
+        38,
+        247
+      ],
+      "nature": 17,
+      "species": "SPECIES_FLAREON"
+    },
+    {
+      "item": 179,
+      "moves": [
+        202,
+        89,
+        246,
+        34
+      ],
+      "nature": 0,
+      "species": "SPECIES_MEGANIUM"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        44,
+        213,
+        347
+      ],
+      "nature": 15,
+      "species": "SPECIES_ESPEON"
+    },
+    {
+      "item": 200,
+      "moves": [
+        109,
+        92,
+        185,
+        104
+      ],
+      "nature": 5,
+      "species": "SPECIES_UMBREON"
+    },
+    {
+      "item": 196,
+      "moves": [
+        57,
+        89,
+        58,
+        243
+      ],
+      "nature": 6,
+      "species": "SPECIES_BLASTOISE"
+    },
+    {
+      "item": 198,
+      "moves": [
+        56,
+        58,
+        89,
+        332
+      ],
+      "nature": 0,
+      "species": "SPECIES_FERALIGATR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        38,
+        89,
+        157,
+        332
+      ],
+      "nature": 3,
+      "species": "SPECIES_AGGRON"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        89,
+        9,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_BLAZIKEN"
+    },
+    {
+      "item": 179,
+      "moves": [
+        57,
+        58,
+        89,
+        329
+      ],
+      "nature": 17,
+      "species": "SPECIES_WALREIN"
+    },
+    {
+      "item": 179,
+      "moves": [
+        348,
+        337,
+        242,
+        9
+      ],
+      "nature": 15,
+      "species": "SPECIES_SCEPTILE"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        89,
+        332,
+        157
+      ],
+      "nature": 0,
+      "species": "SPECIES_CHARIZARD"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        9,
+        89,
+        306
+      ],
+      "nature": 0,
+      "species": "SPECIES_TYPHLOSION"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        58,
+        85,
+        94
+      ],
+      "nature": 15,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        188,
+        332,
+        247,
+        109
+      ],
+      "nature": 3,
+      "species": "SPECIES_CROBAT"
+    },
+    {
+      "item": 219,
+      "moves": [
+        57,
+        89,
+        58,
+        243
+      ],
+      "nature": 17,
+      "species": "SPECIES_SWAMPERT"
+    },
+    {
+      "item": 134,
+      "moves": [
+        216,
+        89,
+        349,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_GYARADOS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        38,
+        247,
+        280,
+        174
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 134,
+      "moves": [
+        38,
+        58,
+        349,
+        156
+      ],
+      "nature": 0,
+      "species": "SPECIES_KINGDRA"
+    },
+    {
+      "item": 196,
+      "moves": [
+        58,
+        347,
+        68,
+        135
+      ],
+      "nature": 5,
+      "species": "SPECIES_BLISSEY"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        58,
+        105,
+        243
+      ],
+      "nature": 15,
+      "species": "SPECIES_MILOTIC"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        245,
+        242,
+        38
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARCANINE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        38,
+        89,
+        332,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        309,
+        94,
+        89,
+        247
+      ],
+      "nature": 0,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        53,
+        58,
+        281
+      ],
+      "nature": 15,
+      "species": "SPECIES_SLAKING"
+    },
+    {
+      "item": 141,
+      "moves": [
+        58,
+        352,
+        196,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        65,
+        86,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        53,
+        332,
+        189,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 134,
+      "moves": [
+        85,
+        86,
+        347,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 134,
+      "moves": [
+        53,
+        104,
+        347,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 134,
+      "moves": [
+        57,
+        104,
+        347,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_SUICUNE"
+    },
+    {
+      "item": 180,
+      "moves": [
+        276,
+        89,
+        157,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 134,
+      "moves": [
+        58,
+        85,
+        133,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        232,
+        174,
+        133,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        58,
+        337
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        58,
+        337
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        164,
+        92,
+        59,
+        104
+      ],
+      "nature": 8,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 179,
+      "moves": [
+        87,
+        240,
+        65,
+        104
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        332,
+        104,
+        182
+      ],
+      "nature": 0,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 179,
+      "moves": [
+        87,
+        240,
+        104,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 179,
+      "moves": [
+        126,
+        241,
+        76,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 200,
+      "moves": [
+        92,
+        291,
+        104,
+        182
+      ],
+      "nature": 20,
+      "species": "SPECIES_SUICUNE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        89,
+        157,
+        68,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 179,
+      "moves": [
+        87,
+        240,
+        59,
+        280
+      ],
+      "nature": 17,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        85,
+        8,
+        89,
+        332
+      ],
+      "nature": 17,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        85,
+        58,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        85,
+        58,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        58,
+        263,
+        332,
+        182
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 200,
+      "moves": [
+        85,
+        65,
+        86,
+        164
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        126,
+        241,
+        104,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 187,
+      "moves": [
+        85,
+        86,
+        98,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 141,
+      "moves": [
+        53,
+        38,
+        207,
+        244
+      ],
+      "nature": 6,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        58,
+        240,
+        46
+      ],
+      "nature": 15,
+      "species": "SPECIES_SUICUNE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        157,
+        89,
+        174,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 141,
+      "moves": [
+        58,
+        85,
+        86,
+        153
+      ],
+      "nature": 17,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        246,
+        133,
+        68,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 196,
+      "moves": [
+        337,
+        85,
+        58,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 196,
+      "moves": [
+        337,
+        85,
+        58,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 134,
+      "moves": [
+        59,
+        38,
+        156,
+        115
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 219,
+      "moves": [
+        85,
+        65,
+        86,
+        113
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        38,
+        211,
+        219
+      ],
+      "nature": 17,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 141,
+      "moves": [
+        85,
+        44,
+        86,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 187,
+      "moves": [
+        53,
+        44,
+        104,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 179,
+      "moves": [
+        57,
+        58,
+        44,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_SUICUNE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        157,
+        280,
+        104,
+        86
+      ],
+      "nature": 23,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        58,
+        258,
+        104,
+        86
+      ],
+      "nature": 5,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        246,
+        89,
+        104,
+        86
+      ],
+      "nature": 8,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 200,
+      "moves": [
+        296,
+        247,
+        204,
+        115
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        295,
+        85,
+        58,
+        337
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        247,
+        85,
+        7
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        247,
+        85,
+        8
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        7,
+        194
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        8,
+        194
+      ],
+      "nature": 15,
+      "species": "SPECIES_GENGAR"
+    },
+    {
+      "item": 186,
+      "moves": [
+        25,
+        332,
+        157,
+        280
+      ],
+      "nature": 3,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 196,
+      "moves": [
+        63,
+        281,
+        14,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 183,
+      "moves": [
+        263,
+        89,
+        242,
+        339
+      ],
+      "nature": 6,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 183,
+      "moves": [
+        263,
+        89,
+        242,
+        280
+      ],
+      "nature": 6,
+      "species": "SPECIES_URSARING"
+    },
+    {
+      "item": 198,
+      "moves": [
+        238,
+        38,
+        89,
+        157
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 196,
+      "moves": [
+        238,
+        89,
+        68,
+        317
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 179,
+      "moves": [
+        264,
+        164,
+        213,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 196,
+      "moves": [
+        279,
+        157,
+        263,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_MACHAMP"
+    },
+    {
+      "item": 170,
+      "moves": [
+        94,
+        247,
+        203,
+        194
+      ],
+      "nature": 6,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        94,
+        85,
+        261,
+        194
+      ],
+      "nature": 10,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        94,
+        347,
+        261,
+        194
+      ],
+      "nature": 5,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        345,
+        213,
+        104
+      ],
+      "nature": 15,
+      "species": "SPECIES_GARDEVOIR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        94,
+        105,
+        113
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        57,
+        109,
+        86,
+        105
+      ],
+      "nature": 20,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        94,
+        58,
+        322,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        57,
+        85,
+        322,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_STARMIE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        94,
+        85,
+        231,
+        38
+      ],
+      "nature": 6,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        56,
+        87,
+        240,
+        59
+      ],
+      "nature": 15,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 138,
+      "moves": [
+        329,
+        32,
+        156,
+        214
+      ],
+      "nature": 20,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        329,
+        32,
+        47,
+        213
+      ],
+      "nature": 20,
+      "species": "SPECIES_LAPRAS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        25,
+        247,
+        280,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 200,
+      "moves": [
+        89,
+        247,
+        280,
+        68
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 183,
+      "moves": [
+        63,
+        247,
+        89,
+        174
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 134,
+      "moves": [
+        216,
+        247,
+        187,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_SNORLAX"
+    },
+    {
+      "item": 179,
+      "moves": [
+        263,
+        89,
+        157,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        29,
+        332,
+        242,
+        349
+      ],
+      "nature": 0,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        53,
+        337,
+        242,
+        280
+      ],
+      "nature": 15,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        53,
+        337,
+        242,
+        213
+      ],
+      "nature": 15,
+      "species": "SPECIES_SALAMENCE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        153,
+        89,
+        157,
+        280
+      ],
+      "nature": 13,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        309,
+        94,
+        8,
+        9
+      ],
+      "nature": 0,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 219,
+      "moves": [
+        89,
+        247,
+        8,
+        9
+      ],
+      "nature": 0,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        309,
+        89,
+        280,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_METAGROSS"
+    },
+    {
+      "item": 183,
+      "moves": [
+        63,
+        264,
+        157,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 179,
+      "moves": [
+        207,
+        244,
+        157,
+        153
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGIROCK"
+    },
+    {
+      "item": 200,
+      "moves": [
+        89,
+        58,
+        174,
+        68
+      ],
+      "nature": 2,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        58,
+        85,
+        214,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_REGICE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        264,
+        164,
+        92,
+        104
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 180,
+      "moves": [
+        276,
+        332,
+        207,
+        244
+      ],
+      "nature": 3,
+      "species": "SPECIES_REGISTEEL"
+    },
+    {
+      "item": 179,
+      "moves": [
+        337,
+        86,
+        347,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 219,
+      "moves": [
+        296,
+        337,
+        213,
+        86
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 200,
+      "moves": [
+        89,
+        247,
+        207,
+        244
+      ],
+      "nature": 3,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 187,
+      "moves": [
+        94,
+        247,
+        89,
+        332
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIAS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        337,
+        86,
+        347,
+        105
+      ],
+      "nature": 15,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 219,
+      "moves": [
+        295,
+        247,
+        337,
+        86
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        247,
+        349,
+        105
+      ],
+      "nature": 3,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 187,
+      "moves": [
+        94,
+        247,
+        89,
+        332
+      ],
+      "nature": 6,
+      "species": "SPECIES_LATIOS"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        332,
+        280,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        38,
+        332,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 200,
+      "moves": [
+        63,
+        213,
+        104,
+        86
+      ],
+      "nature": 3,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        63,
+        86,
+        349,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 141,
+      "moves": [
+        200,
+        38,
+        86,
+        46
+      ],
+      "nature": 6,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        337,
+        85,
+        57,
+        53
+      ],
+      "nature": 15,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        337,
+        85,
+        57,
+        58
+      ],
+      "nature": 15,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 219,
+      "moves": [
+        337,
+        53,
+        58,
+        280
+      ],
+      "nature": 15,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        87,
+        57,
+        240,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 183,
+      "moves": [
+        126,
+        59,
+        241,
+        89
+      ],
+      "nature": 6,
+      "species": "SPECIES_DRAGONITE"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        332,
+        85,
+        57
+      ],
+      "nature": 0,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 179,
+      "moves": [
+        89,
+        157,
+        242,
+        85
+      ],
+      "nature": 0,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 196,
+      "moves": [
+        89,
+        157,
+        68,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        242,
+        58,
+        85,
+        53
+      ],
+      "nature": 15,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        157,
+        349,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 134,
+      "moves": [
+        89,
+        157,
+        174,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        157,
+        332,
+        280,
+        174
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        157,
+        86,
+        349,
+        156
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 183,
+      "moves": [
+        242,
+        89,
+        332,
+        213
+      ],
+      "nature": 0,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 141,
+      "moves": [
+        38,
+        89,
+        157,
+        349
+      ],
+      "nature": 3,
+      "species": "SPECIES_TYRANITAR"
+    },
+    {
+      "item": 196,
+      "moves": [
+        59,
+        38,
+        97,
+        207
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 134,
+      "moves": [
+        58,
+        332,
+        115,
+        156
+      ],
+      "nature": 6,
+      "species": "SPECIES_ARTICUNO"
+    },
+    {
+      "item": 198,
+      "moves": [
+        85,
+        65,
+        38,
+        86
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 141,
+      "moves": [
+        87,
+        65,
+        240,
+        38
+      ],
+      "nature": 6,
+      "species": "SPECIES_ZAPDOS"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        241,
+        207,
+        263
+      ],
+      "nature": 6,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 180,
+      "moves": [
+        315,
+        38,
+        332,
+        211
+      ],
+      "nature": 6,
+      "species": "SPECIES_MOLTRES"
+    },
+    {
+      "item": 179,
+      "moves": [
+        85,
+        38,
+        46,
+        115
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 134,
+      "moves": [
+        85,
+        347,
+        164,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_RAIKOU"
+    },
+    {
+      "item": 170,
+      "moves": [
+        126,
+        38,
+        203,
+        115
+      ],
+      "nature": 6,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 134,
+      "moves": [
+        53,
+        347,
+        46,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_ENTEI"
+    },
+    {
+      "item": 141,
+      "moves": [
+        57,
+        58,
+        347,
+        196
+      ],
+      "nature": 15,
+      "species": "SPECIES_SUICUNE"
+    },
+    {
+      "item": 134,
+      "moves": [
+        57,
+        58,
+        347,
+        156
+      ],
+      "nature": 15,
+      "species": "SPECIES_SUICUNE"
+    }
+  ],
   "item_locations": {
     "AbandonedShip_CaptainsOffice": [
       [
@@ -28256,7 +37960,7 @@
       }
     }
   },
-  "schema_version": 1,
+  "schema_version": 2,
   "source_revision": "5eff78649e7170a877b961ef0b3da13b81a16038",
   "species": {
     "SPECIES_ABRA": {

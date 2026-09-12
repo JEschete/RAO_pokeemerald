@@ -21,7 +21,9 @@ from .tracker import TrainingAreaTracker
 
 BADGE_FLAG_START = 0x867
 DEWFORD_TREND_SEED_OFFSET = 0x2E66
-PLAYER_POSITION_ADDRESS = 0x0203F360
+# gObjectEvents[0].currentCoords. 0x0203F360 reads as a constant zero;
+# the player object lives at gObjectEvents = 0x02037350.
+PLAYER_POSITION_ADDRESS = 0x02037360
 ROAMER_OFFSET = 0x31DC
 ROAMER_SIZE = 0x1C
 ROAMER_LOCATION_ADDRESS = 0x0203BC86
@@ -300,6 +302,10 @@ class OverworldPresenter:
             role="goals",
             compact_rows=(PanelRow(f"HMs {hm_count}/8 · Berries {berry_count}/46"),),
         )
+
+    @property
+    def fishing_spots(self) -> dict[tuple[int, int], int]:
+        return self._fishing_spots
 
     def feebas_section(
         self, memory: MemoryReader, save_block_1: int, map_name: str

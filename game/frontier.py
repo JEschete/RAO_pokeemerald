@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from retroarch_overlay.core.contracts import MemoryReader
 from retroarch_overlay.models import PanelAction, PanelRow, PanelSection
 
+from .factory import FactoryAdvisor, decode_rentals
+
 
 FRONTIER_OFFSET = 0x64C
 FRONTIER_SIZE = 0x874
@@ -36,10 +38,14 @@ class FacilityStreak:
 
 class BattleFrontierDashboard:
     def __init__(
-        self, flag_ids: dict[str, int], variable_ids: dict[str, int]
+        self,
+        flag_ids: dict[str, int],
+        variable_ids: dict[str, int],
+        factory_advisor: FactoryAdvisor | None = None,
     ) -> None:
         self._flag_ids = flag_ids
         self._variable_ids = variable_ids
+        self._factory_advisor = factory_advisor
 
     def section(
         self,
@@ -66,7 +72,13 @@ class BattleFrontierDashboard:
         facility_id = self._variable(memory, save_block_1, "VAR_FRONTIER_FACILITY")
         facility_name = FACILITIES[facility_id] if facility_id < len(FACILITIES) else f"Facility {facility_id}"
         streaks = self._streaks(data)
-        rows = [PanelRow(f"BP {bp} · Symbols {len(symbols)}/14 · Battles {battles}")]
+        rows = [
+            PanelRow(
+                f"BP {bp} · Symbols {len(symbols)}/14 · Battles {battles}",
+                progress=len(symbols) / 14,
+                progress_color="accent",
+            )
+        ]
         if challenge_status:
             rows.append(
                 PanelRow(
@@ -76,6 +88,25 @@ class BattleFrontierDashboard:
             )
         elif not self._flag(flags, "FLAG_SYS_GAME_CLEAR"):
             rows.append(PanelRow("Locked until the Hall of Fame"))
+        factory_rows: list[PanelRow] = []
+        if self._factory_advisor is not None:
+            rentals = decode_rentals(data)
+            rental_rows = self._factory_advisor.rental_rows(rentals)
+            if rental_rows:
+                factory_rows.append(PanelRow("FACTORY RENTALS"))
+                factory_rows.extend(rental_rows)
+                factory_rows.extend(self._factory_advisor.swap_rows(rentals))
+            if (
+                challenge_status
+                and facility_name == "Factory"
+                and factory_rows
+            ):
+                advice = [
+                    row
+                    for row in factory_rows
+                    if row.emphasis in {"success", "muted"} and "Swap" in row.text
+                ]
+                rows.extend(advice[:1])
 
         details = [PanelRow("BATTLE FRONTIER")]
         details.extend(
@@ -112,6 +143,7 @@ class BattleFrontierDashboard:
                 ),
             )
         )
+        details.extend(factory_rows)
         return PanelSection(
             "Battle Frontier",
             tuple(rows),

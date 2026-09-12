@@ -1,10 +1,29 @@
 from retroarch_overlay.core.contracts import MemoryReader
-from retroarch_overlay.models import GameDisplaySpec, OverlaySnapshot, PanelRow, PanelSection
+from retroarch_overlay.models import (
+    GameDisplaySpec,
+    OverlaySnapshot,
+    PanelChip,
+    PanelRow,
+    PanelSection,
+)
 
-from .battle import BALLS, ball_multiplier, catch_probability
-from .presenter import EmeraldPresenter, display_constant
+from .battle import (
+    BALLS,
+    STATUS_FREEZE,
+    STATUS_SLEEP,
+    ball_multiplier,
+    catch_probability,
+)
+from .hunt import HuntTracker
+from .presenter import (
+    EmeraldPresenter,
+    display_constant,
+    status_chips,
+    type_chip,
+)
 from .state import BattlePokemonState, PokemonState, decode_battle_pokemon, decode_party
 from .tracker import BattleParticipationTracker
+from .wildiv import WildScout
 
 
 BATTLE_TYPE_FLAGS_ADDRESS = 0x02022FEC
@@ -39,6 +58,8 @@ class BattleSnapshotBuilder:
         presenter: EmeraldPresenter,
         tracker: BattleParticipationTracker,
         display_spec: GameDisplaySpec,
+        hunt: HuntTracker | None = None,
+        wild_scout: WildScout | None = None,
     ) -> None:
         self._species_by_id = species_by_id
         self._national_dex = national_dex
@@ -46,6 +67,8 @@ class BattleSnapshotBuilder:
         self._presenter = presenter
         self._tracker = tracker
         self._display_spec = display_spec
+        self._hunt = hunt
+        self._wild_scout = wild_scout
 
     def snapshot(
         self,
@@ -59,6 +82,7 @@ class BattleSnapshotBuilder:
     ) -> OverlaySnapshot | None:
         if not memory.read_memory(MAIN_IN_BATTLE_ADDRESS, 1)[0] & MAIN_IN_BATTLE_MASK:
             self._tracker.end()
+            self._finish_hunt(caught_flags, party)
             return None
         battlers_count = int.from_bytes(
             memory.read_memory(BATTLERS_COUNT_ADDRESS, 2), "little"
@@ -80,15 +104,37 @@ class BattleSnapshotBuilder:
         )
         turns = memory.read_memory(BATTLE_RESULTS_TURN_ADDRESS, 1)[0]
         participants = self._tracker.update(party, active_players, turns)
+        battle_flags = int.from_bytes(
+            memory.read_memory(BATTLE_TYPE_FLAGS_ADDRESS, 4), "little"
+        )
+        trainer_battle = bool(battle_flags & BATTLE_TYPE_TRAINER)
+        if not trainer_battle and self._hunt is not None:
+            self._hunt.battle_started(
+                opponents[0], self._is_caught(opponents[0].species, caught_flags)
+            )
         sections = [
             PanelSection(
                 "Battle",
                 tuple(
                     PanelRow(
                         f"{display_constant(opponent.species, 'SPECIES_')}  Lv {opponent.level}  "
-                        f"HP {opponent.hp}/{opponent.max_hp}  "
-                        f"{'/'.join(dict.fromkeys(TYPE_NAMES[value] for value in opponent.types if value < len(TYPE_NAMES)))}"
-                        f"{self._status_text(opponent.status) if opponent.hp else ' · FNT'}"
+                        f"HP {opponent.hp}/{opponent.max_hp}"
+                        f"{'' if opponent.hp else ' · FNT'}",
+                        progress=(
+                            opponent.hp / opponent.max_hp
+                            if opponent.max_hp
+                            else None
+                        ),
+                        icon=self._presenter.icon_path(opponent.species),
+                        chips=status_chips(opponent.status)
+                        or tuple(
+                            chip
+                            for chip in (
+                                type_chip(value)
+                                for value in dict.fromkeys(opponent.types)
+                            )
+                            if chip is not None
+                        ),
                     )
                     for opponent in opponents
                 ),
@@ -96,13 +142,11 @@ class BattleSnapshotBuilder:
                 role="urgent",
             )
         ]
-        battle_flags = int.from_bytes(
-            memory.read_memory(BATTLE_TYPE_FLAGS_ADDRESS, 4), "little"
-        )
-        trainer_battle = bool(battle_flags & BATTLE_TYPE_TRAINER)
         enemy_party = self._read_enemy_party(memory)
         for section in (
-            self._presenter.battle_advice_section(opponents, enemy_party, party),
+            self._presenter.battle_advice_section(
+                opponents, enemy_party, party, active_players
+            ),
             self._presenter.opponent_team_section(enemy_party),
             self._presenter.battle_reward_section(
                 opponents,
@@ -114,6 +158,10 @@ class BattleSnapshotBuilder:
             if section is not None:
                 sections.append(section)
         if not trainer_battle:
+            if self._wild_scout is not None and opponents:
+                iv_section = self._wild_scout.section(opponents[0], party)
+                if iv_section is not None:
+                    sections.append(iv_section)
             sections.extend(
                 self._catch_sections(
                     memory,
@@ -133,6 +181,18 @@ class BattleSnapshotBuilder:
             display_spec=self._display_spec,
         )
 
+    def _finish_hunt(
+        self, caught_flags: bytes, party: tuple[PokemonState, ...]
+    ) -> None:
+        if self._hunt is None:
+            return
+        species = self._hunt.active_species()
+        if species is None:
+            return
+        self._hunt.battle_ended(
+            self._is_caught(species, caught_flags), party
+        )
+
     def _battlers(
         self, data: bytes, indexes: tuple[int, ...]
     ) -> tuple[BattlePokemonState, ...]:
@@ -148,6 +208,8 @@ class BattleSnapshotBuilder:
 
     def _read_enemy_party(self, memory: MemoryReader) -> tuple[PokemonState, ...]:
         count = min(memory.read_memory(ENEMY_PARTY_COUNT_ADDRESS, 1)[0], PARTY_SIZE)
+        if count == 0:
+            return ()
         data = memory.read_memory(ENEMY_PARTY_ADDRESS, POKEMON_SIZE * count)
         return decode_party(data, count, self._species_by_id)
 
@@ -165,48 +227,98 @@ class BattleSnapshotBuilder:
         sections = []
         for opponent in opponents:
             catch_rate = self._catch_rates.get(opponent.species)
+            if catch_rate is None or not opponent.hp:
+                continue
             chances = []
-            if catch_rate is not None and opponent.hp:
-                for ball in BALLS:
-                    quantity = quantities.get(ball.item_id, 0)
-                    if not quantity:
-                        continue
-                    multiplier = ball_multiplier(
-                        ball.item_id,
-                        level=opponent.level,
-                        types=opponent.types,
-                        caught=self._is_caught(opponent.species, caught_flags),
-                        underwater=map_name.startswith("Underwater_"),
-                        turns=turns,
-                    )
-                    probability = catch_probability(
-                        catch_rate,
-                        opponent.hp,
-                        opponent.max_hp,
-                        opponent.status,
-                        multiplier,
-                        master_ball=ball.item_id == 1,
-                    )
-                    chances.append(
-                        (probability, PanelRow(f"{ball.name} x{quantity}  {probability:.1%}"))
-                    )
-            if chances:
-                title = "Catch chances"
-                if len(opponents) > 1:
-                    title += f" · {display_constant(opponent.species, 'SPECIES_')}"
-                sections.append(
-                    PanelSection(
-                        title,
-                        tuple(
-                            row
-                            for _, row in sorted(
-                                chances, reverse=True, key=lambda entry: entry[0]
-                            )
+            for ball in BALLS:
+                quantity = quantities.get(ball.item_id, 0)
+                if not quantity:
+                    continue
+                multiplier = ball_multiplier(
+                    ball.item_id,
+                    level=opponent.level,
+                    types=opponent.types,
+                    caught=self._is_caught(opponent.species, caught_flags),
+                    underwater=map_name.startswith("Underwater_"),
+                    turns=turns,
+                )
+                probability = catch_probability(
+                    catch_rate,
+                    opponent.hp,
+                    opponent.max_hp,
+                    opponent.status,
+                    multiplier,
+                    master_ball=ball.item_id == 1,
+                )
+                chances.append((probability, multiplier, ball, quantity))
+            if not chances:
+                continue
+            chances.sort(reverse=True, key=lambda entry: entry[0])
+            rows = [
+                PanelRow(
+                    f"HP {opponent.hp}/{opponent.max_hp} · lower HP and status "
+                    "raise every ball",
+                    progress=(
+                        opponent.hp / opponent.max_hp if opponent.max_hp else None
+                    ),
+                    chips=status_chips(opponent.status),
+                )
+            ]
+            for index, (probability, _, ball, quantity) in enumerate(chances):
+                rows.append(
+                    PanelRow(
+                        f"{ball.name} x{quantity} · {probability:.1%}",
+                        progress=probability,
+                        progress_color="accent",
+                        chips=(
+                            (PanelChip("BEST", "#27824a"),)
+                            if index == 0 and len(chances) > 1
+                            else ()
                         ),
-                        priority=6,
-                        role="urgent",
                     )
                 )
+            best_probability, best_multiplier, best_ball, _ = chances[0]
+            if (
+                not opponent.status & (STATUS_SLEEP | STATUS_FREEZE)
+                and best_ball.item_id != 1
+                and best_probability < 0.995
+            ):
+                asleep = catch_probability(
+                    catch_rate,
+                    opponent.hp,
+                    opponent.max_hp,
+                    STATUS_SLEEP,
+                    best_multiplier,
+                )
+                rows.append(
+                    PanelRow(
+                        f"Asleep, {best_ball.name} would reach {asleep:.1%}",
+                        emphasis="muted",
+                    )
+                )
+            if self._hunt is not None:
+                stats = self._hunt.stats_for(opponent.species)
+                if stats is not None:
+                    rows.append(
+                        PanelRow(
+                            f"Lifetime · seen {stats['seen']} · caught "
+                            f"{stats['caught']} · KO {stats['ko']} · fled "
+                            f"{stats['fled']}",
+                            emphasis="muted",
+                        )
+                    )
+            title = "Catch chances"
+            if len(opponents) > 1:
+                title += f" · {display_constant(opponent.species, 'SPECIES_')}"
+            sections.append(
+                PanelSection(
+                    title,
+                    tuple(rows),
+                    priority=6,
+                    role="urgent",
+                    compact_rows=(rows[1],),
+                )
+            )
         return tuple(sections)
 
     @staticmethod
@@ -233,17 +345,3 @@ class BattleSnapshotBuilder:
         number = self._national_dex[species]
         bit = number - 1
         return bool(caught_flags[bit // 8] & (1 << (bit % 8)))
-
-    @staticmethod
-    def _status_text(status: int) -> str:
-        for mask, label in (
-            (0x7, "SLP"),
-            (0x8, "PSN"),
-            (0x10, "BRN"),
-            (0x20, "FRZ"),
-            (0x40, "PAR"),
-            (0x80, "TOX"),
-        ):
-            if status & mask:
-                return f" · {label}"
-        return ""

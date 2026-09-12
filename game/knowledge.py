@@ -31,8 +31,9 @@ class EmeraldKnowledge:
         ):
             if not isinstance(document.get(key), dict):
                 raise ValueError(f"Emerald knowledge field {key!r} must be an object")
-        if not isinstance(document.get("type_chart"), list):
-            raise ValueError("Emerald knowledge field 'type_chart' must be an array")
+        for key in ("type_chart", "frontier_mons"):
+            if not isinstance(document.get(key), list):
+                raise ValueError(f"Emerald knowledge field {key!r} must be an array")
         return cls(document)
 
     def __getitem__(self, key: str) -> Any:
