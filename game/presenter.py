@@ -6,11 +6,13 @@ from .battle import ev_awards, experience_awards
 from .contest import PokeblockState, ribbon_names
 from .damage import (
     PHYSICAL_TYPES,
+    active_battle_state,
     attacker_offense,
     damage_range,
     defender_defense,
     effectiveness_value,
     hits_to_ko,
+    staged_stat,
     type_multipliers,
 )
 from .state import BattlePokemonState, PokemonState, STAT_NAMES
@@ -200,6 +202,7 @@ class EmeraldPresenter:
         participants: frozenset[int],
         *,
         trainer_battle: bool,
+        in_game_partner: bool = False,
     ) -> PanelSection | None:
         rows = []
         for opponent in opponents:
@@ -216,6 +219,7 @@ class EmeraldPresenter:
                 party,
                 participants,
                 trainer_battle=trainer_battle,
+                in_game_partner=in_game_partner,
             )
             ev = ev_awards(ev_yield, party, participants)
             for member in party:
@@ -348,11 +352,20 @@ class EmeraldPresenter:
                 ko_note = f"{best_hits} hits"
             else:
                 ko_note = f"{best_hits}-{worst_hits} hits"
+            active_member = active_battle_state(member, active_players)
+            member_speed = (
+                staged_stat(active_member.stats[2], active_member.stat_stages[3])
+                if active_member is not None
+                else member.stats[2]
+            )
+            opponent_speed = staged_stat(
+                opponent.stats[2], opponent.stat_stages[3]
+            )
             speed_note = ""
-            if member.stats[2] and opponent.stats[2]:
+            if member_speed and opponent_speed:
                 speed_note = (
                     " · likely faster"
-                    if member.stats[2] > opponent.stats[2]
+                    if member_speed > opponent_speed
                     else " · likely slower"
                 )
             rows.append(
@@ -369,7 +382,9 @@ class EmeraldPresenter:
                 )
             )
 
-        threat = self._worst_threat(enemy_party, party)
+        threat = self._worst_threat(
+            enemy_party, party, active_opponents, active_players
+        )
         if threat is not None:
             rows.append(threat)
         if not rows:
@@ -386,6 +401,8 @@ class EmeraldPresenter:
         self,
         enemy_party: tuple[PokemonState, ...],
         party: tuple[PokemonState, ...],
+        active_opponents: tuple[BattlePokemonState, ...],
+        active_players: tuple[BattlePokemonState, ...],
     ) -> PanelRow | None:
         worst = None
         for enemy in enemy_party:
@@ -404,15 +421,18 @@ class EmeraldPresenter:
                         move_type,
                         tuple(self.species_types(member.species)),
                     )
-                    attack_stat = (
-                        enemy.stats[0]
-                        if move_type in PHYSICAL_TYPES
-                        else enemy.stats[3]
+                    attack_stat, burned = attacker_offense(
+                        enemy, active_opponents, move_type
                     )
+                    active_member = active_battle_state(member, active_players)
                     defense_stat = (
+                        defender_defense(active_member, move_type)
+                        if active_member is not None
+                        else (
                         member.stats[1]
                         if move_type in PHYSICAL_TYPES
                         else member.stats[4]
+                        )
                     )
                     low, high = damage_range(
                         level=enemy.level,
@@ -422,6 +442,7 @@ class EmeraldPresenter:
                         attack_stat=attack_stat,
                         defense_stat=defense_stat,
                         multipliers=multipliers,
+                        burned=burned,
                     )
                     if high <= 0:
                         continue

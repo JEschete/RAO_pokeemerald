@@ -102,6 +102,7 @@ def experience_awards(
     participants: frozenset[int],
     *,
     trainer_battle: bool,
+    in_game_partner: bool = False,
 ) -> dict[int, int]:
     eligible_participants = tuple(
         member
@@ -133,7 +134,7 @@ def experience_awards(
             value = value * 150 // 100
         if trainer_battle:
             value = value * 150 // 100
-        if member.is_traded:
+        if member.is_traded and not (in_game_partner and member.slot >= 3):
             value = value * 150 // 100
         awards[member.slot] = value
     return awards

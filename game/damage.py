@@ -79,6 +79,23 @@ def effectiveness_value(multipliers: tuple[int, ...]) -> float:
     return product
 
 
+def active_battle_state(
+    member: PokemonState,
+    active_mons: tuple[BattlePokemonState, ...],
+) -> BattlePokemonState | None:
+    return next(
+        (
+            active
+            for active in active_mons
+            if (
+                active.personality == member.personality
+                and active.species_id == member.species_id
+            )
+        ),
+        None,
+    )
+
+
 def attacker_offense(
     member: PokemonState,
     active_players: tuple[BattlePokemonState, ...],
@@ -86,16 +103,13 @@ def attacker_offense(
 ) -> tuple[int, bool]:
     """Attack stat (stage-adjusted when the member is on the field) and burn."""
     physical = move_type in PHYSICAL_TYPES
-    for active in active_players:
-        if (
-            active.personality == member.personality
-            and active.species_id == member.species_id
-        ):
-            index = 0 if physical else 3
-            return (
-                staged_stat(active.stats[index], active.stat_stages[1 + index]),
-                bool(active.status & STATUS_BURN),
-            )
+    active = active_battle_state(member, active_players)
+    if active is not None:
+        index = 0 if physical else 3
+        return (
+            staged_stat(active.stats[index], active.stat_stages[1 + index]),
+            bool(active.status & STATUS_BURN),
+        )
     return (
         member.stats[0] if physical else member.stats[3],
         bool(member.status & STATUS_BURN),

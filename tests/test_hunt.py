@@ -1,9 +1,11 @@
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 
 from game.hunt import HuntTracker
 from game.state import BattlePokemonState, PokemonState
+from game.tracker import BattleParticipationTracker
 
 
 def wild(species: str, personality: int, hp: int) -> BattlePokemonState:
@@ -86,6 +88,20 @@ class HuntTrackerTests(unittest.TestCase):
         other = HuntTracker(Path(self._directory.name))
         other.select_playthrough(0x11112222)
         self.assertEqual(other.lifetime, {})
+
+
+class BattleParticipationTrackerTests(unittest.TestCase):
+    def test_turn_zero_starts_a_new_participation_set(self) -> None:
+        tracker = BattleParticipationTracker()
+        first = party_member("SPECIES_FIRST", 1)
+        second = replace(party_member("SPECIES_SECOND", 2), slot=1)
+
+        tracker.update((first,), (wild("SPECIES_FIRST", 1, 10),), 0)
+        participants = tracker.update(
+            (second,), (wild("SPECIES_SECOND", 2, 10),), 0
+        )
+
+        self.assertEqual(participants, frozenset({1}))
 
 
 if __name__ == "__main__":

@@ -15,7 +15,7 @@ class BattleParticipationTracker:
         active_player_mons: tuple[BattlePokemonState, ...],
         turn: int,
     ) -> frozenset[int]:
-        if turn < self._last_turn:
+        if turn < self._last_turn or (turn == 0 and self._last_turn == 0):
             self.participants.clear()
         self._last_turn = turn
         for active in active_player_mons:

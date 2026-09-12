@@ -332,7 +332,7 @@ class OverworldPresenter:
                 f"Spot {spot} · "
                 f"({coordinates_by_spot[spot][0]},{coordinates_by_spot[spot][1]})"
             )
-            for spot in active_spots
+            for spot in dict.fromkeys(active_spots)
             if spot in coordinates_by_spot
         )
         active = spot_id in active_spots

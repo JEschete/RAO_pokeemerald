@@ -588,8 +588,8 @@ class EmeraldAdapter:
                     "little",
                 )
             except (RetroArchError, ValueError):
-                seed = 0
-            if seed:
+                seed = None
+            if seed is not None:
                 key = entry.key
                 feebas = feebas_waypoints(
                     self._overworld.fishing_spots, feebas_spot_ids(seed)

@@ -117,6 +117,12 @@ class WildScout:
                 emphasis="success",
                 chips=(PanelChip(f"UPGRADE +{difference}", "#27824a"),),
             )
+        if difference == 0:
+            return PanelRow(
+                f"Same IV total as your {_display(member.species)} ({best_total})",
+                emphasis="muted",
+                chips=(PanelChip("TIED", "#687064"),),
+            )
         return PanelRow(
             f"Your {_display(member.species)} is better ({best_total})",
             emphasis="muted",

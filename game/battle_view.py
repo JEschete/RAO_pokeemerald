@@ -32,7 +32,37 @@ BATTLE_MONS_ADDRESS = 0x02024084
 BATTLE_RESULTS_TURN_ADDRESS = 0x03005D23
 MAIN_IN_BATTLE_ADDRESS = 0x030026F9
 MAIN_IN_BATTLE_MASK = 0x02
+BATTLE_TYPE_LINK = 1 << 1
 BATTLE_TYPE_TRAINER = 1 << 3
+BATTLE_TYPE_SAFARI = 1 << 7
+BATTLE_TYPE_BATTLE_TOWER = 1 << 8
+BATTLE_TYPE_EREADER_TRAINER = 1 << 11
+BATTLE_TYPE_DOME = 1 << 16
+BATTLE_TYPE_PALACE = 1 << 17
+BATTLE_TYPE_ARENA = 1 << 18
+BATTLE_TYPE_FACTORY = 1 << 19
+BATTLE_TYPE_PIKE = 1 << 20
+BATTLE_TYPE_PYRAMID = 1 << 21
+BATTLE_TYPE_INGAME_PARTNER = 1 << 22
+BATTLE_TYPE_RECORDED_LINK = 1 << 25
+BATTLE_TYPE_TRAINER_HILL = 1 << 26
+BATTLE_TYPE_FRONTIER = (
+    BATTLE_TYPE_BATTLE_TOWER
+    | BATTLE_TYPE_DOME
+    | BATTLE_TYPE_PALACE
+    | BATTLE_TYPE_ARENA
+    | BATTLE_TYPE_FACTORY
+    | BATTLE_TYPE_PIKE
+    | BATTLE_TYPE_PYRAMID
+)
+NO_REWARD_BATTLE_TYPES = (
+    BATTLE_TYPE_LINK
+    | BATTLE_TYPE_RECORDED_LINK
+    | BATTLE_TYPE_TRAINER_HILL
+    | BATTLE_TYPE_FRONTIER
+    | BATTLE_TYPE_SAFARI
+    | BATTLE_TYPE_EREADER_TRAINER
+)
 BATTLE_MON_SIZE = 0x58
 BALL_POCKET_OFFSET = 0x650
 BALL_POCKET_SIZE = 64
@@ -103,11 +133,17 @@ class BattleSnapshotBuilder:
             (0, 2) if battlers_count == 4 else (0,),
         )
         turns = memory.read_memory(BATTLE_RESULTS_TURN_ADDRESS, 1)[0]
-        participants = self._tracker.update(party, active_players, turns)
         battle_flags = int.from_bytes(
             memory.read_memory(BATTLE_TYPE_FLAGS_ADDRESS, 4), "little"
         )
         trainer_battle = bool(battle_flags & BATTLE_TYPE_TRAINER)
+        safari_battle = bool(battle_flags & BATTLE_TYPE_SAFARI)
+        rewards_available = not bool(battle_flags & NO_REWARD_BATTLE_TYPES)
+        if rewards_available:
+            participants = self._tracker.update(party, active_players, turns)
+        else:
+            self._tracker.end()
+            participants = frozenset()
         if not trainer_battle and self._hunt is not None:
             self._hunt.battle_started(
                 opponents[0], self._is_caught(opponents[0].species, caught_flags)
@@ -148,11 +184,18 @@ class BattleSnapshotBuilder:
                 opponents, enemy_party, party, active_players
             ),
             self._presenter.opponent_team_section(enemy_party),
-            self._presenter.battle_reward_section(
-                opponents,
-                party,
-                participants,
-                trainer_battle=trainer_battle,
+            (
+                self._presenter.battle_reward_section(
+                    opponents,
+                    party,
+                    participants,
+                    trainer_battle=trainer_battle,
+                    in_game_partner=bool(
+                        battle_flags & BATTLE_TYPE_INGAME_PARTNER
+                    ),
+                )
+                if rewards_available
+                else None
             ),
         ):
             if section is not None:
@@ -162,6 +205,7 @@ class BattleSnapshotBuilder:
                 iv_section = self._wild_scout.section(opponents[0], party)
                 if iv_section is not None:
                     sections.append(iv_section)
+        if not trainer_battle and not safari_battle:
             sections.extend(
                 self._catch_sections(
                     memory,

@@ -1,6 +1,6 @@
 import unittest
 
-from game.daycare import DaycareDashboard
+from game.daycare import DaycareDashboard, egg_steps_remaining
 from game.state import BoxPokemonState
 
 
@@ -50,6 +50,10 @@ class DaycareDashboardTests(unittest.TestCase):
         second = box(132, "SPECIES_DITTO", 2, 200)
 
         self.assertEqual(self.dashboard._compatibility(first, second), 0)
+
+    def test_hatch_steps_account_for_the_next_hatch_tick(self) -> None:
+        self.assertEqual(egg_steps_remaining(20, 0, 2), 2815)
+        self.assertEqual(egg_steps_remaining(0, 255, 1), 256)
 
 
 if __name__ == "__main__":

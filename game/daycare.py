@@ -22,6 +22,14 @@ class DepositedPokemon:
     steps: int
 
 
+def egg_steps_remaining(
+    cycles: int, step_counter: int, cycles_per_tick: int
+) -> int:
+    ticks_to_hatch = (cycles + cycles_per_tick - 1) // cycles_per_tick + 1
+    steps_to_next_tick = 256 if step_counter == 255 else 255 - step_counter
+    return steps_to_next_tick + (ticks_to_hatch - 1) * 256
+
+
 class DaycareDashboard:
     def __init__(
         self,
@@ -110,7 +118,9 @@ class DaycareDashboard:
             step_counter = data[EGG_STEP_COUNTER_OFFSET]
             subtract = 2 if self._has_hatch_ability(party) else 1
             for egg in eggs:
-                steps = max(1, (egg.friendship * 255 + (255 - step_counter)) // subtract)
+                steps = egg_steps_remaining(
+                    egg.friendship, step_counter, subtract
+                )
                 details.append(
                     PanelRow(
                         f"Slot {egg.slot + 1} · {egg.friendship} cycle(s) · "

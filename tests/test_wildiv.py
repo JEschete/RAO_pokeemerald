@@ -47,6 +47,17 @@ class WildScoutTests(unittest.TestCase):
         self.assertEqual(verdict.emphasis, "muted")
         self.assertIn("Kirlia is better", verdict.text)
 
+    def test_wild_with_equal_total_is_reported_as_a_tie(self) -> None:
+        opponent = replace(wild("SPECIES_RALTS", 42, 20), ivs=(10,) * 6)
+        member = replace(
+            party_member("SPECIES_KIRLIA", 7), ivs=(10,) * 6
+        )
+
+        verdict = self.scout.section(opponent, (member,)).rows[-1]
+
+        self.assertIn("Same IV total", verdict.text)
+        self.assertEqual(verdict.chips[0].text, "TIED")
+
     def test_unowned_family_is_called_out(self) -> None:
         opponent = replace(wild("SPECIES_RALTS", 42, 20), ivs=(5,) * 6)
         verdict = self.scout.section(

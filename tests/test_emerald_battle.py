@@ -1,4 +1,5 @@
 import unittest
+from dataclasses import replace
 
 from game.battle import (
     ITEM_EXP_SHARE,
@@ -12,7 +13,9 @@ from game.battle import (
     ev_awards,
     experience_awards,
 )
-from game.state import PokemonState
+from game.damage import damage_range, staged_stat
+from game.presenter import EmeraldPresenter
+from game.state import BattlePokemonState, PokemonState
 
 
 def party_member(
@@ -49,6 +52,39 @@ def party_member(
         max_hp=10,
         stats=(10, 10, 10, 10, 10),
         is_traded=traded,
+    )
+
+
+def battle_member(
+    *,
+    species_id: int,
+    species: str,
+    personality: int,
+    level: int = 20,
+    hp: int = 100,
+    max_hp: int = 100,
+    stats: tuple[int, int, int, int, int] = (100, 100, 100, 100, 100),
+    moves: tuple[int, int, int, int] = (0, 0, 0, 0),
+    stat_stages: tuple[int, int, int, int, int, int, int, int] = (6,) * 8,
+) -> BattlePokemonState:
+    return BattlePokemonState(
+        species_id=species_id,
+        species=species,
+        level=level,
+        hp=hp,
+        max_hp=max_hp,
+        stats=stats,
+        moves=moves,
+        pp=(0, 0, 0, 0),
+        ivs=(0, 0, 0, 0, 0, 0),
+        stat_stages=stat_stages,
+        ability_id=0,
+        ability_slot=0,
+        types=(0, 0),
+        held_item_id=0,
+        friendship=0,
+        personality=personality,
+        status=0,
     )
 
 
@@ -92,6 +128,20 @@ class BattleRewardTests(unittest.TestCase):
 
         self.assertEqual(awards, {0: 55, 1: 55, 2: 75})
 
+    def test_in_game_partner_omits_the_traded_exp_bonus(self) -> None:
+        partner = party_member(3, traded=True)
+
+        awards = experience_awards(
+            70,
+            10,
+            (partner,),
+            frozenset({3}),
+            trainer_battle=True,
+            in_game_partner=True,
+        )
+
+        self.assertEqual(awards, {3: 150})
+
     def test_ev_gain_applies_pokerus_macho_brace_share_and_caps(self) -> None:
         party = (
             party_member(0, pokerus=0x11),
@@ -110,6 +160,72 @@ class BattleRewardTests(unittest.TestCase):
         self.assertEqual(awards[1], (0, 0, 0, 2, 0, 0))
         self.assertEqual(awards[2], (0, 0, 0, 2, 0, 0))
         self.assertEqual(awards[3], (0, 0, 0, 0, 0, 0))
+
+
+class BattleAdviceTests(unittest.TestCase):
+    def test_threat_uses_active_stat_stages_for_both_sides(self) -> None:
+        player = replace(
+            party_member(0),
+            species="SPECIES_PLAYER",
+            personality=11,
+            hp=100,
+            max_hp=100,
+            stats=(100, 100, 100, 100, 100),
+        )
+        enemy = replace(
+            party_member(1),
+            species_id=2,
+            species="SPECIES_ENEMY",
+            personality=22,
+            level=20,
+            hp=100,
+            max_hp=100,
+            stats=(100, 100, 100, 100, 100),
+            moves=(1, 0, 0, 0),
+        )
+        active_enemy = battle_member(
+            species_id=2,
+            species="SPECIES_ENEMY",
+            personality=22,
+            moves=(1, 0, 0, 0),
+            stat_stages=(6, 12, 6, 6, 6, 6, 6, 6),
+        )
+        active_player = battle_member(
+            species_id=1,
+            species="SPECIES_PLAYER",
+            personality=11,
+            stat_stages=(6, 6, 4, 6, 6, 6, 6, 6),
+        )
+        presenter = EmeraldPresenter(
+            {
+                "SPECIES_PLAYER": {"types": [0, 0]},
+                "SPECIES_ENEMY": {"types": [0, 0]},
+            },
+            {},
+            {1: {"name": "Strike", "power": 80, "type": 0}},
+            {},
+            (),
+        )
+
+        section = presenter.battle_advice_section(
+            (active_enemy,), (enemy,), (player,), (active_player,)
+        )
+
+        self.assertIsNotNone(section)
+        assert section is not None
+        low, high = damage_range(
+            level=20,
+            power=80,
+            move_type=0,
+            attacker_types=(0, 0),
+            attack_stat=staged_stat(100, 12),
+            defense_stat=staged_stat(100, 4),
+            multipliers=(10,),
+        )
+        self.assertIn(
+            f"{100 * low // 100}-{100 * high // 100}%",
+            section.rows[-1].text,
+        )
 
 
 if __name__ == "__main__":

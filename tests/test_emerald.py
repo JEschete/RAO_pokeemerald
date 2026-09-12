@@ -55,6 +55,7 @@ from game.rtc_events import (
 )
 from game.daycare import DAYCARE_OFFSET, DAYCARE_SIZE
 from game.frontier import FRONTIER_OFFSET, FRONTIER_SIZE
+from game.battle_view import BATTLE_TYPE_BATTLE_TOWER, BATTLE_TYPE_SAFARI
 from retroarch_overlay.models import RetroArchStatus
 
 
@@ -599,6 +600,52 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertEqual(section.actions[0].label, "OPEN FEEBAS TILES")
         self.assertEqual(len(section.actions[0].rows), 6)
 
+    def test_feebas_tile_list_deduplicates_repeated_spots(self) -> None:
+        map_group, map_number = self.adapter.map_ids["MAP_ROUTE119"]
+
+        snapshot = self.adapter.snapshot(
+            FakeMemory(
+                map_group,
+                map_number,
+                feebas_position=bytes(9),
+                feebas_seed=112,
+            )
+        )
+
+        section = next(section for section in snapshot.sections if section.title == "Feebas tiles")
+        self.assertEqual(len(section.actions[0].rows), 5)
+        self.assertEqual(
+            len({row.text for row in section.actions[0].rows}),
+            len(section.actions[0].rows),
+        )
+
+    def test_zero_feebas_seed_adds_map_waypoints(self) -> None:
+        from game.feebas import feebas_spot_ids
+        from game.map_builder import load_map_catalog
+
+        adapter = EmeraldAdapter(
+            POKEEMERALD_ROOT, map_catalog=load_map_catalog(POKEEMERALD_ROOT)
+        )
+        map_group, map_number = adapter.map_ids["MAP_ROUTE119"]
+        memory = FakeMemory(map_group, map_number, feebas_seed=0)
+
+        overlays = adapter._map_marker_overlays(
+            memory,
+            memory.save_block_1,
+            map_group,
+            map_number,
+            bytes(FLAGS_SIZE),
+            bytes(DEX_FLAG_BYTES),
+        )
+        route119 = next(
+            overlay for overlay in overlays if overlay.layer_key == "route119"
+        )
+
+        self.assertEqual(
+            sum(waypoint.kind == "feebas" for waypoint in route119.waypoints),
+            len(set(feebas_spot_ids(0))),
+        )
+
     def test_wild_battle_replaces_overworld_with_catch_chances(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
         snapshot = self.adapter.snapshot(
@@ -625,6 +672,46 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertIn("Poké Ball x5", catch.rows[1].text)
         self.assertEqual(catch.rows[1].progress, catch.rows[1].progress)
         self.assertIsNotNone(catch.rows[1].progress)
+
+    def test_frontier_battle_omits_rewards_the_game_does_not_grant(self) -> None:
+        map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
+        battle_mons = bytearray(self._wild_battle_mons())
+        treecko = self.adapter._species_ids["SPECIES_TREECKO"]
+        battle_mons[0:2] = treecko.to_bytes(2, "little")
+        battle_mons[0x28:0x2A] = (10).to_bytes(2, "little")
+        battle_mons[0x2A] = 5
+        battle_mons[0x2C:0x2E] = (10).to_bytes(2, "little")
+
+        snapshot = self.adapter.snapshot(
+            FakeMemory(
+                map_group,
+                map_number,
+                battle_mons=bytes(battle_mons),
+                party=self._party_mon("SPECIES_TREECKO", 5, 150),
+                battle_flags=(1 << 3) | BATTLE_TYPE_BATTLE_TOWER,
+            )
+        )
+
+        self.assertNotIn(
+            "Rewards if defeated", {section.title for section in snapshot.sections}
+        )
+
+    def test_safari_battle_omits_normal_bag_ball_advice(self) -> None:
+        map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
+
+        snapshot = self.adapter.snapshot(
+            FakeMemory(
+                map_group,
+                map_number,
+                battle_mons=self._wild_battle_mons(),
+                balls={4: 5},
+                battle_flags=BATTLE_TYPE_SAFARI,
+            )
+        )
+
+        self.assertNotIn(
+            "Catch chances", {section.title for section in snapshot.sections}
+        )
 
     def test_double_battle_shows_both_opponents(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]

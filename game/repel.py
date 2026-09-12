@@ -14,7 +14,7 @@ from .state import PokemonState
 
 def repel_lead(party: tuple[PokemonState, ...]) -> PokemonState | None:
     for member in party:
-        if not member.is_egg:
+        if member.hp > 0 and not member.is_egg:
             return member
     return None
 
@@ -24,31 +24,37 @@ def surviving_species(
     encounter_field: dict[str, Any],
     lead_level: int,
 ) -> tuple[dict[str, dict[str, int]], int, int]:
-    """Species that can still appear under a repel, plus blocked slot odds.
+    """Species that can still appear under a repel, plus blocked odds.
 
     Returns (surviving, blocked_percent, total_percent); surviving maps
-    species to effective min/max levels and their unchanged slot chance.
+    species to effective min/max levels and their post-Repel chance.
     """
     rates = field_definition["encounter_rates"]
     surviving: dict[str, dict[str, int]] = {}
-    blocked_percent = 0
-    total_percent = 0
+    blocked_percent = 0.0
+    total_percent = 0.0
     for rate, mon in zip(rates, encounter_field["mons"]):
         total_percent += rate
-        if mon["max_level"] < lead_level:
-            blocked_percent += rate
+        minimum = min(mon["min_level"], mon["max_level"])
+        maximum = max(mon["min_level"], mon["max_level"])
+        surviving_minimum = max(minimum, lead_level)
+        level_count = maximum - minimum + 1
+        surviving_count = max(0, maximum - surviving_minimum + 1)
+        chance = rate * surviving_count / level_count
+        blocked_percent += rate - chance
+        if not surviving_count:
             continue
         entry = surviving.setdefault(
             mon["species"],
             {
-                "min": max(mon["min_level"], lead_level),
-                "max": mon["max_level"],
+                "min": surviving_minimum,
+                "max": maximum,
                 "chance": 0,
             },
         )
-        entry["min"] = min(entry["min"], max(mon["min_level"], lead_level))
-        entry["max"] = max(entry["max"], mon["max_level"])
-        entry["chance"] += rate
+        entry["min"] = min(entry["min"], surviving_minimum)
+        entry["max"] = max(entry["max"], maximum)
+        entry["chance"] += chance
     return surviving, blocked_percent, total_percent
 
 
@@ -65,6 +71,7 @@ def repel_section(
     methods = (
         ("land_mons", "Land"),
         ("water_mons", "Water"),
+        ("rock_smash_mons", "Rock Smash"),
     )
     if not any(field_name in encounter for field_name, _ in methods):
         return None
@@ -87,7 +94,7 @@ def repel_section(
             continue
         rows.append(
             PanelRow(
-                f"{title}: blocks {blocked * 100 // total}% of encounters",
+                f"{title}: blocks {blocked * 100 / total:.1f}% of encounters",
                 emphasis="muted",
             )
         )
@@ -102,7 +109,7 @@ def repel_section(
             rows.append(
                 PanelRow(
                     f"{display(species, 'SPECIES_')} · {level_text} · "
-                    f"{values['chance']}%"
+                    f"{values['chance']:.1f}%"
                 )
             )
     if len(rows) <= 1:

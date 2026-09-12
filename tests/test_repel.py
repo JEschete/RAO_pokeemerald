@@ -30,8 +30,11 @@ class RepelTests(unittest.TestCase):
             FIELD_DEFINITION, field, 5
         )
         self.assertEqual(total, 100)
-        self.assertEqual(blocked, 80)
-        # Slots with max level >= 5 survive with their floor raised to 5.
+        self.assertAlmostEqual(blocked, 86 + 2 / 3)
+        self.assertAlmostEqual(
+            sum(values["chance"] for values in surviving.values()), 13 + 1 / 3
+        )
+        # A slot survives only when its independently rolled level meets the lead.
         self.assertTrue(all(values["min"] == 5 for values in surviving.values()))
 
     def test_lead_skips_eggs(self) -> None:
@@ -41,6 +44,16 @@ class RepelTests(unittest.TestCase):
         lead = repel_lead((egg, party_member("SPECIES_RALTS", 2)))
         self.assertIsNotNone(lead)
         self.assertEqual(lead.species, "SPECIES_RALTS")
+
+    def test_lead_skips_fainted_party_members(self) -> None:
+        from dataclasses import replace
+
+        fainted = replace(party_member("SPECIES_RALTS", 1), hp=0, level=50)
+        healthy = replace(party_member("SPECIES_ZIGZAGOON", 2), slot=1)
+
+        lead = repel_lead((fainted, healthy))
+
+        self.assertIs(lead, healthy)
 
     def test_section_summarizes_blocked_percentage(self) -> None:
         encounter = {
@@ -59,16 +72,18 @@ class RepelTests(unittest.TestCase):
             any("blocks" in row.text for row in section.rows)
         )
 
-    def test_section_absent_without_land_or_water_encounters(self) -> None:
-        self.assertIsNone(
-            repel_section(
-                {"land_mons": FIELD_DEFINITION},
-                {"rock_smash_mons": encounter_field([(5, 10)])},
-                (party_member("SPECIES_RALTS", 2),),
-                0,
-                display,
-            )
+    def test_section_includes_rock_smash_encounters(self) -> None:
+        section = repel_section(
+            {"rock_smash_mons": {"encounter_rates": [100]}},
+            {"rock_smash_mons": encounter_field([(5, 10)])},
+            (party_member("SPECIES_RALTS", 2),),
+            0,
+            display,
         )
+
+        self.assertIsNotNone(section)
+        assert section is not None
+        self.assertTrue(any(row.text.startswith("Rock Smash:") for row in section.rows))
 
 
 if __name__ == "__main__":
