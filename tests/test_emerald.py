@@ -45,6 +45,9 @@ from game.adapter import (
     ITEM_POCKET_SIZE,
     MAIN_IN_BATTLE_ADDRESS,
     MAIN_IN_BATTLE_MASK,
+    OBJECT_EVENTS_ADDRESS,
+    PLAYER_AVATAR_ADDRESS,
+    PLAYER_AVATAR_FLAG_SURFING,
     EmeraldAdapter,
 )
 from game.rtc_events import (
@@ -93,7 +96,11 @@ class FakeMemory:
         player_trainer_id: int = 0x12345678,
         enemy_party: bytes = b"",
         pokemon_storage: bytes | None = None,
+        avatar_flags: int = 1,
+        player_graphics_id: int = 0,
     ):
+        self.avatar_flags = avatar_flags
+        self.player_graphics_id = player_graphics_id
         self.save_block_1 = 0x02010000
         self.save_block_2 = 0x02020000
         self.map_group = map_group
@@ -166,7 +173,8 @@ class FakeMemory:
             return self.save_block_2.to_bytes(4, "little")
         if (address, size) == (POKEMON_STORAGE_POINTER_ADDRESS, 4):
             return self.pokemon_storage_pointer.to_bytes(4, "little")
-        storage_start = self.pokemon_storage_pointer + 1
+        # Boxes start after currentBox plus alignment padding.
+        storage_start = self.pokemon_storage_pointer + 4
         if (
             self.pokemon_storage is not None
             and storage_start <= address
@@ -241,6 +249,14 @@ class FakeMemory:
             return self.feebas_seed.to_bytes(2, "little")
         if (address, size) == (PLAYER_POSITION_ADDRESS, 9) and self.feebas_position is not None:
             return self.feebas_position
+        if (address, size) == (PLAYER_AVATAR_ADDRESS, 6):
+            return bytes((self.avatar_flags, 0, 0, 0, 0, 0))
+        if (address, size) == (OBJECT_EVENTS_ADDRESS, 0x14):
+            player = bytearray(0x14)
+            player[5] = self.player_graphics_id
+            player[0x10:0x12] = self.player_position[0].to_bytes(2, "little", signed=True)
+            player[0x12:0x14] = self.player_position[1].to_bytes(2, "little", signed=True)
+            return bytes(player)
         raise AssertionError(f"Unexpected read: 0x{address:08X}, {size}")
 
 
@@ -555,6 +571,61 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertIn("Land · Route 119", interior_text)
         self.assertIn("Water · Route 119", interior_text)
         self.assertIn("Fishing · Route 119", interior_text)
+
+    def test_poc_level_calculator_follows_current_area_and_activity(self) -> None:
+        adapter = EmeraldAdapter(POKEEMERALD_ROOT)
+        route_119 = adapter.map_ids["MAP_ROUTE119"]
+
+        def calculator_heading(memory: FakeMemory) -> str:
+            rows = adapter.snapshot(memory).sections[0].actions[0].rows
+            return next(
+                row.text for row in rows if row.text.startswith("PARTY TO NEXT LEVEL")
+            )
+
+        adapter.snapshot(FakeMemory(*route_119, feebas_position=bytes(9)))
+
+        self.assertEqual(
+            calculator_heading(FakeMemory(*adapter.map_ids["MAP_ROUTE101"])),
+            "PARTY TO NEXT LEVEL · LAND · ROUTE 101",
+        )
+        self.assertEqual(
+            calculator_heading(
+                FakeMemory(
+                    *route_119,
+                    feebas_position=bytes(9),
+                    avatar_flags=PLAYER_AVATAR_FLAG_SURFING,
+                )
+            ),
+            "PARTY TO NEXT LEVEL · WATER · ROUTE 119",
+        )
+        self.assertIn(
+            "· FISHING · ROUTE 119",
+            calculator_heading(
+                FakeMemory(
+                    *route_119,
+                    feebas_position=bytes(9),
+                    player_position=(5, 5),
+                    player_graphics_id=137,
+                )
+            ),
+        )
+        # Rod put away between casts on the same tile still counts as fishing.
+        self.assertIn(
+            "· FISHING · ROUTE 119",
+            calculator_heading(
+                FakeMemory(*route_119, feebas_position=bytes(9), player_position=(5, 5))
+            ),
+        )
+        self.assertIn(
+            "· LAND · ROUTE 119",
+            calculator_heading(
+                FakeMemory(*route_119, feebas_position=bytes(9), player_position=(5, 6))
+            ),
+        )
+        self.assertIn(
+            "PARTY TO NEXT LEVEL · BEST SEEN ·",
+            calculator_heading(FakeMemory(1, 2)),
+        )
 
     def test_poc_route_exp_cache_persists_between_adapter_sessions(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

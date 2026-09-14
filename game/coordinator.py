@@ -682,6 +682,10 @@ class EmeraldAdapter:
         party_error: str,
     ) -> list[PanelSection]:
         sections = []
+        try:
+            training_method = self._overworld.training_method(memory, map_name)
+        except (RetroArchError, ValueError):
+            training_method = None
         for section in (
             self._overworld.missable_section(map_name, event_flags),
             self._overworld.poc_section(
@@ -690,6 +694,7 @@ class EmeraldAdapter:
                 encounter,
                 location,
                 self._current_party,
+                training_method,
             ),
             self._overworld.achievement_section(),
             self._overworld.roamer_section(

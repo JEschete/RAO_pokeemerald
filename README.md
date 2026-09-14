@@ -65,7 +65,7 @@ The main rail is divided into Area, Party, and Goals views. Urgent battle, missa
 ## Accuracy Boundaries
 
 - The Professor Oak Challenge gate counts and order are the plugin's RA-aligned rules. The acquisition list is generated from the pinned decomp's encounters, gifts, static battles, and non-trade evolutions; it is guidance, not a reproduction of private RetroAchievements trigger definitions.
-- Route experience is labeled `base solo XP`. Per-Pokemon Lucky Egg, traded, and passive Exp. Share adjustments are estimates for repeated encounters. Live battle rewards use observed participants and the exact Gen III split/bonus order.
+- Route experience is labeled `base solo XP`. The party-to-next-level projection uses the current map's land, water (surfing or diving), or fishing table based on the live player avatar; fishing stays selected between casts until the player leaves that tile. Maps without encounters for that activity fall back to the best area seen. Per-Pokemon Lucky Egg, traded, and passive Exp. Share adjustments are estimates for repeated encounters. Live battle rewards use observed participants and the exact Gen III split/bonus order.
 - Battle advice uses the Gen III integer damage formula with live stats, stat stages, burn, STAB, and the type chart, and shows the 85-100% roll spread. It does not model abilities, held items, screens, weather, crits, or AI choices.
 - Hunt outcome classification is observational: a catch that goes straight to a PC box for an already-registered species cannot be distinguished from an escape and counts as fled.
 - Factory swap advice scores type coverage and shared weaknesses only; rental abilities and movesets beyond typing are not simulated.

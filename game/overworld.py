@@ -24,6 +24,15 @@ DEWFORD_TREND_SEED_OFFSET = 0x2E66
 # gObjectEvents[0].currentCoords. 0x0203F360 reads as a constant zero;
 # the player object lives at gObjectEvents = 0x02037350.
 PLAYER_POSITION_ADDRESS = 0x02037360
+OBJECT_EVENTS_ADDRESS = 0x02037350
+OBJECT_EVENT_SIZE = 0x24
+OBJECT_EVENTS_COUNT = 16
+# gPlayerAvatar is defined directly after gObjectEvents[OBJECT_EVENTS_COUNT].
+PLAYER_AVATAR_ADDRESS = 0x02037590
+PLAYER_AVATAR_FLAG_SURFING = 1 << 3
+PLAYER_AVATAR_FLAG_UNDERWATER = 1 << 4
+# OBJ_EVENT_GFX_BRENDAN_FISHING / OBJ_EVENT_GFX_MAY_FISHING while a rod is out.
+FISHING_GRAPHICS_IDS = frozenset((137, 138))
 ROAMER_OFFSET = 0x31DC
 ROAMER_SIZE = 0x1C
 ROAMER_LOCATION_ADDRESS = 0x0203BC86
@@ -83,6 +92,7 @@ class OverworldPresenter:
         self._growth_rates = growth_rates
         self._training_tracker = training_tracker
         self._poc_planner = poc_planner
+        self._fishing_tile: tuple[str, bytes, int] | None = None
         self._nearby_achievements = {
             map_name: tuple(
                 achievement
@@ -379,6 +389,7 @@ class OverworldPresenter:
         encounter: dict[str, Any] | None,
         location: str,
         party: tuple[PokemonState, ...],
+        training_method: str | None = None,
     ) -> PanelSection:
         caught_count = self._poc_planner.caught_count(
             caught_flags, event_flags
@@ -407,7 +418,12 @@ class OverworldPresenter:
                     "OPEN POC DETAILS",
                     "Professor Oak Challenge",
                     self._poc_detail_rows(
-                        caught_flags, event_flags, encounter, location, party
+                        caught_flags,
+                        event_flags,
+                        encounter,
+                        location,
+                        party,
+                        training_method,
                     ),
                     compact=True,
                     key="poc-details",
@@ -437,6 +453,7 @@ class OverworldPresenter:
         encounter: dict[str, Any] | None,
         location: str,
         party: tuple[PokemonState, ...],
+        training_method: str | None = None,
     ) -> tuple[PanelRow, ...]:
         rows = [PanelRow(f"CURRENT AREA · {location}".upper())]
         caught_count = self._poc_planner.caught_count(
@@ -464,10 +481,16 @@ class OverworldPresenter:
             if route_rows:
                 rows.append(PanelRow("MISSING IN THIS AREA"))
                 rows.extend(route_rows)
-            rows.extend(self.route_training_rows(encounter, location, party))
+            rows.extend(
+                self.route_training_rows(
+                    encounter, location, party, training_method
+                )
+            )
         else:
             rows.append(PanelRow("No wild encounter data for this area."))
-            rows.extend(self.route_training_rows(None, location, party))
+            rows.extend(
+                self.route_training_rows(None, location, party, training_method)
+            )
         return tuple(rows)
 
     def completion_sections(
@@ -616,13 +639,39 @@ class OverworldPresenter:
                     )
         return tuple(rows)
 
+    def training_method(self, memory: MemoryReader, map_name: str) -> str:
+        """Encounter table the player is using now: land, water, or fishing."""
+        avatar = memory.read_memory(PLAYER_AVATAR_ADDRESS, 6)
+        if len(avatar) != 6 or avatar[5] >= OBJECT_EVENTS_COUNT:
+            raise ValueError("player avatar read was invalid")
+        player = memory.read_memory(
+            OBJECT_EVENTS_ADDRESS + avatar[5] * OBJECT_EVENT_SIZE, 0x14
+        )
+        if len(player) != 0x14:
+            raise ValueError("player object read was incomplete")
+        water = avatar[0] & (
+            PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_UNDERWATER
+        )
+        # The rod sprite is only up while casting, so keep treating the player
+        # as fishing between casts until they leave that tile.
+        tile = (map_name, bytes(player[0x10:0x14]), water)
+        if player[5] in FISHING_GRAPHICS_IDS:
+            self._fishing_tile = tile
+        elif tile != self._fishing_tile:
+            self._fishing_tile = None
+        if self._fishing_tile is not None:
+            return "fishing_mons"
+        return "water_mons" if water else "land_mons"
+
     def route_training_rows(
         self,
         encounter: dict[str, Any] | None,
         location: str,
         party: tuple[PokemonState, ...],
+        training_method: str | None = None,
     ) -> tuple[PanelRow, ...]:
         current_rows = []
+        current_exp: dict[str, float] = {}
         cache_changed = False
         for field_name, title, cache_best in (
             ("land_mons", "Land", True),
@@ -637,6 +686,7 @@ class OverworldPresenter:
             )
             if not average_exp:
                 continue
+            current_exp[field_name] = average_exp
             if cache_best and self._training_tracker.observe(
                 field_name, average_exp, location
             ):
@@ -670,22 +720,33 @@ class OverworldPresenter:
                 best = best_areas.get(field_name)
                 if best is not None:
                     rows.append(PanelRow(f"{title} · {best[1]} · {best[0]:.1f} XP"))
-        best_method = max(
-            best_areas.items(), key=lambda entry: entry[1][0], default=None
-        )
-        best_exp = best_method[1][0] if best_method is not None else 0
-        if best_exp:
-            field_name, (_, best_location) = best_method
-            method = {
-                "land_mons": "Land",
-                "water_mons": "Water",
-                "fishing_mons": "Fishing",
-            }[field_name]
-            rows.append(
-                PanelRow(
-                    f"PARTY TO NEXT LEVEL · {method} · {best_location}".upper()
-                )
+        method_titles = {
+            "land_mons": "Land",
+            "water_mons": "Water",
+            "fishing_mons": "Fishing",
+        }
+        # Project against what the player is doing here; the best area seen is
+        # only a fallback for maps without encounters for that activity.
+        training_method = training_method or "land_mons"
+        if training_method in current_exp:
+            gain_exp = current_exp[training_method]
+            heading = (
+                f"PARTY TO NEXT LEVEL · {method_titles[training_method]} · "
+                f"{location}"
             )
+        else:
+            best_method = max(
+                best_areas.items(), key=lambda entry: entry[1][0], default=None
+            )
+            gain_exp = best_method[1][0] if best_method is not None else 0
+            if best_method is not None:
+                field_name, (_, best_location) = best_method
+                heading = (
+                    f"PARTY TO NEXT LEVEL · BEST SEEN · "
+                    f"{method_titles[field_name]} · {best_location}"
+                )
+        if gain_exp:
+            rows.append(PanelRow(heading.upper()))
             for member in party:
                 if member.level >= 100:
                     rows.append(
@@ -700,7 +761,7 @@ class OverworldPresenter:
                     self.experience_for_level(member.species, member.level + 1)
                     - member.experience,
                 )
-                expected_gain = best_exp
+                expected_gain = gain_exp
                 modifiers = ["solo"]
                 if member.held_item_id == 182:
                     expected_gain /= 2
