@@ -56,6 +56,12 @@ class SessionJournal:
             self.markdown_path = self._state_directory / f"journal-{identity}.md"
         self.events = self._load_recent()
 
+    def reset_session(self) -> None:
+        self.identity = ""
+        self.path = None
+        self.markdown_path = None
+        self.events = []
+
     def record(self, kind: str, text: str) -> None:
         timestamp = time.strftime("%Y-%m-%d %H:%M")
         self.events.append((timestamp, kind, text))
@@ -103,10 +109,18 @@ class SessionJournal:
             "Journal",
             rows,
             preview_limit=3,
-            actions=(PanelAction("OPEN JOURNAL", "Session Journal", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN JOURNAL",
+                    "Session Journal",
+                    tuple(details),
+                    key="journal-details",
+                ),
+            ),
             priority=55,
             role="goals",
             compact_rows=rows[:1],
+            key="journal",
         )
 
     def _load_recent(self) -> list[tuple[str, str, str]]:
@@ -147,6 +161,12 @@ class EventDetector:
         self._caught: bytes | None = None
         self._event_flags: bytes | None = None
         self._party: dict[int, tuple[str, int]] = {}
+
+    def reset_session(self) -> None:
+        self._identity = ""
+        self._caught = None
+        self._event_flags = None
+        self._party = {}
 
     def observe(
         self,

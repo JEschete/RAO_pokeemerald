@@ -29,6 +29,10 @@ class PickupWatcher:
         self._identity = ""
         self._held: dict[int, int] = {}
 
+    def reset_session(self) -> None:
+        self._identity = ""
+        self._held = {}
+
     def has_pickup(self, member: PokemonState) -> bool:
         metadata = self._species_info.get(member.species, {})
         abilities = metadata.get("abilities", [0, 0])
@@ -94,4 +98,5 @@ class PickupWatcher:
             priority=30 if ready else 60,
             role="party",
             compact_rows=(PanelRow(f"{ready}/{len(holders)} holding items"),),
+            key="pickup",
         )

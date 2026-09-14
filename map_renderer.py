@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -171,8 +172,7 @@ def render_layout(
     image = Image.frombytes(
         "RGB", (stride, height * METATILE_SIZE), bytes(canvas)
     )
-    output.parent.mkdir(parents=True, exist_ok=True)
-    image.save(output, format="PNG", optimize=True)
+    _save_png(image, output)
     return output
 
 REGION_COLS = 32
@@ -224,6 +224,15 @@ def render_region_map(root: Path, output: Path, scale: int = 3) -> Path:
         image = image.resize(
             (image.width * scale, image.height * scale), Image.NEAREST
         )
-    output.parent.mkdir(parents=True, exist_ok=True)
-    image.save(output, format="PNG", optimize=True)
+    _save_png(image, output)
     return output
+
+
+def _save_png(image: Image.Image, output: Path) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    temporary = output.with_name(f".{output.name}.{os.getpid()}.tmp")
+    try:
+        image.save(temporary, format="PNG", optimize=True)
+        os.replace(temporary, output)
+    finally:
+        temporary.unlink(missing_ok=True)

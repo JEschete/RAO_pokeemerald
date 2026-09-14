@@ -147,10 +147,18 @@ class BattleFrontierDashboard:
         return PanelSection(
             "Battle Frontier",
             tuple(rows),
-            actions=(PanelAction("OPEN FRONTIER DASHBOARD", "Battle Frontier Dashboard", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN FRONTIER DASHBOARD",
+                    "Battle Frontier Dashboard",
+                    tuple(details),
+                    key="frontier-details",
+                ),
+            ),
             priority=20,
             role="goals",
             compact_rows=(rows[0],),
+            key="frontier",
         )
 
     def _streaks(self, data: bytes) -> tuple[FacilityStreak, ...]:

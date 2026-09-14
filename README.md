@@ -34,7 +34,10 @@ The main rail is divided into Area, Party, and Goals views. Urgent battle, missa
 
 - Clickable party inspection with HP, status, nature, Gen III ability, held item, friendship, original/traded status, moves, PP, EVs, IVs, and Pokerus.
 - Wild catch probabilities for every carried supported ball, live against current HP and status, with the best ball marked and a hint for what sleep would add.
-- Wild Pokémon IV readouts with an upgrade verdict against the best party member in the same evolution line.
+- Wild Pokémon IV readouts with an upgrade verdict against the best party or
+	boxed Pokémon in the same evolution line. All 14 live PC boxes are decoded
+	once per wild encounter; invalid checksums are ignored and unavailable storage
+	falls back to a labeled party-only comparison.
 - Gen III integer damage estimates for the best party move against each opponent and the worst incoming threat, using live stats and stat stages.
 - A Pickup dashboard that lists holders and reports freshly picked-up items.
 - Switch-aware experience participation across a battle.
@@ -97,6 +100,19 @@ Optional feature reads are isolated. If one memory region is temporarily unavail
 - If party or facility data appears unavailable during a transition, wait for the next stable snapshot. Save block pointers and active content are checked before and after each document to reject mixed state.
 - Use the host log at `%LOCALAPPDATA%/RetroArchOverlay/logs/retroarch-overlay.log` for plugin load, polling, and feature tracebacks.
 
+## Qt host integration
+
+The plugin is UI-toolkit neutral and emits immutable keyed panel and map
+documents. The default PySide6 host preserves expanded details and native widget
+identity across live value updates, provides Area, Party, Goals, and Urgent
+views, and renders the same route, city, indoor, cave, underwater, and Hoenn map
+layers.
+
+Generated map and species-icon PNGs are committed with atomic replacement. Their
+cache directories are keyed by the pinned decomp revision and renderer source,
+so renderer changes cannot silently reuse stale images. The in-memory species
+icon path cache is LRU-bounded to 128 entries.
+
 Locally authored plugin code is available under the MIT License. That license does not cover the decomp reference, game assets, patches, or trademarks; see the provenance report for their separate status.
 
 ## Test
@@ -110,3 +126,5 @@ $env:PYTHONPATH = "..\..\src;."
 ```
 
 See [RIGHTS_AND_PROVENANCE.md](RIGHTS_AND_PROVENANCE.md) before redistributing this repository.
+
+The Qt migration acceptance suite currently passes 171 tests plus 61 subtests.

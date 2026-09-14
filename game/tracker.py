@@ -56,6 +56,11 @@ class TrainingAreaTracker:
         )
         self.areas = self._load()
 
+    def reset_session(self) -> None:
+        self.identity = ""
+        self.path = None
+        self.areas = {}
+
     def observe(self, method: str, average_exp: float, location: str) -> bool:
         previous = self.areas.get(method)
         if previous is not None and average_exp <= previous[0]:

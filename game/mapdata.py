@@ -1,4 +1,5 @@
 import json
+import hashlib
 import re
 from dataclasses import replace
 from dataclasses import dataclass
@@ -7,6 +8,14 @@ from pathlib import Path
 
 TRAINER_FLAGS_START = 0x500
 MAP_SCHEMA_VERSION = 4
+
+
+def map_cache_key(source_revision: str, source_paths: tuple[Path, ...]) -> str:
+    digest = hashlib.sha256(source_revision.encode("ascii"))
+    for path in sorted(source_paths, key=lambda value: str(value).casefold()):
+        digest.update(str(path).encode("utf-8"))
+        digest.update(path.read_bytes())
+    return digest.hexdigest()[:12]
 
 DEFINE_PATTERN = re.compile(r"^#define\s+([A-Z0-9_]+)\s+(.+?)\s*(?://.*)?$", re.MULTILINE)
 LABEL_PATTERN = re.compile(r"^([A-Za-z0-9_]+)::")

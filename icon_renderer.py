@@ -11,6 +11,7 @@ cache that calls it stays image-library free and receives this function.
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from PIL import Image
@@ -34,5 +35,10 @@ def render_icon(source: Path, target: Path, size: int = ICON_SIZE) -> Path:
     square = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     square.paste(frame, ((size - frame.width) // 2, size - frame.height))
     target.parent.mkdir(parents=True, exist_ok=True)
-    square.save(target)
+    temporary = target.with_name(f".{target.name}.{os.getpid()}.tmp")
+    try:
+        square.save(temporary, format="PNG")
+        os.replace(temporary, target)
+    finally:
+        temporary.unlink(missing_ok=True)
     return target

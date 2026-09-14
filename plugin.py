@@ -6,7 +6,13 @@ from retroarch_overlay.models import MapDocument, MapLayer
 from .game.adapter import EmeraldAdapter
 from .game.manifest import RA_GAME_ID
 from .game.map_builder import load_map_catalog
-from .game.mapdata import MAP_KINDS, EmeraldMapCatalog, EmeraldMapImages
+from .game.knowledge_builder import SOURCE_REVISION
+from .game.mapdata import (
+    MAP_KINDS,
+    EmeraldMapCatalog,
+    EmeraldMapImages,
+    map_cache_key,
+)
 from .game.worldmap import (
     KIND_REGION,
     REGION_COLS,
@@ -31,13 +37,22 @@ class PokeEmeraldPlugin:
             else None
         )
         catalog, document = self._map_assets(decomp_root, context.state_directory)
+        icon_renderer = self._icon_renderer()
+        icon_cache_directory = (
+            context.state_directory
+            / "generated-assets"
+            / f"icons-v{map_cache_key(SOURCE_REVISION, (Path(__file__).with_name('icon_renderer.py'),))}"
+            if context.state_directory is not None and icon_renderer is not None
+            else context.state_directory
+        )
         return EmeraldAdapter(
             decomp_root,
             progress,
             context.state_directory,
             catalog,
             document,
-            self._icon_renderer(),
+            icon_renderer,
+            icon_cache_directory,
         )
 
     @staticmethod
@@ -57,15 +72,20 @@ class PokeEmeraldPlugin:
         if state_directory is None:
             return None, None
         try:
-            from .map_renderer import load_tileset, render_layout
+            from .map_renderer import load_tileset, render_layout, render_region_map
         except ImportError:
             return None, None
         try:
+            cache_directory = (
+                state_directory
+                / "generated-assets"
+                / f"v{map_cache_key(SOURCE_REVISION, (Path(__file__).with_name('map_renderer.py'),))}"
+            )
             catalog = load_map_catalog(decomp_root)
             images = EmeraldMapImages(
                 catalog,
                 decomp_root,
-                state_directory,
+                cache_directory,
                 load_tileset,
                 render_layout,
             )
@@ -74,7 +94,11 @@ class PokeEmeraldPlugin:
             return None, None
         if not layers:
             return catalog, None
-        world = PokeEmeraldPlugin._world_layer(decomp_root, state_directory)
+        world = PokeEmeraldPlugin._world_layer(
+            decomp_root,
+            cache_directory,
+            render_region_map,
+        )
         if world is not None:
             layers = (world,) + layers
         return catalog, MapDocument(
@@ -82,14 +106,19 @@ class PokeEmeraldPlugin:
         )
 
     @staticmethod
-    def _world_layer(decomp_root: Path, state_directory: Path) -> MapLayer | None:
+    def _world_layer(
+        decomp_root: Path,
+        cache_directory: Path,
+        render_region_map=None,
+    ) -> MapLayer | None:
         """The Hoenn region map, selectable alongside the per-map layers."""
-        try:
-            from .map_renderer import render_region_map
-        except ImportError:
-            return None
+        if render_region_map is None:
+            try:
+                from .map_renderer import render_region_map
+            except ImportError:
+                return None
         scale = 3
-        image = state_directory / "maps" / "hoenn.png"
+        image = cache_directory / "maps" / "hoenn.png"
         return MapLayer(
             "hoenn",
             "Hoenn",

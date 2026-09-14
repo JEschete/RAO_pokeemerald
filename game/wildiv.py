@@ -1,14 +1,20 @@
 """Wild Pokémon IV readout with an upgrade verdict.
 
 The wild battler's IVs are read directly from battle memory. The verdict
-compares its IV total against the best party member in the same evolution
+compares its IV total against the best party or boxed Pokémon in the same evolution
 family (family membership comes from the pinned decomp's evolution edges),
 so a wild Ralts is measured against your Gardevoir.
 """
 
 from retroarch_overlay.models import PanelChip, PanelRow, PanelSection
 
-from .state import BattlePokemonState, PokemonState, NATURE_NAMES, STAT_NAMES
+from .state import (
+    BattlePokemonState,
+    NATURE_NAMES,
+    PokemonState,
+    STAT_NAMES,
+    StoredPokemonState,
+)
 
 
 def build_family_map(
@@ -64,6 +70,9 @@ class WildScout:
         self,
         opponent: BattlePokemonState,
         party: tuple[PokemonState, ...],
+        boxed: tuple[StoredPokemonState, ...] = (),
+        *,
+        box_error: str = "",
     ) -> PanelSection | None:
         ivs = opponent.ivs
         total = sum(ivs)
@@ -81,19 +90,28 @@ class WildScout:
                 progress_color="accent",
             ),
         ]
-        rows.append(self._verdict_row(opponent, party, total))
+        rows.append(self._verdict_row(opponent, party, boxed, total))
+        if box_error:
+            rows.append(
+                PanelRow(
+                    f"Box comparison unavailable · {box_error}",
+                    emphasis="muted",
+                )
+            )
         return PanelSection(
             f"Wild IVs · {_display(opponent.species)}",
             tuple(rows),
             priority=7,
             role="urgent",
             compact_rows=(rows[1],),
+            key="wild-ivs",
         )
 
     def _verdict_row(
         self,
         opponent: BattlePokemonState,
         party: tuple[PokemonState, ...],
+        boxed: tuple[StoredPokemonState, ...],
         total: int,
     ) -> PanelRow:
         family = self.family_of(opponent.species)
@@ -103,28 +121,43 @@ class WildScout:
                 continue
             member_total = sum(member.ivs)
             if best is None or member_total > best[0]:
-                best = (member_total, member)
+                best = (
+                    member_total,
+                    member.species,
+                    f"Party slot {member.slot + 1}",
+                )
+        for stored in boxed:
+            member = stored.pokemon
+            if member.is_egg or self.family_of(member.species) != family:
+                continue
+            member_total = sum(member.ivs)
+            if best is None or member_total > best[0]:
+                best = (
+                    member_total,
+                    member.species,
+                    f"Box {stored.box}, slot {stored.slot}",
+                )
         if best is None:
             return PanelRow(
-                "No party member in this evolution line",
+                "No party or boxed Pokémon in this evolution line",
                 emphasis="muted",
             )
-        best_total, member = best
+        best_total, species, source = best
         difference = total - best_total
         if difference > 0:
             return PanelRow(
-                f"Better than your {_display(member.species)} ({best_total})",
+                f"Better than your {_display(species)} ({best_total}) · {source}",
                 emphasis="success",
                 chips=(PanelChip(f"UPGRADE +{difference}", "#27824a"),),
             )
         if difference == 0:
             return PanelRow(
-                f"Same IV total as your {_display(member.species)} ({best_total})",
+                f"Same IV total as your {_display(species)} ({best_total}) · {source}",
                 emphasis="muted",
                 chips=(PanelChip("TIED", "#687064"),),
             )
         return PanelRow(
-            f"Your {_display(member.species)} is better ({best_total})",
+            f"Your {_display(species)} is better ({best_total}) · {source}",
             emphasis="muted",
             chips=(PanelChip(f"{difference} IVs", "#687064"),),
         )

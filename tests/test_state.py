@@ -1,9 +1,82 @@
 import unittest
 
-from game.state import NATURE_NAMES, SUBSTRUCT_ORDERS, decode_party
+from game.state import (
+    NATURE_NAMES,
+    SUBSTRUCT_ORDERS,
+    decode_box_pokemon,
+    decode_party,
+    decode_pokemon_storage,
+)
+
+
+def box_record(
+    species_id: int,
+    ivs: tuple[int, int, int, int, int, int],
+    *,
+    personality: int = 0,
+    ot_id: int = 0x12345678,
+) -> bytes:
+    logical = [bytearray(12) for _ in range(4)]
+    logical[0][0:2] = species_id.to_bytes(2, "little")
+    iv_word = sum(value << (index * 5) for index, value in enumerate(ivs))
+    logical[3][4:8] = iv_word.to_bytes(4, "little")
+    physical = [bytearray(12) for _ in range(4)]
+    for logical_index, physical_index in enumerate(
+        SUBSTRUCT_ORDERS[personality % 24]
+    ):
+        physical[physical_index] = logical[logical_index]
+    secure = b"".join(physical)
+    checksum = sum(
+        int.from_bytes(secure[offset : offset + 2], "little")
+        for offset in range(0, 48, 2)
+    ) & 0xFFFF
+    key = personality ^ ot_id
+    encrypted = b"".join(
+        (int.from_bytes(secure[offset : offset + 4], "little") ^ key).to_bytes(
+            4,
+            "little",
+        )
+        for offset in range(0, 48, 4)
+    )
+    raw = bytearray(80)
+    raw[0:4] = personality.to_bytes(4, "little")
+    raw[4:8] = ot_id.to_bytes(4, "little")
+    raw[0x1C:0x1E] = checksum.to_bytes(2, "little")
+    raw[0x20:0x50] = encrypted
+    return bytes(raw)
 
 
 class PokemonStateTests(unittest.TestCase):
+    def test_box_decoder_exposes_ivs(self) -> None:
+        member = decode_box_pokemon(
+            box_record(25, (31, 30, 29, 28, 27, 26)),
+            {25: "SPECIES_PIKACHU"},
+        )
+
+        self.assertIsNotNone(member)
+        assert member is not None
+        self.assertEqual(member.ivs, (31, 30, 29, 28, 27, 26))
+
+    def test_storage_decoder_tracks_box_and_slot_and_skips_bad_checksums(self) -> None:
+        storage = bytearray(2 * 30 * 80)
+        storage[(30 + 2) * 80 : (30 + 3) * 80] = box_record(
+            25,
+            (1, 2, 3, 4, 5, 6),
+        )
+        corrupt = bytearray(box_record(25, (31,) * 6))
+        corrupt[0x1C] ^= 0xFF
+        storage[5 * 80 : 6 * 80] = corrupt
+
+        decoded = decode_pokemon_storage(
+            bytes(storage),
+            {25: "SPECIES_PIKACHU"},
+            box_count=2,
+        )
+
+        self.assertEqual(len(decoded), 1)
+        self.assertEqual((decoded[0].box, decoded[0].slot), (2, 3))
+        self.assertEqual(decoded[0].pokemon.ivs, (1, 2, 3, 4, 5, 6))
+
     def test_decodes_all_encrypted_substructures_in_personality_order(self) -> None:
         personality = 23
         ot_id = 0x12345678

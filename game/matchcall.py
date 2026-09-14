@@ -52,9 +52,15 @@ class MatchCallDashboard:
             rows,
             preview_limit=3,
             actions=(
-                PanelAction("OPEN MATCH CALL", "Ready Rematches", details),
+                PanelAction(
+                    "OPEN MATCH CALL",
+                    "Ready Rematches",
+                    details,
+                    key="match-call-details",
+                ),
             ),
             priority=42,
             role="goals",
             compact_rows=(PanelRow(f"{len(ready)} rematches ready"),),
+            key="match-call",
         )

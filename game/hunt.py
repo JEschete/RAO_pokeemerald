@@ -39,6 +39,13 @@ class HuntTracker:
         self.session = {}
         self._active = None
 
+    def reset_session(self) -> None:
+        self.identity = ""
+        self.path = None
+        self.lifetime = {}
+        self.session = {}
+        self._active = None
+
     # --- battle lifecycle -------------------------------------------------
 
     def battle_started(

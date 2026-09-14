@@ -131,10 +131,18 @@ class DaycareDashboard:
         return PanelSection(
             "Daycare & eggs",
             rows,
-            actions=(PanelAction("OPEN DAYCARE", "Daycare and Breeding", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN DAYCARE",
+                    "Daycare and Breeding",
+                    tuple(details),
+                    key="daycare-details",
+                ),
+            ),
             priority=35,
             role="goals",
             compact_rows=(rows[0],),
+            key="daycare",
         )
 
     def _compatibility(self, first: BoxPokemonState, second: BoxPokemonState) -> int:

@@ -144,10 +144,18 @@ class EmeraldPresenter:
             f"Party · {len(party)}",
             rows,
             preview_limit=3,
-            actions=(PanelAction("OPEN PARTY", "Pokemon Emerald Party", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN PARTY",
+                    "Pokemon Emerald Party",
+                    tuple(details),
+                    key="party-details",
+                ),
+            ),
             priority=10,
             role="party",
             compact_rows=(PanelRow(f"{len(party)} Pokémon · {sum(member.hp > 0 for member in party)} able"),),
+            key="party",
         )
 
     def contest_section(
@@ -190,9 +198,17 @@ class EmeraldPresenter:
         return PanelSection(
             "Contests & ribbons",
             (PanelRow(f"Ribbons {total_ribbons} · Pokéblocks {len(pokeblocks)}/40"),),
-            actions=(PanelAction("OPEN CONTEST DETAILS", "Contest and Ribbon Progress", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN CONTEST DETAILS",
+                    "Contest and Ribbon Progress",
+                    tuple(details),
+                    key="contest-details",
+                ),
+            ),
             priority=40,
             role="goals",
+            key="contests",
         )
 
     def battle_reward_section(
@@ -241,6 +257,7 @@ class EmeraldPresenter:
             priority=5,
             role="urgent",
             compact_rows=tuple(rows[:2]),
+            key="battle-rewards",
         )
 
     def opponent_team_section(
@@ -283,11 +300,17 @@ class EmeraldPresenter:
             rows,
             preview_limit=3,
             actions=(
-                PanelAction("OPEN OPPONENT TEAM", "Opponent Team", tuple(details)),
+                PanelAction(
+                    "OPEN OPPONENT TEAM",
+                    "Opponent Team",
+                    tuple(details),
+                    key="opponent-team-details",
+                ),
             ),
             priority=4,
             role="urgent",
             compact_rows=(PanelRow(f"{len(opponents)} Pokémon loaded"),),
+            key="opponent-team",
         )
 
     def battle_advice_section(
@@ -395,6 +418,7 @@ class EmeraldPresenter:
             priority=2,
             role="urgent",
             compact_rows=tuple(rows[:2]),
+            key="battle-advice",
         )
 
     def _worst_threat(

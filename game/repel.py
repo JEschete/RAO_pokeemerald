@@ -121,4 +121,5 @@ def repel_section(
         priority=16 if repel_steps else 34,
         role="area",
         compact_rows=(rows[0],),
+        key="repel-planner",
     )

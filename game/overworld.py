@@ -123,6 +123,7 @@ class OverworldPresenter:
                     alert=True,
                     priority=0,
                     role="urgent",
+                    key="missable",
                 )
         trick_house = TRICK_HOUSE_MISSABLES.get(map_name)
         if trick_house is not None:
@@ -153,6 +154,7 @@ class OverworldPresenter:
                         alert=True,
                         priority=0,
                         role="urgent",
+                        key="missable",
                     )
         return None
 
@@ -186,7 +188,11 @@ class OverworldPresenter:
         if not pending:
             return None
         return PanelSection(
-            "RA nearby", tuple(pending[:3]), priority=12, role="goals"
+            "RA nearby",
+            tuple(pending[:3]),
+            priority=12,
+            role="goals",
+            key="nearby-achievements",
         )
 
     def achievement_section(self) -> PanelSection | None:
@@ -214,6 +220,7 @@ class OverworldPresenter:
             priority=45,
             role="goals",
             compact_rows=tuple(rows[:1]),
+            key="retroachievements",
         )
 
     def roamer_section(
@@ -243,6 +250,7 @@ class OverworldPresenter:
             ),
             priority=1,
             role="urgent",
+            key="roamer",
         )
 
     def collection_section(
@@ -296,11 +304,17 @@ class OverworldPresenter:
                 ),
             ),
             actions=(
-                PanelAction("OPEN COLLECTION DETAILS", "Emerald Collections", details),
+                PanelAction(
+                    "OPEN COLLECTION DETAILS",
+                    "Emerald Collections",
+                    details,
+                    key="collection-details",
+                ),
             ),
             priority=50,
             role="goals",
             compact_rows=(PanelRow(f"HMs {hm_count}/8 · Berries {berry_count}/46"),),
+            key="collections",
         )
 
     @property
@@ -347,11 +361,15 @@ class OverworldPresenter:
             ),
             actions=(
                 PanelAction(
-                    "OPEN FEEBAS TILES", "Route 119 Feebas Tiles", details
+                    "OPEN FEEBAS TILES",
+                    "Route 119 Feebas Tiles",
+                    details,
+                    key="feebas-tiles",
                 ),
             ),
             priority=3 if active else 35,
             role="urgent" if active else "goals",
+            key="feebas",
         )
 
     def poc_section(
@@ -392,6 +410,7 @@ class OverworldPresenter:
                         caught_flags, event_flags, encounter, location, party
                     ),
                     compact=True,
+                    key="poc-details",
                 ),
                 PanelAction(
                     "OPEN ACQUISITION PLAN",
@@ -402,11 +421,13 @@ class OverworldPresenter:
                         encounter["map"] if encounter is not None else "",
                         self.flag_is_set,
                     ),
+                    key="acquisition-plan",
                 ),
             ),
             priority=5,
             role="goals",
             compact_rows=(PanelRow(text),),
+            key="professor-oak-challenge",
         )
 
     def _poc_detail_rows(
@@ -473,7 +494,10 @@ class OverworldPresenter:
             ]
             sections.append(
                 self._checklist_section(
-                    "Route trainers", len(trainer_groups), missing
+                    "Route trainers",
+                    len(trainer_groups),
+                    missing,
+                    "route-trainers",
                 )
             )
         map_item_locations = self._item_locations.get(map_name, ())
@@ -496,6 +520,7 @@ class OverworldPresenter:
                     f"Route items · You ({player_x},{player_y})",
                     len(map_item_locations),
                     [text for _, text in missing],
+                    "route-items",
                 )
             )
         elif item_flags:
@@ -505,7 +530,12 @@ class OverworldPresenter:
                 if not self.flag_is_set(flags, flag_id)
             ]
             sections.append(
-                self._checklist_section("Route items", len(item_flags), missing)
+                self._checklist_section(
+                    "Route items",
+                    len(item_flags),
+                    missing,
+                    "route-items",
+                )
             )
         missing_objectives = [
             name
@@ -519,6 +549,7 @@ class OverworldPresenter:
                     tuple(PanelRow(name) for name in missing_objectives),
                     3,
                     role="area",
+                    key="nearby-objectives",
                 )
             )
         ready_rematches = [
@@ -535,6 +566,7 @@ class OverworldPresenter:
                     tuple(PanelRow(name) for name in ready_rematches),
                     3,
                     role="area",
+                    key="rematches-ready",
                 )
             )
         return tuple(sections)
@@ -740,6 +772,7 @@ class OverworldPresenter:
     def encounter_section(
         self,
         title: str,
+        key: str,
         field_name: str,
         encounter: dict[str, Any],
         caught_flags: bytes,
@@ -765,6 +798,7 @@ class OverworldPresenter:
             rows,
             role="area",
             compact_rows=(PanelRow(f"{len(rows)} species"),),
+            key=key,
         )
 
     def is_caught(self, species: str, caught_flags: bytes) -> bool:
@@ -818,7 +852,10 @@ class OverworldPresenter:
 
     @staticmethod
     def _checklist_section(
-        title: str, total: int, missing: list[str]
+        title: str,
+        total: int,
+        missing: list[str],
+        key: str,
     ) -> PanelSection:
         rows = [PanelRow(f"{total - len(missing)}/{total} complete")]
         rows.extend(PanelRow(name, False) for name in missing)
@@ -828,4 +865,5 @@ class OverworldPresenter:
             4,
             role="area",
             compact_rows=(rows[0],),
+            key=key,
         )

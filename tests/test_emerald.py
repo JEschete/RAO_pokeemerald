@@ -32,6 +32,10 @@ from game.adapter import (
     POKEBLOCKS_OFFSET,
     POKEBLOCKS_SIZE,
     POKEMON_SIZE,
+    POKEMON_STORAGE_BOX_COUNT,
+    POKEMON_STORAGE_POINTER_ADDRESS,
+    POKEMON_STORAGE_SIZE,
+    POKEMON_STORAGE_SLOTS_PER_BOX,
     SAVE_BLOCK_1_POINTER,
     SAVE_BLOCK_2_POINTER,
     SECURITY_KEY_OFFSET,
@@ -55,7 +59,9 @@ from game.rtc_events import (
 )
 from game.daycare import DAYCARE_OFFSET, DAYCARE_SIZE
 from game.frontier import FRONTIER_OFFSET, FRONTIER_SIZE
+from game.achievements import ACHIEVEMENT_TITLES
 from game.battle_view import BATTLE_TYPE_BATTLE_TOWER, BATTLE_TYPE_SAFARI
+from retroarch_overlay.core.retroachievements import RAProgress
 from retroarch_overlay.models import RetroArchStatus
 
 
@@ -86,6 +92,7 @@ class FakeMemory:
         party: bytes = b"",
         player_trainer_id: int = 0x12345678,
         enemy_party: bytes = b"",
+        pokemon_storage: bytes | None = None,
     ):
         self.save_block_1 = 0x02010000
         self.save_block_2 = 0x02020000
@@ -111,6 +118,11 @@ class FakeMemory:
         self.party = party
         self.player_trainer_id = player_trainer_id
         self.enemy_party = enemy_party
+        self.pokemon_storage = pokemon_storage
+        self.pokemon_storage_pointer = (
+            0x02028000 if pokemon_storage is not None else 0
+        )
+        self.storage_reads = 0
         self.pokeblocks = bytes(POKEBLOCKS_SIZE)
         self.berry_trees = bytes(BERRY_TREES_SIZE)
         self.outbreak = bytes(OUTBREAK_SIZE)
@@ -152,6 +164,17 @@ class FakeMemory:
             )
         if (address, size) == (SAVE_BLOCK_2_POINTER, 4):
             return self.save_block_2.to_bytes(4, "little")
+        if (address, size) == (POKEMON_STORAGE_POINTER_ADDRESS, 4):
+            return self.pokemon_storage_pointer.to_bytes(4, "little")
+        storage_start = self.pokemon_storage_pointer + 1
+        if (
+            self.pokemon_storage is not None
+            and storage_start <= address
+            and address + size <= storage_start + len(self.pokemon_storage)
+        ):
+            self.storage_reads += 1
+            offset = address - storage_start
+            return self.pokemon_storage[offset : offset + size]
         if (address, size) == (self.save_block_2 + 0x0A, 4):
             return self.player_trainer_id.to_bytes(4, "little")
         if (address, size) == (BATTLERS_COUNT_ADDRESS, 2):
@@ -221,6 +244,27 @@ class FakeMemory:
         raise AssertionError(f"Unexpected read: 0x{address:08X}, {size}")
 
 
+class RelocatingMemory(FakeMemory):
+    def __init__(self, map_group: int, map_number: int) -> None:
+        super().__init__(
+            map_group,
+            map_number,
+            player_trainer_id=0x11111111,
+        )
+        self._save_block_1_reads = 0
+        self._replacement_trainer_id = 0x22222222
+
+    def read_memory(self, address: int, size: int) -> bytes:
+        if (address, size) == (SAVE_BLOCK_1_POINTER, 4):
+            self._save_block_1_reads += 1
+            if self._save_block_1_reads > 1:
+                self.save_block_1 = 0x02011000
+                self.save_block_2 = 0x02021000
+                self.player_trainer_id = self._replacement_trainer_id
+            return self.save_block_1.to_bytes(4, "little")
+        return super().read_memory(address, size)
+
+
 @requires_pokeemerald
 class EmeraldAdapterTests(unittest.TestCase):
     @classmethod
@@ -261,6 +305,7 @@ class EmeraldAdapterTests(unittest.TestCase):
         moves: tuple[int, ...] = (),
         held_item: int = 0,
         ot_id: int = 0x12345678,
+        ivs: tuple[int, int, int, int, int, int] = (0, 0, 0, 0, 0, 0),
     ) -> bytes:
         personality = 0
         secure = bytearray(48)
@@ -271,6 +316,10 @@ class EmeraldAdapterTests(unittest.TestCase):
         for index, move_id in enumerate(moves[:4]):
             offset = 12 + index * 2
             secure[offset : offset + 2] = move_id.to_bytes(2, "little")
+        iv_word = sum(
+            value << (index * 5) for index, value in enumerate(ivs)
+        )
+        secure[40:44] = iv_word.to_bytes(4, "little")
         checksum = sum(
             int.from_bytes(secure[offset : offset + 2], "little")
             for offset in range(0, len(secure), 2)
@@ -325,6 +374,35 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertEqual(snapshot.location, "Waiting for game/save")
         self.assertEqual(snapshot.sections[0].rows[0].text, "Load or continue a save")
         self.assertTrue(snapshot.supports_caught_filter)
+
+    def test_title_screen_resets_prior_session_observations(self) -> None:
+        adapter = EmeraldAdapter(POKEEMERALD_ROOT)
+        map_group, map_number = adapter.map_ids["MAP_ROUTE101"]
+        adapter.snapshot(FakeMemory(map_group, map_number))
+        adapter._hunt_tracker.session["SPECIES_ZIGZAGOON"] = 4
+        adapter._battle_tracker.participants.add(0)
+        adapter._world_cache_key = (b"cached", b"world")
+        title = FakeMemory(0, 0)
+        title.save_block_1 = 0
+
+        adapter.snapshot(title)
+
+        self.assertEqual(adapter._hunt_tracker.session, {})
+        self.assertEqual(adapter._hunt_tracker.identity, "")
+        self.assertEqual(adapter._battle_tracker.participants, set())
+        self.assertEqual(adapter._world_cache_key, ())
+        self.assertEqual(adapter._current_party, ())
+
+    def test_relocated_save_blocks_reselect_the_authoritative_trainer_id(self) -> None:
+        map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
+        adapter = EmeraldAdapter(POKEEMERALD_ROOT)
+
+        adapter.snapshot(RelocatingMemory(map_group, map_number))
+
+        self.assertEqual(adapter._player_trainer_id, 0x22222222)
+        self.assertEqual(adapter._hunt_tracker.identity, "22222222")
+        self.assertEqual(adapter._training_tracker.identity, "22222222")
+        self.assertEqual(adapter._journal.identity, "22222222")
 
     def test_interior_without_encounters_has_a_location_name(self) -> None:
         snapshot = self.adapter.snapshot(FakeMemory(1, 2))
@@ -528,6 +606,47 @@ class EmeraldAdapterTests(unittest.TestCase):
                 {"route-exp-00000001.json", "route-exp-00000002.json"},
             )
 
+    def test_content_lifecycle_resets_session_state_and_reloads_durable_history(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            state_directory = Path(directory)
+            adapter = EmeraldAdapter(
+                POKEEMERALD_ROOT,
+                state_directory=state_directory,
+            )
+            game_memory = FakeMemory(
+                *adapter.map_ids["MAP_ROUTE119"],
+                feebas_position=bytes(9),
+            )
+            adapter.snapshot(game_memory)
+            adapter._hunt_tracker.session["SPECIES_ZIGZAGOON"] = 3
+            adapter._battle_tracker.participants.add(0)
+            adapter._world_cache_key = (b"cached", b"world")
+            adapter._world_cache = ("stale",)
+
+            adapter.deactivate()
+
+            self.assertEqual(adapter._current_party, ())
+            self.assertEqual(adapter._world_cache_key, ())
+            self.assertEqual(adapter._world_cache, ())
+            self.assertEqual(adapter._battle_tracker.participants, set())
+            self.assertEqual(adapter._hunt_tracker.session, {})
+            self.assertEqual(adapter._hunt_tracker.identity, "")
+            self.assertEqual(adapter._training_tracker.identity, "")
+            self.assertEqual(adapter._journal.identity, "")
+
+            adapter.activate(("mgba", "Pokemon Emerald", "rom-hash"))
+            snapshot = adapter.snapshot(FakeMemory(1, 2))
+            text = "\n".join(
+                row.text
+                for section in snapshot.sections
+                for row in section.rows
+            )
+            self.assertNotIn("3 this session", text)
+            self.assertEqual(adapter._player_trainer_id, 0x12345678)
+            self.assertTrue(adapter._training_tracker.areas)
+
     def test_route_completion_is_derived_from_decomp_flags(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE104"]
         snapshot = self.adapter.snapshot(
@@ -672,6 +791,38 @@ class EmeraldAdapterTests(unittest.TestCase):
         self.assertIn("Poké Ball x5", catch.rows[1].text)
         self.assertEqual(catch.rows[1].progress, catch.rows[1].progress)
         self.assertIsNotNone(catch.rows[1].progress)
+
+    def test_wild_iv_comparison_includes_all_boxes_once_per_encounter(self) -> None:
+        adapter = EmeraldAdapter(POKEEMERALD_ROOT)
+        map_group, map_number = adapter.map_ids["MAP_ROUTE101"]
+        storage = bytearray(POKEMON_STORAGE_SIZE)
+        box_slot = POKEMON_STORAGE_SLOTS_PER_BOX + 2
+        storage[box_slot * 0x50 : (box_slot + 1) * 0x50] = adapter_test_mon = (
+            self._party_mon(
+                "SPECIES_LINOONE",
+                30,
+                20_000,
+                ivs=(31,) * 6,
+            )[:0x50]
+        )
+        self.assertEqual(len(adapter_test_mon), 0x50)
+        memory = FakeMemory(
+            map_group,
+            map_number,
+            battle_mons=self._wild_battle_mons(),
+            pokemon_storage=bytes(storage),
+        )
+
+        first = adapter.snapshot(memory)
+        second = adapter.snapshot(memory)
+        verdict = next(
+            section for section in first.sections if section.key == "wild-ivs"
+        ).rows[-1]
+
+        self.assertIn("Linoone is better", verdict.text)
+        self.assertIn("Box 2, slot 3", verdict.text)
+        self.assertEqual(memory.storage_reads, POKEMON_STORAGE_BOX_COUNT)
+        self.assertEqual(first, second)
 
     def test_frontier_battle_omits_rewards_the_game_does_not_grant(self) -> None:
         map_group, map_number = self.adapter.map_ids["MAP_ROUTE101"]
@@ -826,6 +977,36 @@ class EmeraldAdapterTests(unittest.TestCase):
         snapshot = self.adapter.snapshot(FakeMemory(map_group, map_number))
         section = next(section for section in snapshot.sections if section.title == "RA nearby")
         self.assertEqual(section.rows[0].text, "Let's Have a Quick Battle!")
+
+    def test_account_progress_is_presented_with_stable_identity(self) -> None:
+        achievement_id = next(iter(ACHIEVEMENT_TITLES))
+        adapter = EmeraldAdapter(
+            POKEEMERALD_ROOT,
+            RAProgress("EmeraldTester", frozenset({achievement_id})),
+        )
+        map_group, map_number = adapter.map_ids["MAP_ROUTE101"]
+
+        snapshot = adapter.snapshot(FakeMemory(map_group, map_number))
+        section = next(
+            value for value in snapshot.sections if value.key == "retroachievements"
+        )
+
+        self.assertIn("EmeraldTester", section.rows[0].text)
+        self.assertIn("1/", section.rows[0].text)
+
+    def test_account_progress_failure_message_remains_actionable(self) -> None:
+        adapter = EmeraldAdapter(
+            POKEEMERALD_ROOT,
+            RAProgress("", frozenset(), "RetroAchievements is unavailable"),
+        )
+        map_group, map_number = adapter.map_ids["MAP_ROUTE101"]
+
+        snapshot = adapter.snapshot(FakeMemory(map_group, map_number))
+        section = next(
+            value for value in snapshot.sections if value.key == "retroachievements"
+        )
+
+        self.assertEqual(section.rows[0].text, "RetroAchievements is unavailable")
 
     def test_gym_missable_alert_is_first_and_strong(self) -> None:
         map_group, map_number = next(

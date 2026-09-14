@@ -107,6 +107,14 @@ class BoxPokemonState:
     friendship: int
     is_egg: bool
     ability_slot: int
+    ivs: tuple[int, int, int, int, int, int] = (0, 0, 0, 0, 0, 0)
+
+
+@dataclass(frozen=True, slots=True)
+class StoredPokemonState:
+    box: int
+    slot: int
+    pokemon: BoxPokemonState
 
 
 def decode_party(
@@ -177,7 +185,39 @@ def decode_box_pokemon(
         growth[9],
         bool((iv_word >> 30) & 1),
         (iv_word >> 31) & 1,
+        tuple((iv_word >> (index * 5)) & 0x1F for index in range(6)),
     )
+
+
+def decode_pokemon_storage(
+    data: bytes,
+    species_by_id: dict[int, str],
+    *,
+    box_count: int = 14,
+    slots_per_box: int = 30,
+) -> tuple[StoredPokemonState, ...]:
+    record_size = 0x50
+    expected = box_count * slots_per_box * record_size
+    if len(data) != expected:
+        raise InvalidPokemonData(
+            f"Expected {expected} Pokemon storage bytes, received {len(data)}"
+        )
+    result = []
+    for index in range(box_count * slots_per_box):
+        offset = index * record_size
+        pokemon = decode_box_pokemon(
+            data[offset : offset + record_size],
+            species_by_id,
+        )
+        if pokemon is not None:
+            result.append(
+                StoredPokemonState(
+                    box=index // slots_per_box + 1,
+                    slot=index % slots_per_box + 1,
+                    pokemon=pokemon,
+                )
+            )
+    return tuple(result)
 
 
 def decode_pokemon(

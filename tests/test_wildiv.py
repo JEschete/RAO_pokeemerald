@@ -2,6 +2,7 @@ import unittest
 from dataclasses import replace
 
 from game.wildiv import WildScout, build_family_map
+from game.state import BoxPokemonState, StoredPokemonState
 from tests.test_hunt import party_member, wild
 
 EVOLUTIONS = {
@@ -63,7 +64,31 @@ class WildScoutTests(unittest.TestCase):
         verdict = self.scout.section(
             opponent, (party_member("SPECIES_ZIGZAGOON", 7),)
         ).rows[-1]
-        self.assertIn("No party member", verdict.text)
+        self.assertIn("No party or boxed", verdict.text)
+
+    def test_boxed_family_member_participates_in_comparison(self) -> None:
+        opponent = replace(wild("SPECIES_RALTS", 42, 20), ivs=(20,) * 6)
+        boxed = StoredPokemonState(
+            4,
+            9,
+            BoxPokemonState(
+                282,
+                "SPECIES_GARDEVOIR",
+                1,
+                2,
+                1000,
+                0,
+                70,
+                False,
+                0,
+                (31,) * 6,
+            ),
+        )
+
+        verdict = self.scout.section(opponent, (), (boxed,)).rows[-1]
+
+        self.assertIn("Gardevoir is better", verdict.text)
+        self.assertIn("Box 4, slot 9", verdict.text)
 
 
 if __name__ == "__main__":

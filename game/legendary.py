@@ -83,10 +83,18 @@ class LegendaryDashboard:
         return PanelSection(
             "Vanilla legendaries",
             (PanelRow(f"Caught {caught_count}/7 · no event-ticket species"),),
-            actions=(PanelAction("OPEN LEGENDARY DASHBOARD", "Vanilla Legendary Dashboard", tuple(rows)),),
+            actions=(
+                PanelAction(
+                    "OPEN LEGENDARY DASHBOARD",
+                    "Vanilla Legendary Dashboard",
+                    tuple(rows),
+                    key="legendary-details",
+                ),
+            ),
             priority=25,
             role="goals",
             compact_rows=(PanelRow(f"Legendaries {caught_count}/7"),),
+            key="legendaries",
         )
 
     def _flag(self, flags: bytes, name: str) -> bool:

@@ -132,6 +132,7 @@ class EmeraldAdapter:
         map_catalog: EmeraldMapCatalog | None = None,
         map_document: MapDocument | None = None,
         icon_renderer=None,
+        icon_cache_directory: Path | None = None,
     ) -> None:
         self._validate_decomp_root(pokeemerald_root)
         self._account_progress = account_progress
@@ -272,7 +273,9 @@ class EmeraldAdapter:
         )
         self._variable_ids = variable_ids
         self._icon_cache = SpeciesIconCache(
-            pokeemerald_root, state_directory, icon_renderer
+            pokeemerald_root,
+            icon_cache_directory or state_directory,
+            icon_renderer,
         )
         self._presenter = EmeraldPresenter(
             self._species_info,
@@ -349,6 +352,26 @@ class EmeraldAdapter:
             poc_planner=self._poc_planner,
         )
 
+    def activate(self, _content_key: tuple[str, str, str]) -> None:
+        self.reset_session()
+
+    def deactivate(self) -> None:
+        self.reset_session()
+
+    def reset_session(self) -> None:
+        self._world_cache_key = ()
+        self._world_cache = ()
+        self._battle_tracker.end()
+        self._battle_builder.reset_session()
+        self._training_tracker.reset_session()
+        self._hunt_tracker.reset_session()
+        self._journal.reset_session()
+        self._event_detector.reset_session()
+        self._pickup_watcher.reset_session()
+        self._training_cache_path = None
+        self._player_trainer_id = 0
+        self._current_party = ()
+
     def supports(
         self, status: RetroArchStatus, content_hash: str | None = None
     ) -> bool:
@@ -364,10 +387,18 @@ class EmeraldAdapter:
             memory.read_memory(SAVE_BLOCK_1_POINTER, 4), "little"
         )
         if pointer == 0:
+            self.reset_session()
             return OverlaySnapshot(
                 self.name,
                 "Waiting for game/save",
-                (PanelSection("Status", (PanelRow("Load or continue a save"),)),),
+                (
+                    PanelSection(
+                        "Status",
+                        (PanelRow("Load or continue a save"),),
+                        role="goals",
+                        key="status",
+                    ),
+                ),
                 supports_caught_filter=True,
                 display_spec=self.DISPLAY_SPEC,
             )
@@ -377,13 +408,7 @@ class EmeraldAdapter:
             )
         save_block_2 = self._save_block_2_pointer(memory)
         pointers = SavePointers(pointer, save_block_2)
-        self._player_trainer_id = int.from_bytes(
-            memory.read_memory(save_block_2 + 0x0A, 4), "little"
-        )
-        self._training_tracker.select_playthrough(self._player_trainer_id)
-        self._hunt_tracker.select_playthrough(self._player_trainer_id)
-        self._journal.select_playthrough(self._player_trainer_id)
-        self._training_cache_path = self._training_tracker.path
+        self._select_player_context(memory, save_block_2)
         result = self._snapshot(memory, pointer, save_block_2)
         try:
             verify_save_pointers(memory, pointers)
@@ -398,9 +423,24 @@ class EmeraldAdapter:
                 raise
             save_block_2 = self._save_block_2_pointer(memory)
             pointers = SavePointers(pointer, save_block_2)
+            self._select_player_context(memory, save_block_2)
             result = self._snapshot(memory, pointer, save_block_2)
             verify_save_pointers(memory, pointers)
         return result
+
+    def _select_player_context(
+        self,
+        memory: MemoryReader,
+        save_block_2: int,
+    ) -> None:
+        trainer_id = memory.read_memory(save_block_2 + 0x0A, 4)
+        if len(trainer_id) != 4:
+            raise RetroArchError("Emerald Trainer ID read was incomplete")
+        self._player_trainer_id = int.from_bytes(trainer_id, "little")
+        self._training_tracker.select_playthrough(self._player_trainer_id)
+        self._hunt_tracker.select_playthrough(self._player_trainer_id)
+        self._journal.select_playthrough(self._player_trainer_id)
+        self._training_cache_path = self._training_tracker.path
 
     def _snapshot(
         self, memory: MemoryReader, save_block_1: int, save_block_2: int
@@ -467,15 +507,16 @@ class EmeraldAdapter:
             party_error,
         )
         if encounter is not None:
-            for field_name, title in (
-                ("land_mons", "Land"),
-                ("water_mons", "Water"),
-                ("rock_smash_mons", "Rock Smash"),
+            for field_name, title, section_key in (
+                ("land_mons", "Land", "encounters-land"),
+                ("water_mons", "Water", "encounters-water"),
+                ("rock_smash_mons", "Rock Smash", "encounters-rock-smash"),
             ):
                 if field_name in encounter:
                     sections.append(
                         self._overworld.encounter_section(
                             title,
+                            section_key,
                             field_name,
                             encounter[field_name],
                             caught_flags,
@@ -488,6 +529,7 @@ class EmeraldAdapter:
                     sections.append(
                         self._overworld.encounter_section(
                             _display_constant(rod_name.upper(), ""),
+                            f"encounters-{rod_name.casefold().replace('_', '-')}",
                             "fishing_mons",
                             fishing,
                             caught_flags,
@@ -495,9 +537,10 @@ class EmeraldAdapter:
                         )
                     )
             location = _display_constant(encounter["map"], "MAP_")
-        for title, builder in (
+        for title, section_key, builder in (
             (
                 "Repel planner",
+            "repel-planner",
                 lambda: repel_section(
                     self._field_definitions,
                     encounter,
@@ -508,15 +551,16 @@ class EmeraldAdapter:
                 if encounter is not None
                 else None,
             ),
-            ("Hunt stats", lambda: self._hunt_section(encounter)),
+            ("Hunt stats", "hunt-stats", lambda: self._hunt_section(encounter)),
             (
                 "Pickup",
+                "pickup",
                 lambda: self._pickup_watcher.section(self._current_party),
             ),
-            ("Match Call", lambda: self._matchcall.section(rematches)),
-            ("Journal", self._journal.section),
+            ("Match Call", "match-call", lambda: self._matchcall.section(rematches)),
+            ("Journal", "journal", self._journal.section),
         ):
-            section = self._safe_optional_section(title, builder)
+            section = self._safe_optional_section(title, section_key, builder)
             if section is not None:
                 sections.append(section)
         sections.append(
@@ -695,11 +739,16 @@ class EmeraldAdapter:
         party_error: str,
     ) -> tuple[PanelSection, ...]:
         builders: tuple[
-            tuple[str, Callable[[], PanelSection | None]], ...
+            tuple[str, str, Callable[[], PanelSection | None]], ...
         ] = (
-            ("Navigator", lambda: self._navigator.section(map_name, event_flags)),
+            (
+                "Navigator",
+                "navigator",
+                lambda: self._navigator.section(map_name, event_flags),
+            ),
             (
                 "Vanilla legendaries",
+                "legendaries",
                 lambda: self._legendary_dashboard.section(
                     event_flags,
                     caught_flags,
@@ -710,6 +759,7 @@ class EmeraldAdapter:
             ),
             (
                 "World events",
+                "world-events",
                 lambda: self._rtc_dashboard.section(
                     memory,
                     save_block_1,
@@ -720,6 +770,7 @@ class EmeraldAdapter:
             ),
             (
                 "Daycare & eggs",
+                "daycare",
                 lambda: self._daycare_dashboard.section(
                     memory,
                     save_block_1,
@@ -729,6 +780,7 @@ class EmeraldAdapter:
             ),
             (
                 "Battle Frontier",
+                "frontier",
                 lambda: self._frontier_dashboard.section(
                     memory,
                     save_block_1,
@@ -738,8 +790,8 @@ class EmeraldAdapter:
             ),
         )
         sections = []
-        for title, builder in builders:
-            section = self._safe_optional_section(title, builder)
+        for title, section_key, builder in builders:
+            section = self._safe_optional_section(title, section_key, builder)
             if section is not None:
                 sections.append(section)
         if party_error:
@@ -749,6 +801,7 @@ class EmeraldAdapter:
                     (PanelRow(party_error),),
                     priority=90,
                     role="party",
+                    key="party",
                 )
             )
         else:
@@ -771,6 +824,7 @@ class EmeraldAdapter:
                         (PanelRow(str(error)),),
                         priority=90,
                         role="party",
+                        key="party",
                     )
                 )
         return tuple(sections)
@@ -827,6 +881,7 @@ class EmeraldAdapter:
             priority=18,
             role="area",
             compact_rows=(PanelRow(f"{total} wild battles this session"),),
+            key="hunt-stats",
         )
 
     def _read_party_safely(self, memory: MemoryReader) -> str:
@@ -875,7 +930,9 @@ class EmeraldAdapter:
 
     @staticmethod
     def _safe_optional_section(
-        title: str, builder: Callable[[], PanelSection | None]
+        title: str,
+        key: str,
+        builder: Callable[[], PanelSection | None],
     ) -> PanelSection | None:
         try:
             return builder()
@@ -893,6 +950,7 @@ class EmeraldAdapter:
                 (PanelRow(str(error)),),
                 priority=95,
                 role="goals",
+                key=key,
             )
 
     @classmethod

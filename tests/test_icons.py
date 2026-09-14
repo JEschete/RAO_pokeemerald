@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from game.icons import SpeciesIconCache
 
@@ -96,6 +97,29 @@ class SpeciesIconCacheTests(unittest.TestCase):
         self.assertEqual(without_state.path_for("SPECIES_TREECKO"), "")
         self.assertEqual(self.renderer.calls, [])
 
+    def test_cache_evicts_the_least_recent_species(self) -> None:
+        self.cache = SpeciesIconCache(
+            Path(self._decomp.name),
+            Path(self._state.name),
+            self.renderer,
+            maximum_entries=1,
+        )
+
+        self.cache.path_for("SPECIES_TREECKO")
+        self.cache.path_for("SPECIES_UNOWN")
+
+        self.assertEqual(self.cache.keys, ("SPECIES_UNOWN",))
+        self.assertEqual(self.cache.size, 1)
+
+    def test_cache_rejects_nonpositive_bounds(self) -> None:
+        with self.assertRaisesRegex(ValueError, "cache size must be positive"):
+            SpeciesIconCache(
+                Path(self._decomp.name),
+                Path(self._state.name),
+                self.renderer,
+                maximum_entries=0,
+            )
+
 
 @requires_pokeemerald
 class IconRendererTests(unittest.TestCase):
@@ -121,6 +145,36 @@ class IconRendererTests(unittest.TestCase):
                     if icon.getpixel((x, y))[3]
                 }
                 self.assertIn(ICON_SIZE - 1, opaque_rows)
+
+    def test_failed_icon_write_leaves_no_cached_file(self) -> None:
+        from PIL import Image
+
+        from icon_renderer import render_icon
+
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory) / "icons" / "treecko.png"
+
+            def fail_after_partial_write(
+                _image: Image.Image,
+                path: Path,
+                **_kwargs,
+            ) -> None:
+                Path(path).write_bytes(b"partial")
+                raise OSError("render interrupted")
+
+            with patch.object(Image.Image, "save", fail_after_partial_write):
+                with self.assertRaisesRegex(OSError, "render interrupted"):
+                    render_icon(
+                        POKEEMERALD_ROOT
+                        / "graphics"
+                        / "pokemon"
+                        / "treecko"
+                        / "icon.png",
+                        target,
+                    )
+
+            self.assertFalse(target.exists())
+            self.assertEqual(tuple(target.parent.iterdir()), ())
 
 
 if __name__ == "__main__":

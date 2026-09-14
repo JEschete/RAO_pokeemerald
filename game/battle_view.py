@@ -21,7 +21,14 @@ from .presenter import (
     status_chips,
     type_chip,
 )
-from .state import BattlePokemonState, PokemonState, decode_battle_pokemon, decode_party
+from .state import (
+    BattlePokemonState,
+    PokemonState,
+    StoredPokemonState,
+    decode_battle_pokemon,
+    decode_party,
+    decode_pokemon_storage,
+)
 from .tracker import BattleParticipationTracker
 from .wildiv import WildScout
 
@@ -71,6 +78,15 @@ ENEMY_PARTY_COUNT_ADDRESS = 0x020244EA
 ENEMY_PARTY_ADDRESS = 0x02024744
 POKEMON_SIZE = 0x64
 PARTY_SIZE = 6
+POKEMON_STORAGE_POINTER_ADDRESS = 0x03005D94
+POKEMON_STORAGE_BOXES_OFFSET = 1
+POKEMON_STORAGE_BOX_COUNT = 14
+POKEMON_STORAGE_SLOTS_PER_BOX = 30
+POKEMON_STORAGE_SIZE = (
+    POKEMON_STORAGE_BOX_COUNT * POKEMON_STORAGE_SLOTS_PER_BOX * 0x50
+)
+EWRAM_START = 0x02000000
+EWRAM_END = 0x02040000
 
 TYPE_NAMES = (
     "Normal", "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug",
@@ -99,6 +115,14 @@ class BattleSnapshotBuilder:
         self._display_spec = display_spec
         self._hunt = hunt
         self._wild_scout = wild_scout
+        self._storage_encounter: tuple[int, int] | None = None
+        self._stored_pokemon: tuple[StoredPokemonState, ...] = ()
+        self._storage_error = ""
+
+    def reset_session(self) -> None:
+        self._storage_encounter = None
+        self._stored_pokemon = ()
+        self._storage_error = ""
 
     def snapshot(
         self,
@@ -113,6 +137,7 @@ class BattleSnapshotBuilder:
         if not memory.read_memory(MAIN_IN_BATTLE_ADDRESS, 1)[0] & MAIN_IN_BATTLE_MASK:
             self._tracker.end()
             self._finish_hunt(caught_flags, party)
+            self.reset_session()
             return None
         battlers_count = int.from_bytes(
             memory.read_memory(BATTLERS_COUNT_ADDRESS, 2), "little"
@@ -176,6 +201,7 @@ class BattleSnapshotBuilder:
                 ),
                 priority=1,
                 role="urgent",
+                key="battle",
             )
         ]
         enemy_party = self._read_enemy_party(memory)
@@ -202,9 +228,20 @@ class BattleSnapshotBuilder:
                 sections.append(section)
         if not trainer_battle:
             if self._wild_scout is not None and opponents:
-                iv_section = self._wild_scout.section(opponents[0], party)
+                boxed, box_error = self._boxed_for_encounter(
+                    memory,
+                    opponents[0],
+                )
+                iv_section = self._wild_scout.section(
+                    opponents[0],
+                    party,
+                    boxed,
+                    box_error=box_error,
+                )
                 if iv_section is not None:
                     sections.append(iv_section)
+        else:
+            self.reset_session()
         if not trainer_battle and not safari_battle:
             sections.extend(
                 self._catch_sections(
@@ -224,6 +261,50 @@ class BattleSnapshotBuilder:
             supports_caught_filter=True,
             display_spec=self._display_spec,
         )
+
+    def _boxed_for_encounter(
+        self,
+        memory: MemoryReader,
+        opponent: BattlePokemonState,
+    ) -> tuple[tuple[StoredPokemonState, ...], str]:
+        encounter = (opponent.species_id, opponent.personality)
+        if encounter == self._storage_encounter:
+            return self._stored_pokemon, self._storage_error
+        self._storage_encounter = encounter
+        self._stored_pokemon = ()
+        self._storage_error = ""
+        try:
+            pointer_data = memory.read_memory(
+                POKEMON_STORAGE_POINTER_ADDRESS,
+                4,
+            )
+            if len(pointer_data) != 4:
+                raise ValueError("storage pointer read was incomplete")
+            pointer = int.from_bytes(pointer_data, "little")
+            start = pointer + POKEMON_STORAGE_BOXES_OFFSET
+            if not (
+                EWRAM_START <= pointer < EWRAM_END
+                and start + POKEMON_STORAGE_SIZE <= EWRAM_END
+            ):
+                raise ValueError("storage pointer is unavailable")
+            box_size = POKEMON_STORAGE_SLOTS_PER_BOX * 0x50
+            chunks = []
+            for box in range(POKEMON_STORAGE_BOX_COUNT):
+                chunk = memory.read_memory(start + box * box_size, box_size)
+                if len(chunk) != box_size:
+                    raise ValueError(
+                        f"box {box + 1} read was incomplete"
+                    )
+                chunks.append(chunk)
+            self._stored_pokemon = decode_pokemon_storage(
+                b"".join(chunks),
+                self._species_by_id,
+                box_count=POKEMON_STORAGE_BOX_COUNT,
+                slots_per_box=POKEMON_STORAGE_SLOTS_PER_BOX,
+            )
+        except (AssertionError, OSError, RuntimeError, ValueError) as error:
+            self._storage_error = str(error)
+        return self._stored_pokemon, self._storage_error
 
     def _finish_hunt(
         self, caught_flags: bytes, party: tuple[PokemonState, ...]
@@ -269,7 +350,7 @@ class BattleSnapshotBuilder:
     ) -> tuple[PanelSection, ...]:
         quantities = self._ball_quantities(memory, save_block_1, save_block_2)
         sections = []
-        for opponent in opponents:
+        for opponent_index, opponent in enumerate(opponents):
             catch_rate = self._catch_rates.get(opponent.species)
             if catch_rate is None or not opponent.hp:
                 continue
@@ -361,6 +442,7 @@ class BattleSnapshotBuilder:
                     priority=6,
                     role="urgent",
                     compact_rows=(rows[1],),
+                    key=f"catch-chances-{opponent_index}",
                 )
             )
         return tuple(sections)

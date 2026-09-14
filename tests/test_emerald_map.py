@@ -1,6 +1,7 @@
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import Mock, patch
 
 from PIL import Image
 
@@ -13,6 +14,9 @@ from game.mapdata import (
     TRAINER_FLAGS_START,
     EmeraldMapCatalog,
     EmeraldMapEntry,
+    EmeraldMapImages,
+    LayoutSpec,
+    map_cache_key,
     parse_defines,
     parse_rematch_trainers,
     parse_script_bindings,
@@ -67,6 +71,86 @@ class MapRendererTests(unittest.TestCase):
                 render_layout(
                     b"", 0, 0, tileset, tileset, Path(directory) / "map.png"
                 )
+
+    def test_failed_map_write_does_not_leave_a_cached_image(self) -> None:
+        tileset = solid_tileset((1, 2, 3))
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "maps" / "map.png"
+
+            def fail_after_partial_write(
+                _image: Image.Image,
+                path: Path,
+                **_kwargs,
+            ) -> None:
+                Path(path).write_bytes(b"partial")
+                raise OSError("render interrupted")
+
+            with patch.object(Image.Image, "save", fail_after_partial_write):
+                with self.assertRaisesRegex(OSError, "render interrupted"):
+                    render_layout(bytes(2), 1, 1, tileset, tileset, output)
+
+            self.assertFalse(output.exists())
+            self.assertEqual(tuple(output.parent.iterdir()), ())
+
+    def test_map_cache_key_changes_with_renderer_source(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "renderer.py"
+            source.write_text("version = 1\n", encoding="utf-8")
+            first = map_cache_key("revision-one", (source,))
+
+            source.write_text("version = 2\n", encoding="utf-8")
+            second = map_cache_key("revision-one", (source,))
+            revision = map_cache_key("revision-two", (source,))
+
+        self.assertNotEqual(first, second)
+        self.assertNotEqual(second, revision)
+
+    def test_lazy_map_render_reuses_the_versioned_cache_file(self) -> None:
+        class Catalog:
+            entries = ()
+
+            @staticmethod
+            def layout(layout_id: str) -> LayoutSpec | None:
+                if layout_id != "LAYOUT_TEST":
+                    return None
+                return LayoutSpec(
+                    layout_id,
+                    1,
+                    1,
+                    "gTileset_General",
+                    "gTileset_General",
+                    "map.bin",
+                )
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "map.bin").write_bytes(bytes(2))
+            (root / "data" / "tilesets" / "primary" / "general").mkdir(
+                parents=True
+            )
+            cache = root / "generated-assets" / "vtest"
+
+            def render(*args):
+                output = args[-1]
+                output.parent.mkdir(parents=True, exist_ok=True)
+                output.write_bytes(b"png")
+                return output
+
+            renderer = Mock(side_effect=render)
+            images = EmeraldMapImages(
+                Catalog(),
+                root,
+                cache,
+                Mock(return_value=object()),
+                renderer,
+            )
+
+            first = images.render("LAYOUT_TEST")
+            second = images.render("LAYOUT_TEST")
+
+            self.assertEqual(first, second)
+            self.assertTrue(first.is_relative_to(cache))
+            renderer.assert_called_once()
 
 
 class DefineParsingTests(unittest.TestCase):

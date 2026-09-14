@@ -101,10 +101,18 @@ class ObjectiveNavigator:
         return PanelSection(
             "Navigator",
             tuple(rows),
-            actions=(PanelAction("OPEN NAVIGATOR", "Story and Sidequests", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN NAVIGATOR",
+                    "Story and Sidequests",
+                    tuple(details),
+                    key="navigator-details",
+                ),
+            ),
             priority=8,
             role="goals",
             compact_rows=tuple(rows[:2]),
+            key="navigator",
         )
 
     def _complete(self, goal: Objective, flags: bytes) -> bool:

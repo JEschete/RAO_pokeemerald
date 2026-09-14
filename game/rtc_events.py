@@ -155,10 +155,18 @@ class RtcEventDashboard:
         return PanelSection(
             "World events",
             rows,
-            actions=(PanelAction("OPEN WORLD EVENTS", "RTC and World Events", tuple(details)),),
+            actions=(
+                PanelAction(
+                    "OPEN WORLD EVENTS",
+                    "RTC and World Events",
+                    tuple(details),
+                    key="world-events-details",
+                ),
+            ),
             priority=30,
             role="goals",
             compact_rows=(rows[0],),
+            key="world-events",
         )
 
     @staticmethod
